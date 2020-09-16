@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+
+
+        <record id="excursion.group_excursion_ctm" model="res.groups">
+            <field name="name">Ctm Excursion User</field>
+
+        </record>
+        <record id="excursion.group_excursion_ctm_admin" model="res.groups">
+            <field name="name">Ctm Excursion admin</field>
+
+        </record>
+        <record id="excursion.group_excursion_affectation_reservation" model="res.groups">
+            <field name="name">access affectation reservations </field>
+
+        </record>
+    </data>
+</odoo>

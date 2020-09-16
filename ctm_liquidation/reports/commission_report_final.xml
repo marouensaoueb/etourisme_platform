@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--    <template id="ctm_liquidation.com_final_report">-->
+<!--        <t t-call="web.html_container">-->
+<!--            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>-->
+<!--            <div class="page">-->
+
+<!--                <br></br>-->
+<!--                <h3 class="text-center">Commissions entre <t t-esc="d1" /> / <t t-esc="d2" /> </h3>-->
+
+
+
+<!--                <br></br>-->
+
+
+<!--                <b> * commission sud and camel :</b>-->
+<!--                <br>-->
+
+<!--                </br><br>-->
+
+<!--                </br><br>-->
+
+<!--                </br>-->
+<!--                <table class="table table-stripped">-->
+<!--                    <thead>-->
+<!--                        <tr>-->
+<!--                            <th>-->
+<!--                                Guide-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                                Rotation date-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                                Camel-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                                Sale value-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                                Commission-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                                4*4-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                                Sale value-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                                Commission-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                                total sale-->
+<!--                            </th>-->
+<!--                        </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                        <tr>-->
+<!--                           <td></td>-->
+<!--                           <td></td>-->
+<!--                           <td></td>-->
+<!--                           <td></td>-->
+<!--                           <td></td>-->
+<!--                           <td></td>-->
+<!--                           <td></td>-->
+<!--                           <td></td>-->
+<!--                           <td></td>-->
+<!--                        </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+
+<!--                <br></br>-->
+<!--                <br></br>-->
+
+
+<!--                <b> * Encaissement par rep : </b>-->
+<!--                <br>-->
+
+<!--                </br><br>-->
+
+<!--            </br><br>-->
+
+<!--            </br>-->
+<!--                <table class="table table-stripped">-->
+<!--                    <thead>-->
+<!--                        <tr>-->
+<!--                            <th>-->
+<!--                                Representant-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                                Total $-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                                Total TND-->
+<!--                            </th>-->
+
+<!--                        </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                        <tr>-->
+<!--                            <td></td>-->
+<!--                            <td></td>-->
+
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                            <td></td>-->
+<!--                            <td></td>-->
+
+<!--                        </tr>-->
+<!--                    </tbody>-->
+<!--                </table>-->
+
+<!--                <br></br>-->
+<!--                <br></br>-->
+<!--                TARGET : 	EXCURSIONS SALES/ NBRE OF CLIENTS ARRIVED DURING THE SAME PERIOD<br></br>-->
+<!--                <ul>-->
+<!--                    <li> 3.75% * montant liquidé si le Target  &lt; 40$</li>-->
+<!--                    <li>4% si Target=40$</li>-->
+<!--                    <li>4,25% si Target=45$</li>-->
+<!--                    <li>4,5% si Target=50$</li>-->
+<!--                </ul>-->
+<!--                   -->
+<!--                <br></br>-->
+<!--                <br></br>-->
+<!--                <b> * Commission excursions :</b>-->
+<!--                <br>-->
+
+<!--                </br><br>-->
+
+<!--            </br><br>-->
+
+<!--            </br>-->
+<!--                <table class="table table-stripped">-->
+<!--                    <thead>-->
+<!--                        <tr>-->
+<!--                            <th>-->
+<!--                                Rotation-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                                Rep-->
+<!--                            </th>-->
+<!--                            <th>-->
+<!--                               Arrivals-->
+<!--                            </th><th>-->
+<!--                               Sales-->
+<!--                            </th><th>-->
+<!--                               Target-->
+<!--                            </th><th>-->
+<!--                               Liquidation-->
+<!--                            </th><th>-->
+<!--                               Liquidation Sud-->
+<!--                            </th><th>-->
+<!--                               Liquidation Net-->
+<!--                            </th><th>-->
+<!--                               Commission rate-->
+<!--                            </th><th>-->
+<!--                               Commission-->
+<!--                            </th>-->
+
+<!--                        </tr>-->
+<!--                    </thead>-->
+<!--                    <tbody>-->
+<!--                        <tr>-->
+<!--                            <td></td>-->
+<!--                            <td></td>-->
+<!--                            <td></td>-->
+<!--                            <td></td>-->
+<!--                            <td></td>-->
+<!--                            <td></td>-->
+<!--                            <td></td>-->
+<!--                            <td></td>-->
+<!--                            <td></td>-->
+<!--                            <td></td>-->
+
+<!--                        </tr>-->
+
+<!--                    </tbody>-->
+<!--                </table>-->
+
+
+<!--            </div>-->
+<!--        </t>-->
+
+<!--    </template>-->
+<!--    <report-->
+<!--            id="ctm_liquidation.com_final_report"-->
+<!--            string="Commissions des reps"-->
+<!--            model="wizard.comm_final_report"-->
+<!--            report_type="qweb-pdf"-->
+<!--            name="ctm_liquidation.com_final_report"-->
+<!--            menu="False"-->
+<!--    />-->
+</odoo>

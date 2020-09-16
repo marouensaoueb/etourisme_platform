@@ -1,0 +1,117 @@
+<odoo>
+    <data>
+        <template id="ctm_tools.report_docuemnt_indiv">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                  <t t-call="web.external_layout">
+
+
+                        <div class="page" t-attf-style="     font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Roboto, &quot;Helvetica Neue&quot;, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;, &quot;Noto Color Emoji&quot;; ">
+
+                            <div class="row text-center">
+                                <div class="col-12 ">
+                                    <h3>Dossier Individuel</h3>
+                                </div>
+
+                            </div>
+                            <br/>
+                            <br/>
+                            <div class="row ">
+                                <div class="col-1"/>
+                                <div class="col-10">
+                                    <div  class="pull-left col-4">
+                                        <b>Instance :</b>
+                                        <span t-raw="o.instance"/>
+                                    </div>
+                                    <div  class="pull-right col-4">
+                                        <b>Num reservation :</b>
+                                        <span t-raw="o.num_reserv"/>
+                                        <br/>
+                                        <br/>
+                                        <b>Code agence :</b>
+                                        <span t-raw="o.code_agence"/>
+                                        <br/>
+                                        <b>Code circuit :</b>
+                                        <span t-raw="o.code_circ"/>
+                                        <br/>
+                                        <b>Code hotel :</b>
+                                        <span t-raw="o.code_hotel"/>
+                                        <br/>
+                                    </div>
+
+                                </div>
+                                <div class="col-1">
+
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="row ">
+                                <div class="col-1"/>
+                                <div class="col-10">
+                                    <div  class="pull-left col-4">
+                                        <b>Nom :</b>
+                                        <span t-raw="o.name"/>
+                                        <br/>
+                                        <b>Hotel de séjour :</b><br />
+                                        <span t-raw="o.sejour_hotel.name"/>
+                                        <br/>
+                                        <b>Agence :</b>
+                                        <span t-raw="o.agence.name"/>
+                                        <br/>
+                                        <b>Circuit :</b>
+                                        <span t-raw="o.circuit.name"/>
+                                        <br/>
+                                        <b>Repartition :</b>
+                                        <span t-raw="o.repartition"/>
+                                        <br/>
+                                    </div>
+                                    <div  class="pull-right col-4">
+                                        <b>Pay :</b>
+                                        <span t-raw="o.country.name"/>
+                                        <br/>
+                                        <b>Pax :</b>
+                                        <span t-raw="o.pax"/>
+                                        <br/>
+                                    </div>
+
+                                </div>
+                                <div class="col-1">
+
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row ">
+                                <div class="col-1"/>
+                                <div class="col-10">
+                                    <div  class="pull-left col-4">
+                                        <b>Arrivé :</b>
+                                        <span t-raw="o.arrive"/>
+                                        <br/>
+
+                                        <b>Durée de séjour :</b>
+                                        <span t-raw="o.sej_length"/>
+                                        <br/>
+                                        <!--<b>Methode de payement :</b> <span t-raw="o.payement_method.name" /><br />-->
+                                    </div>
+                                    <div   class="pull-right col-4">
+                                        <b>Depart</b>
+                                        :
+                                        <span t-raw="o.depart"/>
+                                    </div>
+
+                                </div>
+                                <div class="col-1">
+
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </t>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

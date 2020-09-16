@@ -1,0 +1,974 @@
+#header {
+
+    border-bottom: solid;
+    border-bottom-color: transparent;
+    box-shadow: 0px 25px 40px -15px rgba(0, 0, 0, 0.75);
+
+}
+
+input::-webkit-calendar-picker-indicator,
+input::-webkit-inner-spin-button {
+    display: none;
+}
+
+#main_container {
+
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+
+#main_logo {
+    padding-left: 24px;
+    padding-top: 10px;
+    padding-bottom: 2px;
+    height: 70px;
+}
+
+#filters .row {
+
+    border: 2px solid;
+    height: fit-content;
+    padding-top: 0px;
+    margin-top: 37px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgba(0, 0, 0, 0.18);
+    padding-bottom: 27px;
+
+}
+
+#content_placement_spos {
+    display: flex;
+}
+
+#mat_table {
+    width: 100%;
+}
+
+#matrix .row {
+
+    border: 2px solid;
+    height: fit-content;
+    padding-top: 0px;
+    margin-top: 37px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgba(0, 0, 0, 0.18);
+    padding-bottom: 27px;
+
+}
+
+body {
+    font-family: Arial;
+}
+
+#sp1 {
+    font-weight: 900;
+    font-size: x-large;
+
+}
+
+#sp2 {
+    text-shadow: 1px 1px 2px black;
+}
+
+#lbl1 {
+    color: #d7205e;
+    font-weight: 600;
+}
+
+fieldset {
+    border: 1px solid #ddd !important;
+    margin: 0;
+    xmin-width: 0;
+    padding: 10px;
+    position: relative;
+    border-radius: 4px;
+    background-color: #f5f5f5;
+    padding-left: 10px !important;
+    height: 210px;
+}
+
+legend {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 0px;
+    width: 35%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px 5px 5px 10px;
+    background-color: #ffffff;
+}
+
+#t_1_row {
+    width: 100%;
+}
+
+#d3, #d1, #d2 {
+    width: 200px;
+}
+
+#chk2 {
+
+}
+
+#date_icon {
+    height: 27px;
+    width: 27px;
+    margin-left: 12px;
+}
+
+.custom-control.ios-switch {
+    --color: #4cd964;
+    padding-left: 0;
+}
+
+.custom-control.ios-switch .ios-switch-control-input {
+    display: none;
+}
+
+.custom-control.ios-switch .ios-switch-control-input:active ~ .ios-switch-control-indicator::after {
+    width: 20px;
+}
+
+.custom-control.ios-switch .ios-switch-control-input:checked ~ .ios-switch-control-indicator {
+    border: 10px solid var(--color);
+}
+
+.custom-control.ios-switch .ios-switch-control-input:checked ~ .ios-switch-control-indicator::after {
+    top: -8px;
+    left: 4px;
+}
+
+.custom-control.ios-switch .ios-switch-control-input:checked:active ~ .ios-switch-control-indicator::after {
+    left: 0px;
+}
+
+.custom-control.ios-switch .ios-switch-control-indicator {
+    display: inline-block;
+    position: relative;
+    margin: 0 10px;
+    top: 4px;
+    width: 32px;
+    height: 20px;
+    background: #fff;
+    border-radius: 16px;
+    transition: .3s;
+    border: 2px solid #ddd;
+}
+
+.custom-control.ios-switch .ios-switch-control-indicator::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    border-radius: 16px;
+    transition: .3s;
+    top: 0px;
+    left: 0px;
+    background: #fff;
+    box-shadow: 0 0 2px #aaa, 0 2px 5px #999;
+}
+
+#td_div {
+    display: flex;
+}
+
+.submit_button_1 {
+    margin-left: 16px;
+}
+
+.ages_filter_div {
+    display: flex;
+}
+
+.ages_div_main {
+    padding: 17px;
+}
+
+.ages_div_kids {
+}
+
+.ages_div_kids_apply_to {
+}
+
+.custom-control.material-checkbox {
+    --color: #26a69a;
+}
+
+.custom-control.material-checkbox .material-control-input {
+    display: none;
+}
+
+.custom-control.material-checkbox .material-control-input:checked ~ .material-control-indicator {
+    border-color: var(--color);
+    -webkit-transform: rotateZ(45deg) translate(1px, -5px);
+    transform: rotateZ(45deg) translate(1px, -5px);
+    width: 10px;
+    border-top: 0px solid #fff;
+    border-left: 0px solid #fff;
+}
+
+.custom-control.material-checkbox .material-control-indicator {
+    display: inline-block;
+    position: absolute;
+    top: 4px;
+    left: 0;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #aaa;
+    transition: .3s;
+}
+
+#f_section_2 {
+    display: flex;
+}
+
+/*list group */
+.list-group:first-child .list-group-control:first-child {
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+}
+
+.list-group::last-child .list-group-control:last-child {
+    border-bottom-left-radius: .25rem;
+    border-bottom-right-radius: .25rem;
+}
+
+.list-group.list-group-flush:last-child .list-group-control:last-child {
+    border-bottom: 0;
+    margin-bottom: 0;
+}
+
+.list-group.list-group-flush:first-child .list-group-control:first-child {
+    border-top: 0;
+}
+
+.list-group.list-group-flush .list-group-control {
+    border-right: 0;
+    border-left: 0;
+    border-radius: 0;
+}
+
+.list-group .list-group-control {
+    position: relative;
+    display: block;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+.list-group .list-group-control .custom-control {
+    margin: 0;
+    padding: .75rem 1.25rem;
+    padding-left: 3rem;
+    display: block;
+}
+
+.list-group .list-group-control .custom-control .custom-control-indicator, .list-group .list-group-control .custom-control .material-control-indicator, .list-group .list-group-control .custom-control .fill-control-indicator, .list-group .list-group-control .custom-control .overflow-control-indicator {
+    top: 1rem;
+    left: 1.25rem;
+}
+
+.custom-radio .custom-control-input:checked ~ .custom-control-indicator {
+    background-image: url("data:image/svg+xml;charset=utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='%23fff'/></svg>");
+}
+
+.list-group .list-group-control .custom-control .custom-control-indicator, .list-group .list-group-control .custom-control .material-control-indicator, .list-group .list-group-control .custom-control .fill-control-indicator, .list-group .list-group-control .custom-control .overflow-control-indicator {
+    top: 1rem;
+    left: 1.25rem;
+}
+
+.custom-control-input:checked ~ .custom-control-indicator {
+    color: #fff;
+    background-color: #000000;
+}
+
+.custom-radio .custom-control-indicator {
+    border-radius: 50%;
+}
+
+.custom-control-indicator {
+    position: absolute;
+    top: .25rem;
+    left: 0;
+    display: block;
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #ddd;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 50% 50%;
+}
+
+.custom-control-input:active ~ .custom-control-indicator {
+    color: #fff;
+    background-color: #b3d7ff;
+}
+
+.single_content {
+    display: block;
+}
+
+.dates_wrapper {
+    display: flex;
+    margin-top: 8px;
+}
+
+.prices_wrapper {
+    display: flex;
+}
+
+.buttons_wrapper {
+
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+}
+
+.dates {
+    color: rgba(6, 36, 199, 0.65);
+    width: min-content;
+}
+
+.currency {
+    margin: 3px;
+    font-weight: 900;
+}
+
+.age {
+    margin: 3px;
+    font-weight: 800;
+    color: rgb(125, 21, 21);
+    display: flex;
+}
+
+.prices_wrapper img {
+    margin: 3px;
+}
+.buttons_wrapper1{
+    display: flex;
+}
+.price {
+
+}
+
+#edit_button {
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    width: 25px;
+    height: 25px;
+}
+
+#edit_button_spo {
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+
+    height: 25px;
+}
+
+#copy_button {
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    width: 25px;
+    height: 25px;
+}
+
+#copy_button_spo {
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+
+    height: 25px;
+}
+
+#blocked_button {
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    width: 25px;
+    height: 25px;
+}
+
+#blocked_button_spo {
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+
+    height: 25px;
+}
+
+.meal_title_div {
+    /*background-image: linear-gradient(to right, rgba(219, 209, 209, 0.5), rgba(220, 189, 192, 0.5), rgba(220, 169, 178, 0.5), rgba(217, 149, 166, 0.5), rgba(213, 129, 158, 0.5));*/
+    text-align: center;
+    font-weight: bolder;
+
+}
+
+
+#unblocked_button_spo {
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+
+    height: 25px;
+}
+
+#unblocked_button {
+    padding-left: 0px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    padding-right: 0px;
+    width: 25px;
+    height: 25px;
+}
+
+#btn_down {
+    display: flex;
+
+}
+
+#edit_button1 {
+
+    width: 40px;
+    height: 40px;
+}
+
+#spo_button1 {
+
+    width: 40px;
+    height: 40px;
+}
+
+#delete_button1 {
+
+    width: 40px;
+    height: 40px;
+}
+
+/*login style */
+
+#form_login {
+    position: relative;
+    left: 5px;
+    width: 500px;
+    height: fit-content;
+    margin: 50px auto;
+    text-align: center;
+
+    padding: 40px;
+    -webkit-border-radius: 20px 0 0 0;
+    -moz-border-radius: 20px 0 0 0;
+    border-radius: 20px 20px 20px 20px;
+    -webkit-box-shadow: 0px 1px 0px #ad392d, inset 0px 1px 0px white;
+    -moz-box-shadow: 0px 1px 0px #ad392d, inset 0px 1px 0px white;
+    box-shadow: 0px 1px 0px #ad392d, inset 0px 1px 0px white;
+    box-shadow: 1px 2px 20px 10px;
+    top: 50px;
+    font-weight: 700;
+    color: gray;
+}
+
+#form_login h4 {
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 2em;
+    font-weight: 300;
+    margin-bottom: 25px;
+    color: #7f8c8d;
+    text-shadow: 1px 1px 0px white;
+}
+
+#form_login .form-group {
+    text-align: left;
+}
+
+#form_login input {
+    display: block;
+
+    padding: 14px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    border: 0;
+    margin-bottom: 12px;
+    color: #7f8c8d;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+#form_login input:focus {
+    background: #fafafa;
+}
+
+.button {
+    position: relative;
+    float: left;
+    width: 145px;
+    margin-top: 10px;
+    background: #3498db;
+    color: #fff;
+    font-weight: 400;
+    text-shadow: 1px 1px 0px #2d7baf;
+    box-shadow: 0px 3px 0px #2d7baf;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+#header .row {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}
+
+#logout_div {
+    text-align: center;
+    padding-top: 20px;
+}
+
+#logout_link {
+    font-weight: 600;
+    font-size: large;
+    color: black;
+}
+
+#home_section {
+    padding: 32px;
+
+}
+
+#home_right {
+    border: 2px solid;
+    height: fit-content;
+    padding-top: 0px;
+    margin-top: 37px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgba(0, 0, 0, 0.18);
+    padding-bottom: 27px;
+}
+
+#home_left {
+    /*border: 2px solid;*/
+    height: fit-content;
+    padding-top: 0px;
+    margin-top: 37px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+
+}
+
+#home_left .form-group {
+    display: flex;
+}
+
+#navbar {
+
+}
+
+#navbar a {
+    color: black;
+}
+
+#hotel_interface_main {
+    display: flex;
+}
+
+#row_container {
+    border: 2px solid;
+    height: fit-content;
+    padding-top: 0px;
+    margin-top: 37px;
+    margin-left: 20px;
+
+    margin-bottom: 20px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgba(0, 0, 0, 0.18);
+    padding-bottom: 27px;
+
+    margin-right: 0px;
+
+}
+
+#hotel_desc_span {
+    position: relative;
+    top: -13px;
+    left: 18px;
+    background: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    height: 20px;
+}
+
+#header_row_hotels {
+}
+
+#hotel_detail_edit_form {
+    margin-top: 50px;
+}
+
+@media screen and (max-width: 1200px) {
+    #hotel_detail_edit_form input {
+        position: absolute;
+        right: 50px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        height: 27px;
+        font-weight: 600;
+        font-size: smaller;
+        width: 162px;
+    }
+
+    #hotel_detail_edit_form select {
+        position: absolute;
+        right: 50px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        height: 27px;
+        font-weight: 600;
+        font-size: smaller;
+        width: 162px;
+    }
+
+    #hotel_detail_edit_form button {
+        position: absolute;
+        right: 50px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        height: 27px;
+        font-weight: 600;
+        font-size: smaller;
+        width: 81px;
+    }
+}
+
+@media screen and (min-width: 1201px) {
+    #hotel_detail_edit_form input {
+        position: absolute;
+        right: 50px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        height: 27px;
+        font-weight: 600;
+        font-size: smaller;
+        width: 323px;
+    }
+
+    #hotel_detail_edit_form select {
+        position: absolute;
+        right: 50px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        height: 27px;
+        font-weight: 600;
+        font-size: smaller;
+        width: 323px;
+    }
+
+    #hotel_detail_edit_form button {
+        position: absolute;
+        right: 50px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+        height: 27px;
+        font-weight: 600;
+        font-size: smaller;
+        width: 162px;
+    }
+}
+
+#hotel_detail_edit_form label {
+}
+
+#hotel_rooms {
+}
+
+#hotel_rooms fieldset {
+    width: 100%;
+}
+
+#hotel_name {
+    margin-right: 12px;
+    font-weight: 900;
+}
+
+#hotel_location {
+}
+
+#room_show_container {
+
+}
+
+#is_hotel_div {
+    position: absolute;
+
+    left: 361px;
+}
+
+#room_infant_included_check {
+
+}
+
+#row_container_accomodations {
+    border: 2px solid;
+    height: fit-content;
+
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgba(0, 0, 0, 0.18);
+    margin-bottom: 20px;
+    padding-left: 10px;
+}
+
+#row_container_accomodations input {
+    position: inherit !important;
+    right: 50px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    height: 27px;
+    font-weight: 600;
+    font-size: smaller;
+    width: 50px !important;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.spo_dates {
+
+}
+
+#ordianry_prices_wrapper {
+
+    width: 50%;
+}
+
+#spos_wrapper {
+
+}
+
+.spo_name {
+    font-size: small;
+    text-decoration-line: underline;
+    font-weight: 900;
+    color: #d7205e;
+}
+
+#row_container_accomodations label {
+    padding-right: 13px;
+}
+
+#room_json_id {
+    visibility: hidden;
+}
+
+.spo_buttons_none {
+    visibility: hidden;
+}
+
+.spo_buttons_wrapper {
+
+
+    /* z-index: 10014; */
+    top: 60px;
+    right: 0;
+}
+.big_content_div
+{
+    width: fit-content;
+}
+
+#manipulation_buttons {
+    position: absolute;
+    right: 5px;
+}
+
+#hotel_room_prices_legend {
+
+}
+
+#hotel_room_prices_legend a {
+    padding-left: 16px;
+}
+
+@media (min-width: 992px) {
+    .modal-lg, .modal-xl {
+        max-width: 1120px;
+    }
+}
+
+.formula-div {
+    margin-bottom: 0px;
+    border: 1px solid;
+    padding-left: 34px;
+    border-color: rgba(0, 0, 0, 0.09);
+    /*border-radius: 10px 10px 10px 10px;*/
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.formula-div input {
+    width: 100px !important;
+}
+
+.formula-div select {
+    width: fit-content !important;
+}
+
+#confirm_operation {
+
+}
+
+#dialog-1 {
+
+}
+
+.toast-body {
+    padding: .75rem;
+    color: green;
+    font-size: large;
+    text-align: center;
+}
+
+#is_relative_copy {
+    display: none;
+}
+#non_commulable {
+    /*display: table-row;*/
+
+}
+#edit_record_form{
+
+}
+#edit_record_form input{
+
+}
+#edit_table{
+
+}
+#edit_table td{
+
+}
+#edit_table input{
+
+}
+#row_container_checkin {
+    border: 2px solid;
+    height: fit-content;
+    padding-top: 0px;
+    margin-top: 37px;
+    margin-left: 20px;
+
+    margin-bottom: 20px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgba(0, 0, 0, 0.18);
+    padding-bottom: 27px;
+
+    margin-right: 0px;
+
+}
+#row_container_checkout {
+    border: 2px solid;
+    height: fit-content;
+    padding-top: 0px;
+    margin-top: 37px;
+    margin-left: 20px;
+
+    margin-bottom: 20px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgba(0, 0, 0, 0.18);
+    padding-bottom: 27px;
+
+    margin-right: 0px;
+
+}
+#row_container_creation {
+    border: 2px solid;
+    height: fit-content;
+    padding-top: 0px;
+    margin-top: 37px;
+    margin-left: 20px;
+
+    margin-bottom: 20px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgba(0, 0, 0, 0.18);
+    padding-bottom: 27px;
+
+    margin-right: 0px;
+
+}
+#row_container_stay {
+    border: 2px solid;
+    height: fit-content;
+    padding-top: 0px;
+    margin-top: 37px;
+    margin-left: 20px;
+
+    margin-bottom: 20px;
+    border-radius: 10px 10px 10px 10px;
+    border-color: rgba(0, 0, 0, 0.18);
+    padding-bottom: 27px;
+
+    margin-right: 0px;
+
+}
+.reservation-wrapper{
+    text-align: center;
+}
+.choose_service{
+display: flex;
+}
+.search_area{
+    border: 1px solid #ddd !important;
+    margin: 0;
+
+    padding: 10px;
+    position: relative;
+    border-radius: 4px;
+
+    padding-left: 10px !important;
+    height: fit-content;
+}
+.search_area label{
+    text-align: left;
+}
+.res_creation_area{
+    border: 2px solid #ddd !important;
+    margin: 0;
+
+    padding: 10px;
+    position: relative;
+    border-radius: 4px;
+
+    padding-left: 10px !important;
+    height: fit-content;
+}
+.res_creation_area label{
+    font-weight: 800;
+}
+.add_client_button{
+    position: relative;
+    left: 50%;
+    right: 50%;
+}

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="excursion.affectation_form">
+            <field name="name">Affectation</field>
+            <field name="model">excursion.affectation</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <sheet>
+                    <group>
+                        <field name="dat"/>
+                        <field name="excurson_id"/>
+                        <field name="chauffeur"/>
+                        <field name="vehicule"/>
+                        <field name="guide_principale"/>
+                        <field name="guide_doubleur"/>
+                        <field name="liste_vente" domain="[('dat','=',dat),('excursion_id','=',excurson_id),('movementday_id','=',False)]">
+                        <tree>
+                            <field name="ticket_number"/>
+                            <field name="room_nbr"/>
+                            <field name="hotel_id"/>
+                            <field name="adulte"/>
+                            <field name="enfant"/>
+                            <field name="inf"/>
+                        </tree>
+                        </field>
+
+                        <field name="liste_camel" domain="[('dat','=',dat),('excursion_id.type_excursion_camel','=',True),('movementday_id','=',False)]">
+                            <tree>
+                                <field name="ticket_number"/>
+                                <field name="room_nbr"/>
+                                <field name="hotel_id"/>
+                                <field name="adulte"/>
+                                <field name="enfant"/>
+                                <field name="inf"/>
+                            </tree>
+                        </field>
+
+                    </group>
+                    <footer>
+                        <button name="test" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--dima tekteb esme el module.esme el class ama el point etwali _-->
+
+        <record model="ir.actions.act_window" id="excursion.affectation_action">
+            <field name="name"> Affectation reservation  </field>
+            <field name="res_model">excursion.affectation</field>
+            <field name="view_id" ref="excursion.affectation_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="affecter reservations " parent="excursion.affectation_menu" id="excursion.affectation_fonc"
+                  sequence="3"
+                  action="excursion.affectation_action"
+        />
+        <!--<menuitem id="excursion.wizard_menu" name="Etat à imprimer" sequence="2"-->
+        <!--parent="excursion.menu_root" action="excursion.wizards_reports_action"/>-->
+    </data>
+</odoo>

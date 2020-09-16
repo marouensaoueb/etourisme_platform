@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="ctm_fleet.paperformatanewemdv" model="report.paperformat">
+        <field name="name">A4(customized)</field>
+
+        <field name="orientation">Landscape</field>
+
+        <field name="header_line" eval="True"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">100</field>
+    </record>
+
+        <report
+                id="ejdv_report"
+                string="Etat journaliére des dépenses par vehicule (Parc CTM )"
+                model="ctm.vehicle.state"
+                report_type="qweb-pdf"
+                file="ctm_fleet.ejdv_report"
+                name="ctm_fleet.ejdv_report"
+                print_report_name="object.vehicle.license_plate"
+
+        />
+        <report
+                id="ejdvl_report"
+                string="Etat journaliére des dépenses par vehicule (Location )"
+                model="ctm.vehicle.state"
+                report_type="qweb-pdf"
+                file="ctm_fleet.ejdvl_report"
+                name="ctm_fleet.ejdvl_report"
+                print_report_name="object.vehicle.license_plate"
+
+        />
+    <report
+                id="eji_report"
+                string="Etat journaliére des Intervention ( Parc CTM )"
+                model="ctm.vehicle.state"
+                report_type="qweb-pdf"
+                file="ctm_fleet.eji_report"
+                name="ctm_fleet.eji_report"
+                print_report_name="object.vehicle.license_plate"
+
+        />
+    <report
+                id="ejil_report"
+                string="Etat journaliére des Intervention ( Voitures de location )"
+                model="ctm.vehicle.state"
+                report_type="qweb-pdf"
+                file="ctm_fleet.ejil_report"
+                name="ctm_fleet.ejil_report"
+                print_report_name="object.vehicle.license_plate"
+
+        />
+    <!--<report-->
+                <!--id="emdv_report"-->
+                <!--string="Etat Mensuel des dépenses par vehicule ( Parc CTM )"-->
+                <!--model="ctm.vehicle.state.detail"-->
+                <!--report_type="qweb-pdf"-->
+                <!--file="ctm_fleet.emdv_report"-->
+                <!--name="ctm_fleet.emdv_report"-->
+                <!--print_report_name="object.state_id.vehicle.license_plate"-->
+                <!--menu="False"-->
+
+        <!--/>-->
+    <report id="emdv_report"
+            model="ctm.vehicle.state.detail"
+            string="Etat des dépenses par  vehicule"
+            report_type="qweb-pdf"
+            name="ctm_fleet.emdv_report_view"
+            menu="False"
+
+    />
+    <report id="emdtv_report"
+            model="ctm.vehicle.state.detail"
+            string="Etat des dépenses par Type de vehicule"
+            report_type="qweb-pdf"
+            name="ctm_fleet.emdtv_report_view"
+            menu="False"/>
+    <report id="ermi_report"
+            model="ctm.intervention.detail"
+            string="Etat des Interventions"
+            report_type="qweb-pdf"
+            name="ctm_fleet.ermi_report_view"
+            menu="False"/>
+    <report id="ermi_report"
+            model="ctm.intervention.detail"
+            string="Etat des Interventions"
+            report_type="qweb-pdf"
+            name="ctm_fleet.ermi_report_view"
+            menu="False"/>
+    <report id="edir_report"
+            model="ctm.intervention.detail"
+            string="Etat des intervention par rubrique"
+            report_type="qweb-pdf"
+            name="ctm_fleet.edir_report_view"
+            menu="False"/>
+    <report id="lv_report"
+            model="fleet.vehicle"
+            string="Liste des vehicules"
+            report_type="qweb-pdf"
+            name="ctm_fleet.lv_report_view"
+            menu="False"/>
+
+</odoo>

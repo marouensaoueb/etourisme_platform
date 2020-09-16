@@ -1,0 +1,348 @@
+<odoo>
+    <data>
+        <!--wizards -->
+        <record id="wizard_getranspdet" model="ir.ui.view">
+            <field name="name">wizard transport details</field>
+            <field name="model">transp.wiz</field>
+            <field name="arch" type="xml">
+                <form string="Get transport detail">
+                    <group>
+                        <field name="get_options"/>
+                        <field name="reservation_id" attrs="{'invisible':[('get_options', '!=', 'specific')]}"/>
+                        <field name="date_from" attrs="{'invisible':[('get_options', '!=', 'date')]}"/>
+                        <field name="date_to" attrs="{'invisible':[('get_options', '!=', 'date')]}"/>
+                    </group>
+                    <footer>
+
+                        <button string='Get details' name="get_details" class="btn btn-success" type="object"/>
+
+                        <button string="Cancel" class="btn btn-danger" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <!--forms-->
+        <record id="transfer_time_form" model="ir.ui.view">
+            <field name="name">transfer timing form</field>
+            <field name="model">fleet.transfer.timing</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <sheet>
+                        <group>
+                            <field name="city_from"/>
+                            <field name="city_to"/>
+                            <field name="vehicle_type"/>
+                        </group>
+                        <group>
+                            <field name="distance"/>
+                            <field name="time_travel" widget="float_time"/>
+                        </group>
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <!--trees-->
+        <record id="citys_tree" model="ir.ui.view">
+            <field name="name">citys tree</field>
+            <field name="model">res.country.state.city</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+
+
+                    <field name="name"/>
+                    <field name="state"/>
+                    <field name="region"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="point_types_tree" model="ir.ui.view">
+            <field name="name">point types tree</field>
+            <field name="model">point.type</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+
+
+                    <field name="name"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record id="pickup_points_tree" model="ir.ui.view">
+            <field name="name">pick up points tree</field>
+            <field name="model">point.list</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+
+
+                    <field name="name"/>
+                    <field name="code"/>
+                    <field name="typ"/>
+                    <field name="city"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="transfer_time_tree" model="ir.ui.view">
+            <field name="name">transfer timing tree</field>
+            <field name="model">fleet.transfer.timing</field>
+            <field name="arch" type="xml">
+                <tree>
+
+
+                    <field name="city_from"/>
+                    <field name="city_to"/>
+                    <field name="vehicle_type"/>
+                    <field name="distance"/>
+                    <field name="time_travel"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="transfer_arrive_tree" model="ir.ui.view">
+            <field name="name">transfer arrive tree</field>
+            <field name="model">transport.request</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+
+                    <field name="nature_de_transfer"/>
+                    <field name="agency"/>
+                    <field name="hotel"/>
+                    <field name="pax"/>
+                    <field name="date_transfer"/>
+                     <field name="aireport"/>
+                    <field name="flight_number"/>
+                    <field name="destination"/>
+                    <field name="time_arrive"/>
+                      <field name="vehicle"/>
+
+
+
+
+                </tree>
+            </field>
+        </record>
+        <record id="transfer_depart_tree" model="ir.ui.view">
+            <field name="name">transfer depart tree</field>
+            <field name="model">transport.request</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+
+                    <field name="nature_de_transfer"/>
+                    <field name="agency"/>
+                    <field name="hotel"/>
+                    <field name="pax"/>
+                    <field name="date_transfer"/>
+                     <field name="time_departure_hotel"/>
+                     <field name="time_departure_flight"/>
+                     <field name="aireport"/>
+                    <field name="flight_number"/>
+                    <field name="destination"/>
+
+                      <field name="vehicle"/>
+
+
+
+
+                </tree>
+            </field>
+        </record>
+        <record id="transfer_tree" model="ir.ui.view">
+            <field name="name">transfer depart tree</field>
+            <field name="model">transport.request</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+
+                    <field name="nature_de_transfer"/>
+                    <field name="agency"/>
+                    <field name="hotel"/>
+                    <field name="pax"/>
+                    <field name="aireport"/>
+                     <field name="flight_number"/>
+                     <field name="date_transfer"/>
+                     <field name="time_departure_hotel"/>
+                     <field name="time_departure_flight"/>
+               <field name="time_arrive"/>
+                    <field name="destination"/>
+
+                      <field name="vehicle"/>
+
+
+
+
+
+
+
+
+                </tree>
+            </field>
+        </record>
+        <record id="vehicule_types_list" model="ir.ui.view">
+            <field name="name">wizard import hotels and roomings</field>
+            <field name="model">vehicle.types</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record id="trasfer_types_list" model="ir.ui.view">
+            <field name="name">transfer types</field>
+            <field name="model">transfer.types</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+                    <field name="individual"/>
+                    <field name="max"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <!--inherits-->
+        <record id="vehicule_fleets_inherit" model="ir.ui.view">
+            <field name="name">vehicle cost inhrit</field>
+            <field name="model">fleet.vehicle.cost</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_costs_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath position="replace" expr="//field[@name='parent_id']">
+
+
+                    <field name="partner"/>
+                    <field name="num_btc"/>
+                    <field name="Km"/>
+
+
+                </xpath>
+            </field>
+        </record>
+        <record id="vehicule_fleets_inherit" model="ir.ui.view">
+            <field name="name">vehicle fleet inhrit</field>
+            <field name="model">fleet.vehicle</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_view_form"/>
+            <field name="arch" type="xml">
+
+                <xpath position="after" expr="//field[@name='driver_id']">
+
+
+                    <field name="capacity"/>
+
+                </xpath>
+            </field>
+        </record>
+        <!--actions-->
+        <record model="ir.actions.act_window" id="ctm_tools.vehicletypesaction">
+            <field name="name">Type des vehicules</field>
+            <field name="res_model">vehicle.types</field>
+            <field name="view_id" ref="vehicule_types_list"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_tools.pointtypesaction">
+            <field name="name">Type des Points</field>
+            <field name="res_model">point.type</field>
+            <field name="view_id" ref="point_types_tree"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_tools.pointsaction">
+            <field name="name">Liste des points</field>
+            <field name="res_model">point.list</field>
+            <field name="view_id" ref="pickup_points_tree"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_tools.transfertypesaction">
+            <field name="name">Type des Transports</field>
+            <field name="res_model">transfer.types</field>
+            <field name="view_id" ref="trasfer_types_list"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_tools.citysaction">
+            <field name="name">Villes</field>
+            <field name="res_model">res.country.state.city</field>
+            <field name="view_id" ref="citys_tree"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_tools.transfertimeaction">
+            <field name="name">Donnee de transport</field>
+            <field name="res_model">fleet.transfer.timing</field>
+            <field name="view_id" ref="transfer_time_tree"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_tools.transfer_arriv_action">
+            <field name="name">Liste des transports arrivee</field>
+            <field name="res_model">transport.request</field>
+            <field name="view_id" ref="transfer_arrive_tree"/>
+            <field name="domain" >[('nature_de_transfer','=','a')]</field>
+
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_tools.transfer_action">
+            <field name="name">Liste des transports </field>
+            <field name="res_model">transport.request</field>
+            <field name="view_id" ref="transfer_tree"/>
+
+
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_tools.transfer_dep_action">
+            <field name="name">Liste des transports depart</field>
+            <field name="res_model">transport.request</field>
+            <field name="view_id" ref="transfer_depart_tree"/>
+             <field name="domain" >[('nature_de_transfer','=','a')]</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <act_window id="transaction"
+                    name="Get transport detail"
+
+
+                    view_id="wizard_getranspdet"
+                    view_type="form" target="new"
+                    view_mode="form" src_model="rooming.list"
+                    res_model="transp.wiz" key2="client_action_multi"
+                    multi="True"/>
+        <!--menus-->
+        <menuitem name="Type des vehicules" id="ctm_tools_vehicles_types" parent="fleet.fleet_configuration"
+                  action="ctm_tools.vehicletypesaction"/>
+        <menuitem name="Liste des arrivé" id="ctm_tools_transfer_list" parent="fleet.fleet_vehicles"
+                  action="ctm_tools.transfer_arriv_action"/>
+        <menuitem name="Liste des Depart" id="ctm_tools_transfer_list1" parent="fleet.fleet_vehicles"
+                  action="ctm_tools.transfer_dep_action"/>
+        <menuitem name="Configuration temp de transport" id="ctm_tools_transfer_time" parent="fleet.fleet_configuration"
+                  action="ctm_tools.transfertimeaction"/>
+        <menuitem name="Villes" id="ctm_tools_citys" parent="fleet.fleet_configuration"
+                  action="ctm_tools.citysaction"/>
+        <menuitem name="Types de transfers" id="transfertypes" parent="fleet.fleet_configuration"
+                  action="ctm_tools.transfertypesaction"/>
+        <menuitem name="Types de points" id="typepoints" parent="fleet.fleet_configuration"
+                  action="ctm_tools.pointtypesaction"/>
+        <menuitem name="Liste des points" id="listpoints" parent="fleet.fleet_configuration"
+                  action="ctm_tools.pointsaction"/>
+    </data>
+</odoo>

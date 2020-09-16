@@ -1,0 +1,1265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="ctm_liquidation.com_report">
+
+            <t t-call="web.html_container">
+                <t t-call="web.internal_layout">
+
+                    <br></br>
+                    <h2 class="text-center">Etat des Commission
+                    </h2>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <style>
+                        .table { border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        border-top: 2px solid #000000;
+                        }
+                        .table-bordered > thead > tr > th,
+                        .table-bordered > tbody > tr > th,
+                        .table-bordered > tfoot > tr > th,
+                        .table-bordered > thead > tr > td,
+                        .table-bordered > tbody > tr > td,
+                        .table-bordered > tfoot > tr > td {
+                        border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        }
+                    </style>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center">Type de Commision
+                                </th>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center">Chiffre d'affiare
+                                </th>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center">Commission Represantant
+                                </th>
+
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center">commission Tour Operator
+                                </th>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center">commission Chauffeur
+                                </th>
+
+                            </tr>
+
+                        </thead>
+                        <tbody>
+                            <t t-foreach="comlist" t-as="ep">
+                                <tr>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="ep['nom']"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="ep['chiffre_affaire']"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="ep['com_rep']"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="ep['com_to']"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="ep['com_chauf']"/>
+                                    </td>
+                                </tr>
+
+                            </t>
+                        </tbody>
+
+                    </table>
+
+                </t>
+            </t>
+
+        </template>
+
+        <template id="ctm_liquidation.vente_excursion">
+            <t t-call="web.html_container">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+                <div class="page">
+                    <!--                    <t t-esc = "ventelisteliquide" />-->
+                    <!--                    <t t-esc="ventelistenoliquide"/>-->
+                    <br></br>
+                    <h1 class="text-center">Etat des ventes excursion
+                    </h1>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <style>
+                        .table { border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        border-top: 2px solid #000000;
+                        }
+                        .table-bordered > thead > tr > th,
+                        .table-bordered > tbody > tr > th,
+                        .table-bordered > tfoot > tr > th,
+                        .table-bordered > thead > tr > td,
+                        .table-bordered > tbody > tr > td,
+                        .table-bordered > tfoot > tr > td {
+                        border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        }
+                    </style>
+                    <t t-if="len(chiffreliquide) > 0 ">
+                        <h4 class="text-center">Total des ventes liquidé</h4>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">devise
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="chiffreliquide" t-as="et">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="et['devise']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="et['total']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                    <t t-if="len(chiffreavoir) > 0 ">
+                        <h4 class="text-center">Total des avoirs liquidées</h4>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">devise
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="chiffreavoir" t-as="av">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="av['devise']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="av['total']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                    <t t-if="len(chiffrenoliquide) > 0 ">
+                        <h4 class="text-center">Total des ventes non liquidé</h4>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">devise
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">total
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="chiffrenoliquide" t-as="oet">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="oet['devise']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="oet['total']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                    </t>
+                    <br></br>
+                    <t t-if="len(ventelisteavoir) >0">
+
+                        <h3 class="text-center">liste des avoirs détaillés</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Excursion Date
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Excursion name
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">nombre d'adulte
+                                    </th>
+
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">nombre d'enfant
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">nembre bébé
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Ticket number
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Seller name
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Montant avoir
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">dat liquidation
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">dat avoir
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Devise
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <t t-foreach="ventelisteavoir" t-as="avl">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="avl['excursion_date']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="avl['excursion_name']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="avl['adultes']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="avl['enfants']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="avl['bebe']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="avl['ticket_number']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="avl['seller_name']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="avl['selling_price']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="avl['dat_liquidation']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="avl['avoir_date']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="avl['currency_id']"/>
+                                        </td>
+                                    </tr>
+
+                                </t>
+                            </tbody>
+
+                        </table>
+                    </t>
+                    <br></br>
+                    <t t-if="len(ventelisteliquide) >0">
+
+                        <h3 class="text-center">liste des excursions liquidées</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Excursion Date
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Excursion name
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">nombre d'adulte
+                                    </th>
+
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">nombre d'enfant
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">nembre bébé
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Ticket number
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Seller name
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">selling price
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">dat liquidation
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Devise
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <t t-foreach="ventelisteliquide" t-as="ep">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['excursion_date']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['excursion_name']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['adultes']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['enfants']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['bebe']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['ticket_number']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['seller_name']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['selling_price']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['dat_liquidation']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['currency_id']"/>
+                                        </td>
+                                    </tr>
+
+                                </t>
+                            </tbody>
+
+                        </table>
+                    </t>
+                    <t t-if="len(ventelistenoliquide) >0">
+                        <br></br>
+                        <h3 class="text-center">liste des excursions non liquidées</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Excursion Date
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Excursion name
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">nombre d'adulte
+                                    </th>
+
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">nombre d'enfant
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">nembre bébé
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Ticket number
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Seller name
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">selling price
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">dat liquidation
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">devise
+                                    </th>
+
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <t t-foreach="ventelistenoliquide" t-as="ep1">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep1['excursion_date']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep1['excursion_name']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep1['adultes']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep1['enfants']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep1['bebe']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep1['ticket_number']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep1['seller_name']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep1['selling_price']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep1['dat_liquidation']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep1['currency_id']"/>
+                                        </td>
+
+                                    </tr>
+
+                                </t>
+                            </tbody>
+
+                        </table>
+                    </t>
+                </div>
+            </t>
+
+        </template>
+
+        <template id="ctm_liquidation.vente_thalasso">
+            <t t-call="web.html_container">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+                <div class="page">
+
+                    <br></br>
+                    <h1 class="text-center">Etat des ventes thalasso
+                    </h1>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <style>
+                        .table { border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        border-top: 2px solid #000000;
+                        }
+                        .table-bordered > thead > tr > th,
+                        .table-bordered > tbody > tr > th,
+                        .table-bordered > tfoot > tr > th,
+                        .table-bordered > thead > tr > td,
+                        .table-bordered > tbody > tr > td,
+                        .table-bordered > tfoot > tr > td {
+                        border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        }
+                    </style>
+
+                    <br></br>
+                    <t t-if="len(ventelistecommission) >0">
+                        <h3 class="text-center">total des ventes thalasso avec commission calculé</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">total chiffre d'affaire
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">total commission
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="totalcommission" t-as="total">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="total['total']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="total['commission']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <br></br>
+                        <h3 class="text-center">liste des ventes thalasso avec commission calculé</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">date vente
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">représentant
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Hotel
+                                    </th>
+
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">centre
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">montant de vente
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">N° VT
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">commission
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">date d'encaissement
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">date de paiement
+                                    </th>
+
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <t t-foreach="ventelistecommission" t-as="vente">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['date']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+
+                                            <t t-foreach="vente['representant']" t-as="nom">
+                                                <li>
+                                                    <t t-esc="nom['name']"/>
+                                                </li>
+                                            </t>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['nom_hotel']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle;border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['centre_thalasso']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['tarif']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['numero_etat']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['commission']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['date_encaissement']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['date_payment']"/>
+                                        </td>
+
+                                    </tr>
+
+                                </t>
+                            </tbody>
+
+                        </table>
+
+                    </t>
+                    <t t-if="len(ventelistenocommission) >0">
+                        <br></br>
+                        <h3 class="text-center">total des ventes thalasso avec commission non calculé</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">total chiffre d'affaire
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="totalnocommission" t-as="total">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="total['total']"/>
+                                        </td>
+
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <br></br>
+                        <h3 class="text-center">liste des ventes thalasso avec commission non calculé</h3>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">date vente
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">représentant
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Hotel
+                                    </th>
+
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">centre
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">montant de vente
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">N° VT
+                                    </th>
+
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <t t-foreach="ventelistenocommission" t-as="vente">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['date']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+
+                                            <t t-foreach="vente['representant']" t-as="nom">
+                                                <li>
+                                                    <t t-esc="nom['name']"/>
+                                                </li>
+                                            </t>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['nom_hotel']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle;border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['centre_thalasso']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['tarif']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente['numero_etat']"/>
+                                        </td>
+
+
+                                    </tr>
+
+                                </t>
+                            </tbody>
+
+                        </table>
+                    </t>
+                </div>
+            </t>
+
+        </template>
+
+        <template id="ctm_liquidation.historique_report">
+            <t t-call="web.html_container">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+                <div class="page">
+
+                    <br></br>
+                    <h1 class="text-center">Historique des affectations :
+
+                        <span style="font-size: 60%">
+                            <t t-esc="representant['name']"/>
+                        </span>
+
+                    </h1>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <style>
+                        .table { border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        border-top: 2px solid #000000;
+                        }
+                        .table-bordered > thead > tr > th,
+                        .table-bordered > tbody > tr > th,
+                        .table-bordered > tfoot > tr > th,
+                        .table-bordered > thead > tr > td,
+                        .table-bordered > tbody > tr > td,
+                        .table-bordered > tfoot > tr > td {
+                        border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        }
+                    </style>
+
+                    <br></br>
+
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center">date début
+                                </th>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center">date fin
+                                </th>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center">Hotels
+                                </th>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center">Pax adultes
+                                </th>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center">Pax enfants
+                                </th>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center">Total pax
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="ventete" t-as="ven">
+                                <tr>
+                                    <td style="border-top: 2px solid #000000; vertical-align: middle;border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="ven['date_debut']"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000;vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="ven['date_fin']"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; vertical-align: middle;border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-foreach="ven['hotel']" t-as="hot">
+                                            <li>
+                                                <t t-esc="hot['name']"/>
+                                            </li>
+                                        </t>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000;vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="ven['pax_adulte']"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000;vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="ven['pax_enfant']"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000;vertical-align: middle; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="ven['pax']"/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </tbody>
+                    </table>
+
+                </div>
+            </t>
+
+        </template>
+
+        <template id="ctm_liquidation.avenda_report">
+            <t t-call="web.html_container">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+                <div class="page">
+
+                    <br></br>
+                    <h1 class="text-center">Analyse vente des excursion
+                        <t t-esc="fil"/>
+                        et par representant :
+
+                        <span style="font-size: 80%">
+                            <t t-esc="rep"/>
+                        </span>
+
+                    </h1>
+                    <br></br>
+                    <t t-if="arrr">
+                        <h3>Date arrivé entre
+                            <t t-esc="arrf"/>
+                            -
+                            <t t-esc="arrt"/>
+                        </h3>
+                    </t>
+                    <br></br>
+                    <t t-if="alll">
+                        <h3>Date liquidé entre
+                            <t t-esc="allf"/>
+                            -
+                            <t t-esc="allt"/>
+                        </h3>
+                    </t>
+
+                    <br></br>
+                    <style>
+                        .table { border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        border-top: 2px solid #000000;
+                        }
+                        .table-bordered > thead > tr > th,
+                        .table-bordered > tbody > tr > th,
+                        .table-bordered > tfoot > tr > th,
+                        .table-bordered > thead > tr > td,
+                        .table-bordered > tbody > tr > td,
+                        .table-bordered > tfoot > tr > td {
+                        border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        }
+                    </style>
+
+                    <br></br>
+
+                    <t t-if="len(bo)>0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Date arrivé
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Montant vendu
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Montant vendu ( liquidé )
+                                    </th>
+
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Pax vendu
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Pax vendu ( liquidé )
+                                    </th>
+                                    <t t-if="show_tickets">
+                                        <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="align-middle text-center">Tickets
+                                        </th>
+                                    </t>
+
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <t t-foreach="bo" t-as="ep">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['dat']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['sale']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['salel']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['pax']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['paxl']"/>
+                                        </td>
+                                        <t t-if="show_tickets">
+                                            <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="text-center">
+                                                <ul>
+                                                    <t t-foreach="ep['tickets']" t-as="tick">
+                                                        <li>
+                                                            <t t-esc="tick"/>
+                                                        </li>
+                                                    </t>
+                                                </ul>
+
+
+                                            </td>
+                                        </t>
+
+                                    </tr>
+
+                                </t>
+                                <tr>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <b>Total</b>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="tts"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="ttsl"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="tpx"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="tpxl"/>
+                                    </td>
+                                    <t t-if="show_tickets">
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center"></td>
+                                    </t>
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </t>
+                    <t t-if="avoir_bool">
+
+                        <t t-if="len(avoir1)>0">
+                            <br></br>
+                            <h3>Liste d'avoirs</h3>
+                            <br></br>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="align-middle text-center">Date arrivé
+                                        </th>
+                                        <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="align-middle text-center">Montant liquidé
+                                        </th>
+
+                                        <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="align-middle text-center">Montant avoir
+                                        </th>
+                                        <t t-if="show_tickets">
+                                            <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="align-middle text-center">ticket
+                                            </th>
+                                        </t>
+
+
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="avoir1" t-as="av">
+                                        <tr>
+                                            <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="text-center">
+                                                <t t-esc="av['date_chekin']"/>
+                                            </td>
+                                            <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="text-center">
+                                                <t t-esc="av['montant_liquide']"/>
+                                            </td>
+                                            <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="text-center">
+                                                <t t-esc="av['montant_avoir']"/>
+                                            </td>
+
+                                            <t t-if="show_tickets">
+                                                <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                    class="text-center">
+                                                    <t t-esc="av['ticket']"/>
+                                                </td>
+                                            </t>
+
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <b>Total</b>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="somme_avoir_liq1"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="somme_avoir1"/>
+                                        </td>
+
+                                        <t t-if="show_tickets">
+                                            <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="text-center"></td>
+                                        </t>
+
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+                        </t>
+                    </t>
+                    <t t-if="len(bol)>0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Date arrivé
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Montant vendu
+                                    </th>
+
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Pax vendu
+                                    </th>
+                                    <t t-if="show_tickets">
+                                        <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="align-middle text-center">ticket
+                                        </th>
+                                    </t>
+
+
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <t t-foreach="bol" t-as="ep">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['date_chekin']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['montant']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['pax']"/>
+                                        </td>
+
+                                        <t t-if="show_tickets">
+                                            <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="text-center">
+                                                <ul>
+                                                    <t t-foreach="ep['ticket']" t-as="tick">
+                                                        <li>
+                                                            <t t-esc="tick"/>
+                                                        </li>
+                                                    </t>
+                                                </ul>
+
+
+                                            </td>
+                                        </t>
+
+                                    </tr>
+
+                                </t>
+                                <tr>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <b>Total</b>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="somme_liq"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="pax_liq"/>
+                                    </td>
+                                    <t t-if="show_tickets">
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center"></td>
+                                    </t>
+
+
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </t>
+                    <t t-if="avoir_bool">
+
+                        <t t-if="len(avoir)>0">
+                            <br></br>
+                            <h3>Liste d'avoirs</h3>
+                            <br></br>
+
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="align-middle text-center">Date arrivé
+                                        </th>
+                                        <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="align-middle text-center">Montant liquidé
+                                        </th>
+
+                                        <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="align-middle text-center">Montant avoir
+                                        </th>
+                                        <t t-if="show_tickets">
+                                            <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="align-middle text-center">ticket
+                                            </th>
+                                        </t>
+
+
+                                    </tr>
+
+                                </thead>
+                                <tbody>
+                                    <t t-foreach="avoir" t-as="av">
+                                        <tr>
+                                            <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="text-center">
+                                                <t t-esc="av['date_chekin']"/>
+                                            </td>
+                                            <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="text-center">
+                                                <t t-esc="av['montant_liquide']"/>
+                                            </td>
+                                            <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="text-center">
+                                                <t t-esc="av['montant_avoir']"/>
+                                            </td>
+
+                                            <t t-if="show_tickets">
+                                                <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                    class="text-center">
+                                                    <t t-esc="av['ticket']"/>
+                                                </td>
+                                            </t>
+
+                                        </tr>
+                                    </t>
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <b>Total</b>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="somme_avoir_liq"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="somme_avoir"/>
+                                        </td>
+
+                                        <t t-if="show_tickets">
+                                            <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="text-center"></td>
+                                        </t>
+
+                                    </tr>
+
+
+                                </tbody>
+
+                            </table>
+                        </t>
+                    </t>
+
+
+                </div>
+            </t>
+
+        </template>
+
+    </data>
+</odoo>

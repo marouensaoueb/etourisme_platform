@@ -1,0 +1,180 @@
+<odoo>
+  <data>
+    <!--product type tree -->
+      <record model="ir.ui.view" id="succursale_ctm.product_tree">
+          <field name="name">product types fopr ctm</field>
+          <field name="model">ctm.product.type</field>
+          <field name="arch" type="xml">
+              <tree editable="top">
+                  <field name="name"/>
+
+
+              </tree>
+          </field>
+      </record>
+      <record model="ir.ui.view" id="succursale_ctm.ctm_pos_tree">
+          <field name="name">ctm pos tree</field>
+          <field name="model">ctm.point.of.sale</field>
+          <field name="arch" type="xml">
+              <tree editable="top">
+                  <field name="name"/>
+                  <field name="allowed_users" widget="many2many_tags"/>
+
+
+              </tree>
+          </field>
+      </record>
+    <!--clts tree-->
+      <record model="ir.ui.view" id="succursale_ctm.clts_tree">
+          <field name="name">clts</field>
+          <field name="model">ctm.clts</field>
+          <field name="arch" type="xml">
+              <tree editable="top">
+                  <field name="name"/>
+
+
+              </tree>
+          </field>
+      </record>
+    <!--payement method tree-->
+      <record model="ir.ui.view" id="succursale_ctm.payement_tree">
+          <field name="name">payement method</field>
+          <field name="model">ctm.payement.method</field>
+          <field name="arch" type="xml">
+              <tree editable="top">
+                  <field name="name"/>
+
+
+              </tree>
+          </field>
+      </record>
+
+    <!--report graph-->
+
+      <record id="succursale_ctm.report_gtraph" model="ir.ui.view">
+          <field name="name">report graph</field>
+          <field name="model">ctm.report.succursale</field>
+          <field name="arch" type="xml">
+              <graph>
+                  <field name="ref"/>
+                  <field name="dat"/>
+                  <field name="client"/>
+                  <field name="clts"/>
+                  <field name="ste"/>
+                  <field name="ccp"/>
+                  <field name="product_type"/>
+                  <field name="hotel_id"/>
+                  <field name="fournisseur"/>
+                  <field name="currency_id"/>
+                  <field name="date_op"/>
+                  <field name="purchase_price" sum="purchase_price"/>
+                  <field name="sale_price" sum="sale_price"/>
+                  <field name="marge" sum="marge"/>
+                  <field name="marge_rate"/>
+                  <field name="payement_method"/>
+                  <field name="paiement" sum="paiement"/>
+                  <field name="remarque"/>
+
+
+              </graph>
+          </field>
+      </record>
+    <!--report tree-->
+      <record model="ir.ui.view" id="succursale_ctm.report_tree">
+          <field name="name">report tree</field>
+          <field name="model">ctm.report.succursale</field>
+          <field name="arch" type="xml">
+              <tree editable="top">
+                  <field name="pos"  groups="succursale_ctm.group_succursale_ctm_admin"/>
+                  <field name="ref"/>
+                  <field name="dat"/>
+                  <field name="client"/>
+                  <field name="clts"/>
+                  <field name="ste"/>
+                  <field name="ccp"/>
+                  <field name="product_type"/>
+                  <field name="hotel_id"/>
+                  <field name="fournisseur"/>
+                  <field name="currency_id"/>
+                  <field name="date_op"/>
+                  <field name="purchase_price" sum="purchase_price"/>
+                  <field name="sale_price" sum="sale_price"/>
+                  <field name="marge" sum="marge"/>
+                  <field name="marge_rate"/>
+                  <field name="payement_method"/>
+                  <field name="paiement" sum="paiement"/>
+                  <field name="remarque"/>
+
+
+              </tree>
+          </field>
+      </record>
+    <!--actions-->
+      <record model="ir.actions.act_window" id="succursale_ctm.succursale_actw">
+          <field name="name">Etat de vente par succursale</field>
+          <field name="res_model">ctm.report.succursale</field>
+
+
+          <field name="view_mode">tree,form</field>
+          <field name="help">
+              Create Succursale sales over here
+          </field>
+      </record>
+      <record model="ir.actions.act_window" id="succursale_ctm.ctm_pos_actw">
+          <field name="name">Point de vente</field>
+          <field name="res_model">ctm.point.of.sale</field>
+
+
+          <field name="view_mode">tree,form</field>
+      </record>
+      <record model="ir.actions.act_window" id="succursale_ctm.payement_actw">
+          <field name="name">Methodes de paiement</field>
+          <field name="res_model">ctm.payement.method</field>
+
+
+          <field name="view_mode">tree,form</field>
+      </record>
+      <record model="ir.actions.act_window" id="succursale_ctm.clts_actw">
+          <field name="name">clts types</field>
+          <field name="res_model">ctm.clts</field>
+
+
+          <field name="view_mode">tree,form</field>
+      </record>
+      <record model="ir.actions.act_window" id="succursale_ctm.product_actw">
+          <field name="name">Type des produits</field>
+          <field name="res_model">ctm.product.type</field>
+
+
+          <field name="view_mode">tree,form</field>
+      </record>
+    <!--menus-->
+      <!--root-->
+      <menuitem name="Succursales" id="succursale_ctm.menu_root"
+
+                groups="succursale_ctm.group_succursale_ctm_user" />
+      <!--menu report -->
+      <menuitem name="Etat de vente par succursale" id="succursale_ctm.menu_report"
+
+                groups="succursale_ctm.group_succursale_ctm_user" sequence="1" parent="succursale_ctm.menu_root" action="succursale_ctm.succursale_actw" />
+      <!--menu config-->
+      <menuitem name="Configuration" id="succursale_ctm.menu_config" parent="succursale_ctm.menu_root"
+
+                groups="succursale_ctm.group_succursale_ctm_admin" />
+        <!--menu clts-->
+      <menuitem name="CLTS CONFIG" id="succursale_ctm.menu_clts"
+
+                 sequence="1" parent="succursale_ctm.menu_config" action="succursale_ctm.clts_actw" />
+        <!--menu product type-->
+      <menuitem name="Products CONFIG" id="succursale_ctm.menu_product_type"
+
+                sequence="1" parent="succursale_ctm.menu_config" action="succursale_ctm.product_actw" />
+        <!--menu paiement types-->
+      <menuitem name="Methodes de paiement" id="succursale_ctm.menu_payement_method"
+
+                sequence="1" parent="succursale_ctm.menu_config" action="succursale_ctm.payement_actw" />
+      <menuitem name="Point de vente" id="succursale_ctm.menu_ctm_pos"
+
+                sequence="1" parent="succursale_ctm.menu_config" action="succursale_ctm.ctm_pos_actw" />
+  </data>
+</odoo>

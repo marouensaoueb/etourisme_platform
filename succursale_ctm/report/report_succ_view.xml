@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="ir.ui.view" id="succursale_ctm.wizard_succ_form">
+        <field name="name">Rapport succ</field>
+        <field name="model">wizard.succ_report</field>
+        <field name="arch" type="xml">
+            <form >
+                <group>
+                    <field name="report_type" />
+                </group>
+
+                <footer>
+                    <button name="get_report" string="Confirmer" type="object"
+                            class="oe_highlight" />
+                    Or
+                    <button string="Annuler" class="oe_link" special="cancel" />
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="succursale_ctm.wizard_succ_action">
+        <field name="name">Rapports succursale</field>
+        <field name="res_model">wizard.succ_report</field>
+        <field name="view_id" ref="succursale_ctm.wizard_succ_form" />
+        <field name="target">new</field>
+    </record>
+    <menuitem id="succursale_ctm.wizard_succ_menu" name="Rapports"
+              parent="succursale_ctm.menu_root" action="succursale_ctm.wizard_succ_action" />
+    <report
+            id="succursale_ctm.succ_report"
+            string="Rapport succursale"
+            model="wizard.succ_report"
+            report_type="qweb-pdf"
+            file="succursale_ctm.succ_report"
+            name="succursale_ctm.succ_report"
+            menu="True"
+
+
+
+    />
+
+
+        <template id="succursale_ctm.succ_report">
+        <t t-call="web.html_container">
+        <t t-foreach="docs" t-as="o">
+        <t t-call="web.external_layout">
+
+
+
+          <h1 class="text-center">Rapport succursales</h1>
+            <br />
+            <br />
+            <b>- CA Mensuel</b> : <t t-raw="cam" />
+            <br />
+            <b>- Marge</b> : <t t-raw="mg" />
+            <br />
+            <br />
+            <b>Repartition CA/Client</b>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Client</th>
+                        <th>Vente</th>
+                        <th>Marge</th>
+                        <th>Taux de vente</th>
+                        <th>Taux de marge</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <t t-foreach="tpl" t-as="x">
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </t>
+                    <tr>
+                        <td><b>Total</b></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+        </t>
+        </t>
+        </t>
+        </template>
+</odoo>

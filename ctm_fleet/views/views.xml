@@ -1,0 +1,507 @@
+<odoo>
+    <data>
+        <!--inherits-->
+        <record model="ir.ui.view" id="ctm_fleet.vehicle_models_inherit">
+            <field name="name">vehicle models inherit</field>
+            <field name="model">fleet.vehicle.model</field>
+            <field name="inherit_id" ref="fleet.fleet_vehicle_model_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//h2" position="after">
+                    <label for="types" class="oe_edit_only"/>
+                    <h2>
+                        <field name="types"/>
+                    </h2>
+                </xpath>
+
+                 <xpath expr="//field[@name='types']" position="after">
+                    <label for="sequence" class="oe_edit_only"/>
+                   <br></br>
+                    <h2>
+                        <field name="sequence"/>
+                    </h2>
+                </xpath>
+
+            </field>
+        </record>
+        <!--forms -->
+
+        <record model="ir.ui.view" id="ctm_fleet.conductors_form">
+            <field name="name">Conducteurs de CTM</field>
+            <field name="model">ctm.conductor</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="employee_id"/>
+                        <field name="name"/>
+                        <field name="num_cin"/>
+                        <field name="num_tel"/>
+                        <field name="adresse"/>
+
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_fleet.report_usage">
+            <field name="name">report usage</field>
+            <field name="model">report.vehicle.usage</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+
+
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="company_id"/>
+                        <field name="vehicle"/>
+                        <field name="matricule"/>
+                        <field name="sale_price"/>
+                        <field name="cost"/>
+                        <field name="marge"/>
+                        <field name="margetx"/>
+                        <field name="avance"/>
+                        <field name="contact"/>
+                        <field name="state"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_fleet.report_usage_calendar">
+            <field name="name">report usage</field>
+            <field name="model">report.vehicle.usage</field>
+            <field name="arch" type="xml">
+                <calendar string="Meetings" date_start="date_from" date_stop="date_to"    >
+                    <field name="company_id"/>
+                    <!--<field name="partner_ids" write_model="calendar.contacts" write_field="partner_id" avatar_field="image_small"/>-->
+                    <!--<field name="is_highlighted" invisible="1"/>-->
+                </calendar>
+            </field>
+        </record>
+
+
+
+        <record model="ir.ui.view" id="ctm_fleet.states_form">
+            <field name="name">Etat des depenses par vehicule</field>
+            <field name="model">ctm.vehicle.state</field>
+            <field name="arch" type="xml">
+                  <form>
+                    <header>
+                        <button name="lock_rec" string="Verrouiller" groups="ctm_fleet.group_fleet_ctm_admin" type="object" class="oe_stat_button" icon="fa-lock" states="nv"> </button>
+                        <button name="unlock_rec" string="de-Verrouiller" type="object" class="oe_stat_button" groups="ctm_fleet.group_fleet_ctm_admin" icon="fa-unlock" states="v"> </button>
+                        <button name="refresh_d" string="rafraîchir" type="object" class="oe_stat_button"  icon="fa-spinner" > </button>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="v,nv"/>
+                    </header>
+                    <sheet>
+
+                        <group col="2" string="Information du vehicule">
+                            <group>
+                                <field name="agence"/>
+                                <field name="vehicle"/>
+                                <field name="modele"/>
+                                <field name="type_vehicle"/>
+                                <field name="nbr_siege"/>
+                                <field name="chauffeur"/>
+                                <field name="date_visite"/>
+                            </group>
+                            <group>
+
+                                <field name="dat_assurance"/>
+                                <field name="tax_v"/>
+                                <field name="dat_tax_v"/>
+                                <field name="debut_exploit"/>
+                                <field name="fin_exploit"/>
+                                <field name="circdate"/>
+                                <field name="lykm"/>
+                                <field name="lo" attrs="{'invisible':[('lo','=',False)]}"/>
+                                <field name="personnel" attrs="{'invisible':[('personnel','=',False)]}"/>
+                            </group>
+
+                        </group>
+                        <notebook>
+                            <page string="Details de dépenses Journaliére">
+                                <field name="statedetail" nolabel="1" attrs="{'readonly':[('state','=','v')]}">
+                                    <tree editable="top">
+                                        <field name="dat"/>
+                                        <field name="num_ordre_mission" />
+                                        <field name="kmstart"/>
+                                        <field name="kmend"/>
+                                        <field name="kmoverall"/>
+                                        <field name="entretien"/>
+                                        <field name="changepieces"/>
+                                        <field name="reparation"/>
+                                        <field name="Parking"/>
+                                        <field name="peage"/>
+                                        <field name="carbs"/>
+                                        <field name="vulc"/>
+                                        <field name="othercharges"/>
+                                        <field name="total_charges"/>
+                                        <field name="observation"/>
+                                        <button name="lock_state" string="Verrouiller" groups="ctm_fleet.group_fleet_ctm_admin" type="object" class="oe_stat_button" icon="fa-unlock" states="nv">
+                                         </button>
+                                        <button name="unlock_state" string="Verrouiller" groups="ctm_fleet.group_fleet_ctm_admin" type="object" class="oe_stat_button" icon="fa-lock" states="v">
+                                         </button>
+                                        <field name="state" invisible="1"/>
+
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Details des interventions Journaliére">
+                                <field name="intervention_detail" nolabel="1" attrs="{'readonly':[('state','=','v')]}">
+                                    <tree editable="top">
+                                        <field name="dat"/>
+                                        <field name="rubrique"/>
+                                        <field name="intervention"/>
+                                        <field name="km"/>
+                                        <field name="Fournisseur"/>
+                                        <field name="refbtc"/>
+                                        <field name="cost"/>
+                                        <button name="lock_det" string="Verrouiller" groups="ctm_fleet.group_fleet_ctm_admin" type="object" class="oe_stat_button" icon="fa-unlock" states="nv">
+                                         </button>
+                                        <button name="unlock_det" string="Verrouiller" groups="ctm_fleet.group_fleet_ctm_admin" type="object" class="oe_stat_button" icon="fa-lock" states="v">
+                                         </button>
+                                        <field name="state" invisible="1"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids" widget="mail_followers"/>
+                    <field name="activity_ids" widget="mail_activity"/>
+                    <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_fleet.states_search">
+            <field name="name">Etat des depenses par vehicule</field>
+            <field name="model">ctm.vehicle.state</field>
+            <field name="arch" type="xml">
+                <search string="Vehicule">
+                    <filter name="groupby_agence" string="Agence" context = "{'group_by': 'agence'}" />
+                    <filter name="groupby_date_acq" string="Date d'acqusition" context = "{'group_by': 'circdate'}" />
+                    <filter name="groupby_date_visite" string="Date de visite" context = "{'group_by': 'date_visite'}" />
+                    <filter name="groupby_chauffeur" string="Chauffeur" context = "{'group_by': 'chauffeur'}" />
+                    <filter name="groupby_debut_exploit" string="date de Debut d'exploit" context = "{'group_by': 'debut_exploit'}" />
+                    <filter name="groupby_fin_exploit" string="date de Fin d'exploit" context = "{'group_by': 'fin_exploit'}" />
+                    <filter name="groupby_modele_vehicule" string="Modele de vehicule" context = "{'group_by': 'modele'}" />
+                     <filter name="groupby_type_vehicule" string="Type de vehicule" context = "{'group_by': 'type_vehicle'}" />
+                </search>
+            </field>
+        </record>
+
+
+
+        <!--graph-->
+        <record model="ir.ui.view" id="ctm_fleet.state_detail_graph">
+            <field name="name">detail depenses graph</field>
+            <field name="model">ctm.vehicle.state.detail</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="dat"/>
+                    <field name="kmstart"/>
+                    <field name="kmend"/>
+                    <field name="kmoverall"/>
+                    <field name="entretien"/>
+                    <field name="changepieces"/>
+                    <field name="reparation"/>
+                    <field name="Parking"/>
+                    <field name="peage"/>
+                    <field name="carbs"/>
+                    <field name="vulc"/>
+                    <field name="othercharges"/>
+                    <field name="total_charges" type="measure"/>
+                    <field name="prk" type="measure"/>
+
+                    <field name="state_id"/>
+                </graph>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_fleet.intervention_detail_graph">
+            <field name="name">detail intervetions graph</field>
+            <field name="model">ctm.intervention.detail</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="dat"/>
+                    <field name="intervention"/>
+                    <field name="km"/>
+                    <field name="Fournisseur"/>
+                    <field name="refbtc"/>
+                    <field name="cost" type="measure"/>
+                </graph>
+            </field>
+        </record>
+        <!--pivot-->
+        <record model="ir.ui.view" id="ctm_fleet.state_intervention_pivot">
+            <field name="name">detail interventions pivot</field>
+            <field name="model">ctm.intervention.detail</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="dat"/>
+                    <field name="intervention"/>
+                    <field name="km"/>
+                    <field name="Fournisseur"/>
+                    <field name="refbtc"/>
+                    <field name="cost" type="measure"/>
+                </pivot>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_fleet.state_detail_pivot">
+            <field name="name">detail depenses pivot</field>
+            <field name="model">ctm.vehicle.state.detail</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="dat"/>
+                    <field name="kmstart"/>
+                    <field name="kmend"/>
+                    <field name="kmoverall"/>
+                    <field name="entretien"/>
+                    <field name="changepieces"/>
+                    <field name="reparation"/>
+                    <field name="Parking"/>
+                    <field name="peage"/>
+                    <field name="carbs"/>
+                    <field name="vulc"/>
+                    <field name="othercharges"/>
+                    <field name="prk"/>
+
+                    <field name="total_charges" type="measure"/>
+
+                    <field name="state_id" type="row"/>
+                </pivot>
+            </field>
+        </record>
+        <!--trees-->
+        <record model="ir.ui.view" id="ctm_fleet.conductors_tree">
+            <field name="name">Conducteurs de CTM</field>
+            <field name="model">ctm.conductor</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="employee_id"/>
+                    <field name="name"/>
+                    <field name="num_cin"/>
+                    <field name="num_tel"/>
+                    <field name="adresse"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_fleet.rubriques_tree">
+            <field name="name">Rubriques des interventions</field>
+            <field name="model">ctm.intervention.rubrique</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_fleet.vehicles_types">
+            <field name="name">Type des voitures de CTM</field>
+            <field name="model">ctm.vehicle.type</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_fleet.state_tree">
+            <field name="name">Etat des depenses par vehicule</field>
+            <field name="model">ctm.vehicle.state</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="agence"/>
+                    <field name="vehicle"/>
+                    <field name="modele"/>
+                    <field name="type_vehicle"/>
+                    <field name="nbr_siege"/>
+                    <field name="circdate"/>
+                    <field name="date_visite"/>
+
+                    <field name="dat_assurance"/>
+                    <field name="tax_v"/>
+                    <field name="dat_tax_v"/>
+                    <field name="debut_exploit"/>
+                    <field name="fin_exploit"/>
+                    <field name="chauffeur"/>
+                    <field name="lykm"/>
+
+                </tree>
+
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_fleet.state_details_tree">
+            <field name="name">Detail des etat de dépenses journaliére</field>
+            <field name="model">ctm.vehicle.state.detail</field>
+            <field name="arch" type="xml">
+                <tree create="false" delete="false">
+                    <field name="dat"/>
+                    <field name="num_ordre_mission" />
+                    <field name="kmstart"/>
+                    <field name="kmend"/>
+                    <field name="kmoverall"/>
+                    <field name="entretien"/>
+                    <field name="changepieces"/>
+                    <field name="reparation"/>
+                    <field name="Parking"/>
+                    <field name="peage"/>
+                    <field name="carbs"/>
+                    <field name="vulc"/>
+                    <field name="othercharges"/>
+                    <field name="total_charges"/>
+                    <field name="prk"/>
+                    <field name="observation"/>
+                    <field name="state_id"/>
+                    <field name="vehicle_model_id"/>
+                    <field name="lo"/>
+                    <field name="personnel"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_fleet.state_intervrention_tree">
+            <field name="name">Detail des etat des interventions journaliére</field>
+            <field name="model">ctm.intervention.detail</field>
+            <field name="arch" type="xml">
+                <tree create="false" delete="false">
+                    <field name="dat"/>
+                    <field name="intervention"/>
+                    <field name="km"/>
+                    <field name="Fournisseur"/>
+                    <field name="refbtc"/>
+                    <field name="cost" type="measure"/>
+                    <field name="state_id"/>
+                    <field name="vehicle_model_id"/>
+                    <field name="lo"/>
+                    <field name="personnel"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <!--action windows-->
+        <record model="ir.actions.act_window" id="ctm_fleet.states_lo_action">
+            <field name="name">Etats des dépenses Par vehicule de Parc Location</field>
+            <field name="res_model">ctm.vehicle.state</field>
+            <field name="view_id" ref="ctm_fleet.state_tree"/>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('lo','=',True)]</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_fleet.states_ctm_action">
+            <field name="name">Etats des dépenses Par vehicule de Parc Ctm</field>
+            <field name="res_model">ctm.vehicle.state</field>
+            <field name="view_id" ref="ctm_fleet.state_tree"/>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('lo','=',False), ('personnel', '=', False)]</field>
+        </record>
+          <record model="ir.actions.act_window" id="ctm_fleet.states_personnel_action">
+            <field name="name">Etats des dépenses Par vehicule de Parc Personnel</field>
+            <field name="res_model">ctm.vehicle.state</field>
+            <field name="view_id" ref="ctm_fleet.state_tree"/>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('personnel','=',True)]</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_fleet.rebriques_action">
+            <field name="name">Rubriques des interventions</field>
+            <field name="res_model">ctm.intervention.rubrique</field>
+            <field name="view_id" ref="ctm_fleet.rubriques_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_fleet.conductors_action">
+            <field name="name">Chauffeurs</field>
+            <field name="res_model">ctm.conductor</field>
+            <field name="view_id" ref="ctm_fleet.conductors_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_fleet.types_action">
+            <field name="name">Types des vehicules</field>
+            <field name="res_model">ctm.vehicle.type</field>
+            <field name="view_id" ref="ctm_fleet.vehicles_types"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_fleet.report_usage_actw">
+            <field name="name">Report vehicles sale</field>
+            <field name="res_model">report.vehicle.usage</field>
+            <field name="view_id" ref="ctm_fleet.report_usage"/>
+            <field name="view_mode">tree,calendar</field>
+        </record>
+
+        <menuitem name="Parc Automobile " groups="ctm_fleet.group_fleet_ctm" id="ctm_fleet.menu_root" sequence="1"/>
+        <menuitem name="Etat vente transport" groups="ctm_fleet.group_fleet_ctm" id="ctm_fleet.menu_usage" action="ctm_fleet.report_usage_actw" parent="ctm_fleet.menu_root" sequence="1"/>
+
+
+        <menuitem name="Etat de Parc" id="ctm_fleet.menu_1" parent="ctm_fleet.menu_root"/>
+        <menuitem name="Configuration" id="ctm_fleet.menu_2" parent="ctm_fleet.menu_root"/>
+
+
+        <menuitem name="Etat de parc Location " id="ctm_fleet.menu_1_list_1" parent="ctm_fleet.menu_1"
+                  action="ctm_fleet.states_lo_action" sequence="2"/>
+        <menuitem name="Etat de parc Ctm" id="ctm_fleet.menu_1_list_2" parent="ctm_fleet.menu_1"
+                  action="ctm_fleet.states_ctm_action" sequence="1"/>
+           <menuitem name="Etat de parc Personnel" id="ctm_fleet.menu_1_list_3" parent="ctm_fleet.menu_1"
+                  action="ctm_fleet.states_personnel_action" sequence="3"/>
+        <menuitem name="Chauffeurs" id="ctm_fleet.menu_2_list_1" parent="ctm_fleet.menu_2"
+                  action="ctm_fleet.conductors_action"/>
+        <menuitem name="Rubriques des interventions" id="ctm_fleet.menu_2_list_5" parent="ctm_fleet.menu_2"
+                  action="ctm_fleet.rebriques_action"/>
+        <menuitem name="Vehicules" id="ctm_fleet.menu_2_list_2" parent="ctm_fleet.menu_2"
+                  action="fleet.fleet_vehicle_action"/>
+        <menuitem name="Modéles des vehicules" id="ctm_fleet.menu_2_list_3" parent="ctm_fleet.menu_2"
+                  action="fleet.fleet_vehicle_model_action"/>
+        <menuitem name="Types des vehicules" id="ctm_fleet.menu_2_list_4" parent="ctm_fleet.menu_2"
+                  action="ctm_fleet.types_action"/>
+
+        <record model="ir.ui.view" id="ctm_fleet.hr_employee_form_inherit">
+            <field name="name">Employee</field>
+            <field name="model">hr.employee</field>
+            <field name="inherit_id" ref="hr.view_employee_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='address_home_id']" position="after">
+                    <field name="adresse_personel"/>
+                </xpath>
+            </field>
+        </record>
+    <record model="ir.ui.view" id="ctm_fleet_vehicle_view_par_tree">
+       <field name="name">fleet.vehicle.tree</field>
+       <field name="model">fleet.vehicle</field>
+       <field name="type">tree</field>
+       <field name="inherit_id" ref="fleet.fleet_vehicle_view_tree"/>
+       <field name="arch" type="xml">
+               <xpath expr="/tree/field[@name='vin_sn']" position="replace">
+               </xpath>
+           <xpath expr="/tree/field[@name='driver_id']" position="before">
+               <field name="typess" />
+               </xpath>
+
+            <xpath expr="//field[@name='acquisition_date']" position="after">
+                    <field name="date_visite"/>
+                </xpath>
+           <xpath expr="//field[@name='date_visite']" position="after">
+                    <field name="date_assurence"/>
+                </xpath>
+
+           <xpath expr="//field[@name='date_assurence']" position="after">
+                    <field name="taxe_vignette"/>
+                </xpath>
+           <xpath expr="//field[@name='taxe_vignette']" position="after">
+                    <field name="debut_exp"/>
+                </xpath>
+           <xpath expr="//field[@name='debut_exp']" position="after">
+                    <field name="fin_exp"/>
+                </xpath>
+           <xpath expr="//field[@name='fin_exp']" position="after">
+                    <field name="nbr_siege"/>
+                </xpath>
+
+       </field>
+   </record>
+
+    </data>
+</odoo>

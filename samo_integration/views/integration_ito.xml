@@ -1,0 +1,194 @@
+<odoo>
+    <data>
+        <record model="ir.actions.server" id="synchron_state_actw">
+            <field name="name">Synchronize selected states</field>
+
+            <!--<field name="activity_user_type">generic</field>-->
+            <field name="binding_model_id" ref="model_samo_state"/>
+            <field name="model_id" ref="model_samo_state"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.state'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_region_actw">
+            <field name="name">Synchronize selected regions</field>
+            <field name="binding_model_id" ref="model_samo_region"/>
+            <field name="model_id" ref="model_samo_region"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.region'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_towns_actw">
+            <field name="name">Synchronize selected towns</field>
+            <field name="binding_model_id" ref="model_samo_towns"/>
+            <field name="model_id" ref="model_samo_towns"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.towns'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_hotelcategory_actw">
+            <field name="name">Synchronize selected hotel categories</field>
+            <field name="binding_model_id" ref="model_samo_hotelcategory"/>
+            <field name="model_id" ref="model_samo_hotelcategory"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.hotelcategory'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_hotel_actw">
+            <field name="name">Synchronize selected hotels</field>
+            <field name="binding_model_id" ref="model_samo_hotel"/>
+            <field name="model_id" ref="model_samo_hotel"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.hotel'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_roomtype_actw">
+            <field name="name">Synchronize selected room types</field>
+
+            <field name="binding_model_id" ref="model_samo_roomtype"/>
+            <field name="model_id" ref="model_samo_roomtype"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.roomtype'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_allocation_actw">
+            <field name="name">Synchronize selected allocations</field>
+
+            <field name="binding_model_id" ref="model_samo_allocation"/>
+            <field name="model_id" ref="model_samo_allocation"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.allocation'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_meal_actw">
+            <field name="name">Synchronize selected meals</field>
+            <field name="binding_model_id" ref="model_samo_meal"/>
+            <field name="model_id" ref="model_samo_meal"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.meal'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_tour_actw">
+            <field name="name">Synchronize selected tours</field>
+
+            <!--<field name="activity_user_type">generic</field>-->
+            <field name="binding_model_id" ref="model_samo_tour"/>
+            <field name="model_id" ref="model_samo_tour"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.tour'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_port_actw">
+            <field name="name">Synchronize selected ports</field>
+
+            <!--<field name="activity_user_type">generic</field>-->
+            <field name="binding_model_id" ref="model_samo_port"/>
+            <field name="model_id" ref="model_samo_port"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.port'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_freights_actw">
+            <field name="name">Synchronize selected freights</field>
+            <field name="binding_model_id" ref="model_samo_freights"/>
+            <field name="model_id" ref="model_samo_freights"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.freights'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_freightsclass_actw">
+            <field name="name">Synchronize selected freights class</field>
+
+            <!--<field name="activity_user_type">generic</field>-->
+            <field name="binding_model_id" ref="model_samo_freightsclass"/>
+            <field name="model_id" ref="model_samo_freightsclass"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.freightsclass'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_stopsale_actw">
+            <field name="name">Synchronize selected stopsales</field>
+            <field name="binding_model_id" ref="model_samo_stopsale"/>
+            <field name="model_id" ref="model_samo_stopsale"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.stopsale'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_release_actw">
+            <field name="name">Synchronize selected releases</field>
+            <field name="binding_model_id" ref="model_samo_release"/>
+            <field name="model_id" ref="model_samo_release"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.release'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_servtype_actw">
+            <field name="name">Synchronize selected service types</field>
+            <field name="binding_model_id" ref="model_samo_servtype"/>
+            <field name="model_id" ref="model_samo_servtype"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.servtype'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_service_actw">
+            <field name="name">Synchronize selected service</field>
+            <field name="binding_model_id" ref="model_samo_service"/>
+            <field name="model_id" ref="model_samo_service"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.service'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_spos_actw">
+            <field name="name">Synchronize selected spos</field>
+            <field name="binding_model_id" ref="model_samo_spos"/>
+            <field name="model_id" ref="model_samo_spos"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.spos'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_currency_actw">
+            <field name="name">Synchronize selected currency</field>
+            <field name="binding_model_id" ref="model_samo_currency"/>
+            <field name="model_id" ref="model_samo_currency"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.currency'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_hotelsalepr_actw">
+            <field name="name">Synchronize selected hotelsalepr</field>
+            <field name="binding_model_id" ref="model_samo_hotelsalepr"/>
+            <field name="model_id" ref="model_samo_hotelsalepr"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.hotelsalepr'].synchronize_manual_selected()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_servicesalepr_actw">
+            <field name="name">Synchronize selected servicesalepr</field>
+            <field name="binding_model_id" ref="model_samo_servicesalepr"/>
+            <field name="model_id" ref="model_samo_servicesalepr"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['samo.servicesalepr'].synchronize_manual_selected()
+            </field>
+        </record>
+    </data>
+</odoo>

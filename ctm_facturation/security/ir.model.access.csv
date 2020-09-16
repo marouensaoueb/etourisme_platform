@@ -1,0 +1,5 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ctm_facturation_ctm_facturation,ctm_facturation.ctm_facturation,model_ctm_facturation_ctm_facturation,,1,1,1,1
+access_invoice_res_line_excursion,invoice_res.line_excursion,model_invoice_res_line_excursion,,1,1,1,1
+access_invoice_res_line_sejour,invoice_res.line_sejour,model_invoice_res_line_sejour,,1,1,1,1
+access_invoice_res_line_transfert,invoice_res.line_transfert,model_invoice_res_line_transfert,,1,1,1,1

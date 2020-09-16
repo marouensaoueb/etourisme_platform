@@ -1,0 +1,627 @@
+<odoo>
+    <data>
+        <!-- explicit  view definition -->
+        <record id="reservation_list_tree" model="ir.ui.view">
+            <field name="name">Reservation list</field>
+            <field name="model">ctm.reservation.list</field>
+            <field name="arch" type="xml">
+                <tree decoration-danger="coloration=='danger'" editable="top" decoration-warning="coloration=='warning'" decoration-info="coloration=='info'" decoration-muted="coloration=='muted'"  decoration-success="coloration=='success'">
+                    <field name="reservation_number" />
+                    <field name="chekin" />
+                    <field name="checkout" />
+                    <field name="hotel_id" />
+                    <!--<field name="touroperator_id" />-->
+                    <field name="room_category" />
+                    <field name="room_type" />
+                    <!--<field name="touroperator_id" />-->
+
+                    <!--<field name="reservation_detail" />-->
+                    <!--<field name="company_id" />-->
+
+                    <field name="note"  />
+                    <field name="creation_date"  />
+                    <field name="state"  />
+                    <field name="pax_adult" />
+                    <field name="pax_enfant" />
+                    <field name="bebe" />
+                    <field name="night_number" sum="Somme nights" />
+                    <field name="brut" sum="Somme brut"/>
+                    <field name="net" sum="Somme net" />
+                    <field name="fact_hotel" string="Montant facture hotel" sum="montant fact hotel" />
+                    <field name="num_fact_hotel" string="N°facture hotel" />
+                    <field name="ref_fact_vente"  />
+                    <field name="mnt_vente" sum="Mnt fact vente" />
+                    <field name="echeance" />
+                    <field name="reste_to_pay" />
+                    <field name="ecart" sum="ecart"/>
+                    <field name="observation"/>
+                    <field name="coloration" invisible="1"/>
+                    <button type="object" string="open details" name="opendetails" />
+                    <button type="object" string="Calculate Net" name="calculatenet" />
+                            <!--observation-->
+                </tree>
+            </field>
+        </record>
+        <record id="reservation_list_graph" model="ir.ui.view">
+            <field name="name">Reservation graph</field>
+            <field name="model">ctm.reservation.list</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="reservation_number" />
+                    <field name="chekin" />
+                    <field name="checkout" />
+                    <field name="hotel_id" />
+                    <field name="touroperator_id" />
+                    <field name="pax_adult" type="measure" />
+                    <field name="pax_enfant" type="measure"/>
+                    <field name="night_number"  type="measure" />
+                    <field name="brut" type="measure" />
+                    <field name="net" type="measure"/>
+
+
+
+                </graph>
+            </field>
+        </record>
+        <record id="reservation_list_calendar" model="ir.ui.view">
+            <field name="name">Reservation calendar</field>
+            <field name="model">ctm.reservation.list</field>
+            <field name="arch" type="xml">
+                <calendar date_start="chekin" date_stop="checkout" readonly_form_view_id="ctm_accounting.reservation_list_form" mode="month" >
+
+                        <field name="reservation_number" />
+                        <field name="pax_adult" />
+                        <field name="pax_enfant" />
+
+
+
+
+
+
+
+
+                </calendar>
+            </field>
+        </record>
+
+
+
+        <record id="reservation_list_form" model="ir.ui.view">
+            <field name="name">Reservation list</field>
+            <field name="model">ctm.reservation.list</field>
+            <field name="arch" type="xml">
+                <form >
+                    <header>
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="danger,info,success,warning,muted" clickable = "True" />
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="reservation_number" />
+                            <field name="chekin" />
+                            <field name="checkout" />
+                            <field name="hotel_id" />
+                            <field name="touroperator_id" />
+                            <field name="pax_adult" />
+                            <field name="pax_enfant" />
+                            <field name="bebe" />
+                            <field name="night_number" />
+                            <field name="company_id" />
+                            <field name="fact_hotel" />
+                            <field name="num_fact_hotel" />
+                            <field name="echeance" />
+                            <field name="reste_to_pay" />
+                            <field name="currency_id" />
+                            <field name="note" />
+                            <field name="creation_date" />
+                            <field name="ecart" />
+                            <!--<field name="belongs_to_company"  />-->
+
+
+                            <field name="brut" />
+                            <field name="net" />
+                            <field name="reservation_detail" >
+                                <tree edit="false" create="false" delete="false">
+                                    <field name="num_reser"/>
+                                    <!--<field name="booking_number" />-->
+                                    <!--<field name="client_name"/>-->
+                                    <!--<field name="hotel"/>-->
+                                    <!--<field name="tour_operator"/>-->
+                                    <!--<field name="datenaiss"/>-->
+                                    <!--<field name="age"/>-->
+                                    <!--<field name="room_type"/>-->
+                                    <!--<field name="room_category"/>-->
+                                    <!--<field name="meal"/>-->
+                                    <!--<field name="night_number"/>-->
+                                    <!--<field name="checkin"/>-->
+                                    <!--<field name="checkout"/>-->
+                                    <!--<field name="create_date"/>-->
+                                    <!--<field name="brut" sum="Brut sum"/>-->
+                                    <!--<field name="net" sum="Net sum"/>-->
+                                    <!--<field name="active"/>-->
+                                    <!--<field name="status"/>-->
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+
+
+
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="wizard_applyred" model="ir.ui.view">
+            <field name="name">wizard Rule</field>
+            <field name="model">reduction.apply</field>
+            <field name="arch" type="xml">
+                <form string="Calculation operations">
+                    <group>
+                        <field name="contract_id" />
+                        <field name="reductions_applied" />
+                        <field name="hotel_id"  widget="many2many_tags"/>
+                        <field name="date_start"/>
+                        <field name="date_fin"/>
+                        <field name="state"/>
+
+                    </group>
+                    <footer>
+
+                        <button string='Apply rule' name="apply_reductions" class="btn btn-primary" type="object"/>
+                        <button string='Change state' name="change_coulour" class="btn btn-primary" type="object"/>
+                        <button string='Calculate Net' name="calculatenet" class="btn btn-success" type="object"/>
+                        <button string='Calculate Special' name="calcule_par_hotel_check_in" class="btn btn-primary" type="object"/>
+                        <button string="Cancel" class="btn btn-danger" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record id="treerd" model="ir.ui.view">
+            <field name="name">red rule</field>
+            <field name="model">rooming.rule</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="rule_type"/>
+                    <field name="typee"/>
+                    <field name="valeur"/>
+                    <field name="Age"/>
+                     <field name="typechabbrebool"/>
+                     <field name="datebool"/>
+                </tree>
+            </field>
+        </record>
+        <record id="formrd" model="ir.ui.view">
+            <field name="name">red rule</field>
+            <field name="model">rooming.rule</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="sequence"/>
+                            <field name="rule_type"/>
+                            <field name="typee"/>
+                            <field name="valeur"/>
+                            <field name="Age"/>
+                            <field name="typechabbrebool"/>
+                            <field name="datebool"/>
+                            <field name="creation_date_bool"/>
+                            <field name="persons_bool"/>
+                            <field name="meal_bool"/>
+                            <field name="season_bool"/>
+                            <field name="has_base_price_bool"/>
+                            <field name="apply_to_invoice_bool"/>
+                            <field name="night_number_bool"/>
+                            <field name="promo_room_bool"/>
+
+
+                        </group>
+                        <group>
+                            <field name="min_creation_date"
+                                   attrs="{'invisible':[('creation_date_bool', '!=', True)]}"/>
+                            <field name="max_creation_date"
+                                   attrs="{'invisible':[('creation_date_bool', '!=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="promo_room"
+                                   attrs="{'invisible':[('promo_room_bool', '!=', True)]}"/>
+
+                        </group>
+                        <group>
+                            <field name="min_night_number"
+                                   attrs="{'invisible':[('night_number_bool', '!=', True)]}"/>
+                            <field name="max_night_number"
+                                   attrs="{'invisible':[('night_number_bool', '!=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="season" widget="many2many_tags"
+                                   attrs="{'invisible':[('season_bool', '!=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="base_price"
+                                   attrs="{'invisible':[('has_base_price_bool', '!=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="meal" attrs="{'invisible':[('meal_bool', '!=', True)]}"/>
+                        </group>
+
+                        <group>
+                            <field name="paxes_validity"
+                                   attrs="{'invisible':[('persons_bool', '!=', True)]}"/>
+                            <field name="paxes_validity_applied"
+                                   attrs="{'invisible':[('paxes_validity', '!=', 'sp')]}"/>
+                            <field name="min_pax_enf"
+                                   attrs="{'invisible':[('paxes_validity', '!=', 'sp')]}"/><field name="max_pax_enf"
+                                                                                                  attrs="{'invisible':[('paxes_validity', '!=', 'sp')]}"/>
+                            <field name="min_pax_adl"
+                                   attrs="{'invisible':[('paxes_validity', '!=', 'sp')]}"/><field name="max_pax_adl"
+                                                                                                  attrs="{'invisible':[('paxes_validity', '!=', 'sp')]}"/>
+
+                        </group>
+                        <group>
+                            <field name="tpye_ch" attrs="{'invisible':[('typechabbrebool', '!=', True)]}"/>
+                            <field name="categ_ch" widget="many2many_tags"
+                                   attrs="{'invisible':[('typechabbrebool', '!=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="start" attrs="{'invisible':[('datebool', '!=', True)]}"/>
+                            <field name="end" attrs="{'invisible':[('datebool', '!=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="age_min" attrs="{'invisible':[('Age', '!=', True)]}"/>
+                            <field name="age_max" attrs="{'invisible':[('Age', '!=', True)]}"/>
+                            <field name="adultonly" attrs="{'invisible':[('Age', '!=', True)]}"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="rooming_list_list">
+            <field name="name">ctm_accounting tree</field>
+            <field name="model">rooming.list</field>
+
+            <field name="arch" type="xml">
+                <tree >
+                    <field name="num_reser"/>
+                     <field name="booking_number" />
+                    <field name="client_name"/>
+                    <field name="hotel"/>
+                    <field name="tour_operator"/>
+                    <field name="datenaiss"/>
+                    <field name="age"/>
+                    <field name="room_type"/>
+                    <field name="room_category"/>
+                    <field name="meal"/>
+                    <field name="night_number"/>
+                    <field name="checkin"/>
+                    <field name="checkout"/>
+
+
+                    <field name="active"/>
+                    <field name="status"/>
+                    <field name="note"/>
+                    <field name="creation_date"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="rooming_list_form">
+            <field name="name">ctm_accounting form rooming</field>
+            <field name="model">rooming.list</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                            <div class="oe_button_box" name="button_box">
+                                     <button name="action_transport_open" type="object"  icon="fa-bus" context="{'xml_id':'transfer_action'}" help="show the transport detail for the reservations">
+                                        Transport detail
+                        </button>
+                            </div>
+                        <group col="2" string="general information">
+                           <group>
+                                 <field name="num_reser"/>
+                            <field name="booking_number" />
+                               <field name="hotel"/>
+                                 <field name="tour_operator"/>
+                                <field name="room_type"/>
+                             <field name="room_category"/>
+                                  <field name="checkin"/>
+                            <field name="checkout"/>
+                                 <field name="creation_date"/>
+                            <field name="active"/>
+                            <field name="status"/>
+                           </group>
+                            <group>
+                                   <field name="client_name"/>
+
+
+                            <field name="datenaiss"/>
+                            <field name="age"/>
+
+                            <field name="meal"/>
+                            <field name="night_number"/>
+                            <field name="note"/>
+                            </group>
+
+
+</group>
+
+
+
+
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="hotel_lists">
+            <field name="name">ctm_accounting hotels tree</field>
+            <field name="model">rooming.hotels</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="hotel_id"/>
+                    <field name="partner_id"/>
+                    <field name="code_hotel" />
+                    <field name="currency_id" />
+                    <field name="star_rating" widget="priority"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="hotel_form">
+            <field name="name">ctm_accounting hotels form</field>
+            <field name="model">rooming.hotels</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="hotel_id"/>
+                             <field name="code_hotel" />
+                            <field name="partner_id"/>
+                            <field name="currency_id" />
+                            <field name="star_rating" widget="priority"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="room_type_tree">
+            <field name="name">room Type tree</field>
+            <field name="model">room.types</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ito_ID"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="room_type_form">
+            <field name="name">room.types form</field>
+            <field name="model">room.types</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="ito_ID"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="room_categ_tree">
+            <field name="name">room.categories tree</field>
+            <field name="model">room.categories</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ito_ID"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="room_categ_form">
+            <field name="name">room.categories form</field>
+            <field name="model">room.categories</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="ito_ID"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="meal_tree">
+            <field name="name">room.meal tree</field>
+            <field name="model">room.meal</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ito_ID"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="meal_form">
+            <field name="name">room.meal form</field>
+            <field name="model">room.meal</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="ito_ID"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="season_tree">
+            <field name="name">seasons tree</field>
+            <field name="model">seasons</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="season_form">
+            <field name="name">seasons form</field>
+            <field name="model">seasons</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="to_lists">
+            <field name="name">ctm_accounting hotels tree</field>
+            <field name="model">tour.operator</field>
+
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="ito_id"/>
+                    <field name="company_id" />
+                    <field name="mr_id" />
+                    <field name="partner_id"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="to_form">
+            <field name="name">ctm_accounting TO tree</field>
+            <field name="model">tour.operator</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="ito_id"/>
+                            <field name="company_id" />
+                            <field name="mr_id" />
+                             <field name="partner_id"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!-- actions opening views on models -->
+        <record model="ir.actions.act_window" id="ctm_accounting.action_window">
+            <field name="name">Rooming list</field>
+            <field name="res_model">rooming.list</field>
+            <field name="view_id" ref="rooming_list_list"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_accounting.rdrd">
+            <field name="name">Rules setting</field>
+            <field name="res_model">rooming.rule</field>
+            <field name="view_id" ref="treerd"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_accounting.action_window_hotels">
+            <field name="name">Hotels</field>
+            <field name="res_model">rooming.hotels</field>
+            <field name="view_id" ref="hotel_lists"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_accounting.action_window_room_types">
+            <field name="name">Room types</field>
+            <field name="res_model">room.types</field>
+            <field name="view_id" ref="room_type_tree"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_accounting.action_window_room_categorys">
+            <field name="name">Room categories</field>
+            <field name="res_model">room.categories</field>
+            <field name="view_id" ref="room_categ_tree"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_accounting.action_window_meals">
+            <field name="name">Meal types</field>
+            <field name="res_model">room.meal</field>
+            <field name="view_id" ref="meal_tree"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_accounting.action_window_seasons">
+            <field name="name">seasons</field>
+            <field name="res_model">seasons</field>
+            <field name="view_id" ref="season_tree"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_accounting.action_window_to">
+            <field name="name">Tour operator</field>
+            <field name="res_model">tour.operator</field>
+            <field name="view_id" ref="to_lists"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="ctm_accounting.reser_list_actw">
+            <field name="name">Reservation List</field>
+            <field name="res_model">ctm.reservation.list</field>
+            <field name="view_id" ref="reservation_list_tree"/>
+            <field name="domain">[('belongs_to_company', '=', True)]</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form,graph,calendar</field>
+        </record>
+
+        <act_window id="redaction"
+                    name="Calculation operation wizard"
+
+
+                    view_id="wizard_applyred"
+                    view_type="form" target="new"
+                    view_mode="form" src_model="ctm.reservation.list"
+                    res_model="reduction.apply" key2="client_action_multi"
+                    multi="True"/>
+
+        <!-- Top menu item -->
+        <menuitem name="Valorisation des reservations"  id="ctm_accounting.menu_root" web_icon="ctm_accounting,static/description/icon.png" sequence="1"/>
+        <!-- menu categories -->
+        <menuitem name="Reservations" id="ctm_accounting.menu_2" groups="ctm_accounting.ctm_acc_group" parent="ctm_accounting.menu_root" sequence="1"/>
+        <menuitem name="Import Rooming List" id="ctm_accounting.menu_1" groups="base.group_no_one" parent="ctm_accounting.menu_root" sequence="4"/>
+
+        <menuitem name="Configuration" id="ctm_accounting.menu_3" groups="ctm_accounting.ctm_acc_group"  parent="ctm_accounting.menu_root" sequence="100"/>
+        <!-- actions -->
+
+        <menuitem name="Rooming List " groups="base.group_no_one" id="ctm_accounting" parent="ctm_accounting.menu_2"
+                  action="ctm_accounting.action_window"/>
+        <menuitem name="Reservation List " id="ctm_accounting_reservation_list" parent="ctm_accounting.menu_2"
+                  action="ctm_accounting.reser_list_actw"/>
+
+        <!--conf menus -->
+        <menuitem name="Hotels" id="ctm_accounting_hotels" parent="ctm_accounting.menu_3"
+                  action="ctm_accounting.action_window_hotels"/>
+        <menuitem name="Tour operators" id="ctm_accounting_to" parent="ctm_accounting.menu_3"
+                  action="ctm_accounting.action_window_to"/>
+        <menuitem name="Room Types" id="ctm_accounting_rtypes" parent="ctm_accounting.menu_3"
+                  action="ctm_accounting.action_window_room_types"/>
+        <menuitem name="Room Categories" id="ctm_accounting_rcateg" parent="ctm_accounting.menu_3"
+                  action="ctm_accounting.action_window_room_categorys"/>
+        <menuitem name="Meals" id="ctm_accounting_rmals" parent="ctm_accounting.menu_3"
+                  action="ctm_accounting.action_window_meals"/>
+        <menuitem name="Seasons" id="ctm_accounting_seasons" parent="ctm_accounting.menu_3"
+                  action="ctm_accounting.action_window_seasons"/>
+        <menuitem name="Rule settings" id="ctm_accounting_rdrdrd" parent="ctm_accounting.menu_3"
+                  action="ctm_accounting.rdrd"/>
+    </data>
+</odoo>

@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+
+
+        <record id="ctm_fleet.group_fleet_ctm" model="res.groups">
+            <field name="name">Ctm fleet User</field>
+
+        </record>
+        <record id="ctm_fleet.group_fleet_ctm_admin" model="res.groups">
+            <field name="name">Ctm fleet admin</field>
+
+        </record>
+    </data>
+</odoo>

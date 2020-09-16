@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <record model="res.groups" id="matrix_module_group">
+            <field name="name">accés admin matrix</field>
+
+        </record>
+
+    </data>
+</odoo>

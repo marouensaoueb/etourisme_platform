@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="product_price_computation_carthage_group.show_final_price">
+            <field name="name">final prices</field>
+            <field name="model">wizard.finalprices</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="3">
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+                        <group>
+                            <field name="meal" widget="many2one_tags"/>
+                        </group>
+
+                    </group>
+                    <group col="3">
+                        <field nolabel="1" name="accomodation_price">
+                            <tree editable="top">
+                                <field name="accomodation"/>
+                                <field name="prix"/>
+                            </tree>
+                        </field>
+                    </group>
+                    <footer >
+
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window"
+                id="product_price_computation_carthage_group.show_final_price_actw">
+            <field name="name">final prices</field>
+            <field name="res_model">wizard.finalprices</field>
+            <field name="view_id" ref="product_price_computation_carthage_group.show_final_price"/>
+
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+    </data>
+</odoo>

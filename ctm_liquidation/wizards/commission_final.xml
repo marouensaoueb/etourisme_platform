@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+<!--        <record model="ir.ui.view" id="ctm_liquidation.wizard_commission_final_report_form">-->
+<!--            <field name="name">mat test</field>-->
+<!--            <field name="model">c.m</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <form>-->
+<!--                    <field name="cell" widget="x2many_2d_matrix" field_x_axis="meal" field_y_axis="accomodation" field_value="content">-->
+<!--                        <tree>-->
+<!--                            &lt;!&ndash;<field name="cell" />&ndash;&gt;-->
+<!--                            <field name="meal" />-->
+<!--                            <field name="accomodation" />-->
+<!--                            <field name="content" />-->
+
+
+<!--                        </tree>-->
+<!--                    </field>-->
+
+<!--                </form>-->
+<!--            </field>-->
+<!--        </record>-->
+<!--        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_commission_final_report">-->
+<!--            <field name="name">mat test</field>-->
+<!--            <field name="res_model">c.m</field>-->
+<!--            <field name="view_id" ref="ctm_liquidation.wizard_commission_final_report_form"/>-->
+<!--            <field name="target">current</field>-->
+<!--        </record>-->
+<!--        <menuitem name="Commissions wizard" id="ctm_liquidation.menu_wizard_commission_final_report_menu"-->
+<!--                  parent="ctm_liquidation.menu_commission" action="ctm_liquidation.wizard_commission_final_report"-->
+<!--        />-->
+    </data>
+</odoo>

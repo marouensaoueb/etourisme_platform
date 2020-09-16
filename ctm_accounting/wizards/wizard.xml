@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="ctm_accounting.early_booking_form">
+            <field name="name">Early Booking</field>
+            <field name="model">early.booking</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+
+
+                        <field name="hotel_id"/>
+                        <field name="type_reduction"/>
+                        <field name="taux"/>
+                    </group>
+
+                    <group col="2">
+                        <field name="creaton_from"/>
+                        <field name="creation_to"/>
+                    </group>
+
+
+                    <group col="2">
+
+                        <field name="checkin_from"/>
+                        <field name="checkin_to"/>
+
+                    </group>
+
+                    <footer>
+                        <button name="appliquer_early_booking" string="Confirmer" type="object"
+                                class="oe_highlight"/> or <button name="correct_ages" string="correct ages" type="object"
+                                                                  class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <!--Etat Early Booking form tree pivot-->
+
+
+        <record model="ir.ui.view" id="ctm_accounting.etat_early_booking_form">
+            <field name="name">Etat Early Booking</field>
+            <field name="model">etat.early.booking</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="hotel_id"/>
+                        <field name="type_reduction"/>
+                        <field name="taux"/>
+                        <field name="creaton_from"/>
+                        <field name="creation_to"/>
+                        <field name="checkin_from"/>
+                        <field name="checkin_to"/>
+                        <field name="montant_total"/>
+                        <field name="montant_apayer"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_accounting.etat_early_booking_tree">
+            <field name="name">Etat Early Booking</field>
+            <field name="model">etat.early.booking</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="hotel_id"/>
+                    <field name="type_reduction"/>
+                    <field name="taux"/>
+                    <field name="creaton_from"/>
+                    <field name="creation_to"/>
+                    <field name="checkin_from"/>
+                    <field name="checkin_to"/>
+                    <field name="montant_total"/>
+                    <field name="montant_apayer"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_accounting.etat_early_booking_pivot">
+            <field name="name">Etat Early Booking</field>
+            <field name="model">etat.early.booking</field>
+            <field name="arch" type="xml">
+                <pivot>
+                    <field name="hotel_id"/>
+                    <field name="type_reduction"/>
+                    <field name="taux"/>
+                    <field name="creaton_from"/>
+                    <field name="creation_to"/>
+                    <field name="checkin_from"/>
+                    <field name="checkin_to"/>
+                    <field name="montant_total"/>
+                    <field name="montant_apayer"/>
+
+                </pivot>
+            </field>
+        </record>
+
+
+        <!--wizard target -->
+
+
+        <record model="ir.actions.act_window" id="ctm_accounting.early_booking_actw">
+            <field name="name">Early Booking</field>
+            <field name="res_model">early.booking</field>
+            <field name="view_id" ref="ctm_accounting.early_booking_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_accounting.etat_early_booking_actw">
+            <field name="name">Etat Early Booking</field>
+            <field name="res_model">etat.early.booking</field>
+            <field name="view_id" ref="ctm_accounting.etat_early_booking_tree"/>
+            <field name="view_mode">tree,form,pivot</field>
+
+        </record>
+
+        <!--groups="ctm_accounting.ctm_acc_group"-->
+        <menuitem name="Early Booking" id="ctm_accounting.menu_booking" parent="ctm_accounting.menu_root"
+        />
+        <menuitem name="Calculate Early Booking" id="ctm_accounting.menu_calculate_eb"
+                  parent="ctm_accounting.menu_booking"
+                  action="ctm_accounting.early_booking_actw"/>
+        <menuitem name="Etat Early Booking" id="ctm_accounting.menu_calculate_etat_eb"
+                  parent="ctm_accounting.menu_booking"
+                  action="ctm_accounting.etat_early_booking_actw"/>
+    </data>
+</odoo>

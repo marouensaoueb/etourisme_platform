@@ -1,0 +1,759 @@
+<odoo>
+    <data>
+        <!--contextual actions -->
+
+        <record model="ir.ui.view" id="samo_integration_wizard">
+            <field name="name">samo_integration wizard</field>
+            <field name="model">samo.wizard</field>
+
+            <field name="arch" type="xml">
+                <form>
+
+
+                    <div class="col-md-12" style="display:flex;">
+                        <div class="col-md-6">
+                            <h1>Reference</h1>
+                            <br/>
+                            <button string="Synchronize state" name="state_xml" type="object"/>
+                            <button string="Synchronize region" name="region_xml" type="object"/>
+                            <button string="Synchronize town" name="town_xml" type="object"/>
+                            <button string="Synchronize Hotel category" name="hotelcategory_xml" type="object"/>
+                            <button string="Synchronize Hotel" name="hotel_xml" type="object"/>
+                            <button string="Synchronize Room types" name="roomtype_xml" type="object"/>
+                            <button string="Synchronize Allocation " name="allocation_xml" type="object"/>
+                            <button string="Synchronize Meal " name="meal_xml" type="object"/>
+                            <button string="Synchronize Tour " name="tour_xml" type="object"/>
+                            <!--<button string="Synchronize Port " name="port_xml" type="object"/>-->
+                            <!--<button string="Synchronize Freights " name="freights_xml" type="object"/>-->
+                            <!--<button string="Synchronize Freights class" name="freightsclass_xml" type="object"/>-->
+                            <button string="Synchronize Currency " name="currency_xml" type="object"/>
+                            <button string="Synchronize Service types" name="servtype_xml" type="object"/>
+                            <button string="Synchronize Service " name="service_xml" type="object"/>
+
+                        </div>
+                        <div class="col-md-6">
+                            <h1>Prices</h1>
+                            <br/>
+                            <button string="Synchronize Stop sale" name="stopsale_xml" type="object"/>
+                            <button string="Synchronize Release" name="release_xml" type="object"/>
+
+                            <button string="Synchronize Spos " name="spos_xml" type="object"/>
+                            <button string="Synchronize hotel Prices " name="hotelsalepr_xml" type="object"/>
+                            <button string="Synchronize hotel Prices ito " name="synchronize_all_records" type="object"/>
+
+                            <button string="Synchronize Service sale prices " name="servicesalepr_xml" type="object"/>
+
+                        </div>
+                    </div>
+
+                    <footer></footer>
+
+
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_state">
+            <field name="name">samo_integration state</field>
+            <field name="model">samo.state</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_region">
+            <field name="name">samo_integration region</field>
+            <field name="model">samo.region</field>
+
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_towns">
+            <field name="name">samo_integration towns</field>
+            <field name="model">samo.towns</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+                    <field name="state"/>
+                    <field name="region"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_hotelcategory">
+            <field name="name">samo_integration hotel category</field>
+            <field name="model">samo.hotelcategory</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_hotel">
+            <field name="name">samo_integration hotel</field>
+            <field name="model">samo.hotel</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+                    <field name="star"/>
+                    <field name="town"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_roomtype">
+            <field name="name">samo_integration roomtype</field>
+            <field name="model">samo.roomtype</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_allocation">
+            <field name="name">samo_integration allocation</field>
+            <field name="model">samo.allocation</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+
+                    <field name="pcount"/>
+                    <field name="adult"/>
+                    <field name="child"/>
+                    <field name="infant"/>
+                    <field name="age1min"/>
+                    <field name="age1max"/>
+                    <field name="age2min"/>
+                    <field name="age2max"/>
+                    <field name="age3min"/>
+                    <field name="age3max"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_tour">
+            <field name="name">samo_integration tour</field>
+            <field name="model">samo.tour</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_meal">
+            <field name="name">samo_integration meal</field>
+            <field name="model">samo.meal</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_tour">
+            <field name="name">samo_integration tour</field>
+            <field name="model">samo.tour</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_port">
+            <field name="name">samo_integration port</field>
+            <field name="model">samo.port</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+                    <field name="town"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_freights">
+            <field name="name">samo_integration freights</field>
+            <field name="model">samo.freights</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+                    <field name="trantype"/>
+                    <field name="source"/>
+                    <field name="srcport"/>
+                    <field name="target"/>
+                    <field name="trgport"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_classfreights">
+            <field name="name">samo_integration classfreights</field>
+            <field name="model">samo.freightsclass</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_stopsale">
+            <field name="name">samo_integration stopsale</field>
+            <field name="model">samo.stopsale</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+
+                    <field name="stamp"/>
+                    <field name="datebeg"/>
+                    <field name="dateend"/>
+                    <field name="hotel"/>
+                    <field name="room"/>
+                    <field name="htplace"/>
+                    <field name="meal"/>
+                    <field name="checkin"/>
+                    <field name="issue"/>
+                    <field name="rqdatebeg"/>
+                    <field name="rqdateend"/>
+                    <field name="note"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_release">
+            <field name="name">samo_integration release</field>
+            <field name="model">samo.release</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+                    <field name="datebeg"/>
+                    <field name="dateend"/>
+                    <field name="hotel"/>
+                    <field name="days"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_servtype">
+            <field name="name">samo_integration servtype</field>
+            <field name="model">samo.servtype</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_service">
+            <field name="name">samo_integration service</field>
+            <field name="model">samo.service</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+                    <field name="servtype"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_spos">
+            <field name="name">samo_integration spos</field>
+            <field name="model">samo.spos</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+                    <field name="spodate"/>
+                    <field name="usecontract"/>
+                    <field name="mixed"/>
+                    <field name="ebooking"/>
+                    <field name="usesaleprice"/>
+                    <field name="note"/>
+                    <field name="number"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_currency">
+            <field name="name">samo_integration currency</field>
+            <field name="model">samo.currency</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="name"/>
+                    <field name="lname"/>
+                    <field name="alias"/>
+                    <field name="stamp"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_hotelsalepr">
+            <field name="name">samo_integration hotelsalepr</field>
+            <field name="model">samo.hotelsalepr</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+                    <field name="town"/>
+
+
+                    <field name="stamp"/>
+                    <field name="hotel"/>
+                    <field name="room"/>
+                    <field name="htplace"/>
+                    <field name="meal"/>
+                    <field name="datebeg"/>
+                    <field name="dateend"/>
+                    <field name="nights"/>
+                    <field name="price"/>
+                    <field name="adult"/>
+                    <field name="child"/>
+                    <field name="nobedchild"/>
+                    <field name="days"/>
+                    <field name="currency"/>
+                    <field name="dateinfrom"/>
+                    <field name="dateoutfrom"/>
+                    <field name="dateintill"/>
+                    <field name="dateouttill"/>
+                    <field name="discount"/>
+                    <field name="discountmoney"/>
+                    <field name="useascheckin"/>
+                    <field name="nightsfrom"/>
+                    <field name="nightstill"/>
+                    <field name="spos"/>
+                    <field name="spotype"/>
+                    <field name="sposubtype"/>
+                    <field name="rroom"/>
+                    <field name="rhtplace"/>
+                    <field name="rmeal"/>
+                    <field name="rnights"/>
+                    <field name="rqdaysfrom"/>
+                    <field name="rqdaystill"/>
+                    <field name="rqdatebeg"/>
+                    <field name="rqdateend"/>
+                    <field name="oncheckin"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_servicesalepr">
+            <field name="name">samo_integration servicesalepr</field>
+            <field name="model">samo.servicesalepr</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="inc"/>
+                    <field name="itoid"/>
+                    <field name="status"/>
+
+
+                    <field name="service"/>
+                    <field name="hotel"/>
+                    <field name="grouphotel"/>
+                    <field name="townfrom"/>
+                    <field name="townto"/>
+                    <field name="datebeg"/>
+                    <field name="dateend"/>
+                    <field name="paxfrom"/>
+                    <field name="paxtill"/>
+                    <field name="nights"/>
+                    <field name="pernight"/>
+                    <field name="price"/>
+                    <field name="adultpr"/>
+                    <field name="child1pr"/>
+                    <field name="age1min"/>
+                    <field name="age1max"/>
+                    <field name="child2pr"/>
+                    <field name="age2min"/>
+                    <field name="age2max"/>
+                    <field name="currency"/>
+                    <field name="rdatebeg"/>
+                    <field name="rdateend"/>
+                    <field name="spotype"/>
+                    <field name="stamp"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="samo_integration_configuration">
+            <field name="name">samo_integration configuration</field>
+            <field name="model">samo.configuration</field>
+
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="mail_name"/>
+                </tree>
+            </field>
+        </record>
+        <!--  actw -->
+        <record model="ir.actions.act_window" id="samo_integration.state_action_window">
+            <field name="name">States</field>
+            <field name="res_model">samo.state</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_state"/>
+
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.region_action_window">
+            <field name="name">samo_integration region</field>
+            <field name="res_model">samo.region</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_region"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.town_action_window">
+            <field name="name">samo_integration towns</field>
+            <field name="res_model">samo.towns</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_towns"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.hotelcategory_action_window">
+            <field name="name">samo_integration hotelcategory</field>
+            <field name="res_model">samo.hotelcategory</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_hotelcategory"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.hotel_action_window">
+            <field name="name">samo_integration hotel</field>
+            <field name="res_model">samo.hotel</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_hotel"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.roomtype_action_window">
+            <field name="name">samo_integration roomtype</field>
+            <field name="res_model">samo.roomtype</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_roomtype"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.allocation_action_window">
+            <field name="name">samo_integration allocation</field>
+            <field name="res_model">samo.allocation</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_allocation"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.meal_action_window">
+            <field name="name">samo_integration meal</field>
+            <field name="res_model">samo.meal</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_meal"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.tour_action_window">
+            <field name="name">samo_integration tour</field>
+            <field name="res_model">samo.tour</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_tour"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.port_action_window">
+            <field name="name">samo_integration port</field>
+            <field name="res_model">samo.port</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_port"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.freights_action_window">
+            <field name="name">samo_integration freights</field>
+            <field name="res_model">samo.freights</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_freights"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.freightsclass_action_window">
+            <field name="name">samo_integration class of freights</field>
+            <field name="res_model">samo.freightsclass</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_classfreights"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.stopsale_action_window">
+            <field name="name">samo_integration stopsale</field>
+            <field name="res_model">samo.stopsale</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_stopsale"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.release_action_window">
+            <field name="name">samo_integration release</field>
+            <field name="res_model">samo.release</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_release"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.servtype_action_window">
+            <field name="name">samo_integration servtype</field>
+            <field name="res_model">samo.servtype</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_servtype"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.service_action_window">
+            <field name="name">samo_integration service</field>
+            <field name="res_model">samo.service</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_service"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.spos_action_window">
+            <field name="name">samo_integration spos</field>
+            <field name="res_model">samo.spos</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_spos"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.currency_action_window">
+            <field name="name">samo_integration currency</field>
+            <field name="res_model">samo.currency</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_currency"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.hotelsalepr_action_window">
+            <field name="name">samo_integration hotelsalepr</field>
+            <field name="res_model">samo.hotelsalepr</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_hotelsalepr"/>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.servicesalepr_action_window">
+            <field name="name">samo_integration servicesalepr</field>
+            <field name="res_model">samo.servicesalepr</field>
+
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_servicesalepr"/>
+        </record>
+        <!--wizard actw-->
+        <record model="ir.actions.act_window" id="samo_integration.wizard_action_window">
+            <field name="name">Integration wizard</field>
+            <field name="res_model">samo.wizard</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="samo_integration_wizard"/>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window" id="samo_integration.configuration_action_window">
+            <field name="name">mails configuration</field>
+            <field name="res_model">samo.configuration</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="samo_integration_configuration"/>
+        </record>
+        <!-- Top menu item -->
+        <menuitem name="samo integration administration" id="samo_integration.menu_root"/>
+        <!-- menu categories -->
+        <menuitem name="References" id="samo_integration.menu_1" parent="samo_integration.menu_root"
+                  groups="samo_integration.samo_reference"/>
+        <menuitem name="Prices" id="samo_integration.menu_2" parent="samo_integration.menu_root"
+                  groups="samo_integration.samo_prices"/>
+        <menuitem name="Integration wizard" id="samo_integration.menu_3" parent="samo_integration.menu_root"
+                  action="samo_integration.wizard_action_window" groups="samo_integration.samo_wizard"/>
+        <menuitem name="mails configuration" id="samo_integration.menu_4" parent="samo_integration.menu_root"
+                  action="samo_integration.configuration_action_window" groups="base.group_no_one"/>
+        <!--references sub menus-->
+        <menuitem name="state" id="samo_integration.menu_1_state" parent="samo_integration.menu_1"
+                  action="samo_integration.state_action_window"/>
+        <menuitem name="region" id="samo_integration.menu_1_region" parent="samo_integration.menu_1"
+                  action="samo_integration.region_action_window"/>
+        <menuitem name="town" id="samo_integration.menu_1_town" parent="samo_integration.menu_1"
+                  action="samo_integration.town_action_window"/>
+        <menuitem name="Hotel category" id="samo_integration.menu_1_hotelcategory" parent="samo_integration.menu_1"
+                  action="samo_integration.hotelcategory_action_window"/>
+
+        <menuitem name="Room type" id="samo_integration.menu_1_roomtype" parent="samo_integration.menu_1"
+                  action="samo_integration.roomtype_action_window"/>
+        <menuitem name="Allocation" id="samo_integration.menu_1_allocation" parent="samo_integration.menu_1"
+                  action="samo_integration.allocation_action_window"/>
+        <menuitem name="meal" id="samo_integration.menu_1_meal" parent="samo_integration.menu_1"
+                  action="samo_integration.meal_action_window"/>
+        <menuitem name="tour" id="samo_integration.menu_1_tour" parent="samo_integration.menu_1"
+                  action="samo_integration.tour_action_window"/>
+        <menuitem name="currency" id="samo_integration.menu_1_currency" parent="samo_integration.menu_1"
+                  action="samo_integration.currency_action_window"/>
+        <!--prices sub menu-->
+        <menuitem name="stopsale" id="samo_integration.menu_1_stopsale" parent="samo_integration.menu_2"
+                  action="samo_integration.stopsale_action_window"/>
+        <menuitem name="release" id="samo_integration.menu_1_release" parent="samo_integration.menu_2"
+                  action="samo_integration.release_action_window"/>
+        <menuitem name="servtype" id="samo_integration.menu_1_servtype" parent="samo_integration.menu_1"
+                  action="samo_integration.servtype_action_window"/>
+        <menuitem name="service" id="samo_integration.menu_1_service" parent="samo_integration.menu_1"
+                  action="samo_integration.service_action_window"/>
+        <menuitem name="spos" id="samo_integration.menu_1_spos" parent="samo_integration.menu_2"
+                  action="samo_integration.spos_action_window"/>
+        <menuitem name="hotelsalepr" id="samo_integration.menu_1_hotelsalepr" parent="samo_integration.menu_2"
+                  action="samo_integration.hotelsalepr_action_window"/>
+        <menuitem name="servicesalepr" id="samo_integration.menu_1_servicesalepr" parent="samo_integration.menu_2"
+                  action="samo_integration.servicesalepr_action_window"/>
+        <menuitem name="hotel" id="samo_integration.menu_1_hotel" parent="samo_integration.menu_1"
+                  action="samo_integration.hotel_action_window" sequence="999"/>
+    </data>
+</odoo>

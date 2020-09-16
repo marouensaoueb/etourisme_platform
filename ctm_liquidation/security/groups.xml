@@ -1,0 +1,24 @@
+<odoo>
+    <data>
+        <record model="res.groups" id="ctm_liquidation_group">
+            <field name="name">accés admin</field>
+
+        </record>
+        <record model="res.groups" id="ctm_liquidation_group_rapport">
+            <field name="name">CTM Liquidation générer Rapport</field>
+
+        </record>
+
+        <record model="res.groups" id="ctm_liquidation_agent_controle">
+            <field name="name">accés agent de contole</field>
+
+        </record>
+        <record model="res.groups" id="ctm_liquidation_agent_saisie">
+            <field name="name">accées agent de saisie</field>
+
+        </record>
+
+
+
+    </data>
+</odoo>

@@ -1,0 +1,208 @@
+<odoo>
+    <data>
+
+        <!--res config inherit to put the fields-->
+        <record model="ir.ui.view" id="odoo_ito_external_integration.ito_credentials">
+            <field name="name">ito.config.details</field>
+            <field name="model">res.config.settings</field>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="ITO integration" string="ITO integration"
+                         data-key="ITO integration">
+                        <div id="ito_access_credentials">
+                            <h2>ITO ACCESS CREDENTIALS</h2>
+                            <div class="row mt16 o_settings_container">
+
+                                <div class="col-12 col-lg-12 o_setting_box">
+                                    <div class="o_setting_right_pane">
+                                        <span class="o_form_label">ITO ACCESS</span>
+                                        <span class="fa fa-lg fa-building-o"
+                                              title="Values set here are company-specific."
+                                              aria-label="Values set here are company-specific." role="img"/>
+                                        <div class="text-muted">
+                                            Insert here your server login details
+                                        </div>
+                                        <div class="content-group">
+                                            <div class="mt16" groups="base.group_no_one">
+                                                <label for="ito_server_ip" class="col-3 col-lg-3 o_light_label"/>
+                                                <field name="ito_server_ip" placeholder="xxx.xxx.xxx.xxx"
+                                                       class="oe_inline"/>
+                                                <label for="ito_server_port" class="col-3 col-lg-3 o_light_label"/>
+                                                <field name="ito_server_port" placeholder="0000" class="oe_inline"/>
+                                                <label for="ito_server_login" class="col-3 col-lg-3 o_light_label"/>
+                                                <field name="ito_server_login" placeholder="sa" class="oe_inline"/>
+                                                <label for="ito_server_password" class="col-3 col-lg-3 o_light_label"/>
+                                                <field name="ito_server_password" placeholder="********" password="True"
+                                                       class="oe_inline"/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+        <!--another inherits fo fit ito config to the pother software config -->
+
+        <record model="ir.ui.view" id="odoo_ito_external_integration.guides_inheritation">
+            <field name="name">ito.guides.sigma.details</field>
+            <field name="model">excursion.guide</field>
+            <field name="inherit_id" ref="excursion.guide_form"/>
+            <field name="arch" type="xml">
+                <xpath position="inside" expr="//sheet">
+                    <group string="ito sigma details">
+                        <field name="sigma_guide_name"/>
+                        <field name="sigma_guide_code"/>
+                        <field name="sigma_guide_cnt_code"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="odoo_ito_external_integration.excursion_inheritation">
+            <field name="name">ito.excursion.sigma.details</field>
+            <field name="model">excursion.excursion</field>
+            <field name="inherit_id" ref="excursion.excursion_from"/>
+            <field name="arch" type="xml">
+                <xpath position="inside" expr="//sheet">
+                    <group string="ito sigma details">
+                        <field name="sigma_excursion_name"/>
+                        <field name="sigma_excursion_code"/>
+                        <field name="sigma_excursion_cnt_code"/>
+                    </group>
+
+                </xpath>
+            </field>
+        </record>
+        <!--the wizard-->
+        <record id="wizard_import_workshop" model="ir.ui.view">
+            <field name="name">wizard import hotels and roomings</field>
+            <field name="model">rooming.list.get</field>
+            <field name="arch" type="xml">
+                <form string="Import options">
+                    <label for="ito_server_ip"/>
+                    :
+                    <field name="ito_server_ip"/>
+                    <h1>Filters :</h1>
+                    <group>
+
+                        <group col="3" string="Chekin">
+
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+
+                        </group>
+                        <group col="3" string="Creation date">
+                            <field name="creation_date_start"/>
+                            <field name="creation_date_end"/>
+                        </group>
+                    </group>
+                    <group col="6" string="Hotels and TO">
+                        <field name="hotel" widget="many2many_tags"/>
+                        <field name="tour_operator" widget="many2many_tags"/>
+                        <field name="reservation_number" />
+                    </group>
+                    <group col="6" string="Excursion_date">
+                        <field name="exursion_date"/>
+
+                    </group>
+                    <br/>
+                    <h1>Possible operations :</h1>
+                    <br/>
+
+                    <h2>Require no filter:</h2>
+                    <button string='Import import room types' name="fill_rooms_type" class="btn btn-primary btn-lg "
+                            type="object"/>
+                    <button string='Import room categories' name="fill_categories" class="btn btn-primary btn-lg"
+                            type="object"/>
+                    <button string='Import meals' name="fill_meals" class="btn btn-primary btn-lg" type="object"/>
+                    <button string='Import Hotels' name="fill_hotels" class="btn btn-primary btn-lg" type="object"/>
+                    <button string='Import Tour operators' name="fill_to" class="btn btn-primary btn-lg" type="object"/>
+                    <br/>
+                    <br/>
+                    <h2>Require some filters :</h2>
+
+                    <button string='Import rooming list' name="get_rooming_list" class="btn btn-success btn-lg"
+                            type="object"/>
+                    <button string='Get reservations from rooming list' name="get_res_list"
+                            class="btn btn-success btn-lg"
+                            type="object"/>
+                    <button string="clean excursions crap" name="get_sale_list" class="btn btn-success btn-lg"
+                            type="object"/>
+
+                    <!--<button string="Cancel" class="btn btn-danger btn-lg pull-right" special="cancel"/>-->
+
+                </form>
+            </field>
+        </record>
+        <record id="wizard_import_workshop1" model="ir.ui.view">
+            <field name="name">wizard import hotels and roomings1</field>
+            <field name="model">rooming.list.get</field>
+            <field name="arch" type="xml">
+                <form string="Import options">
+                    <label for="ito_server_ip"/>
+                    :
+                    <field name="ito_server_ip"/>
+                    <h1>Filters :</h1>
+
+
+                    <group col="6" string="Tickets from / to">
+                        <field name="tickets_from"/>
+                        <field name="tickets_to"/>
+                    </group>
+
+                    <br/>
+                    <h1>Possible operations :</h1>
+                    <br/>
+
+                    <footer>
+                        <button string='Synchronize tickets' name="synchronize_partiel" class="btn btn-primary btn-lg "
+                                type="object"/>
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+        <!--the wizard action window-->
+        <record id="action_wizard_rooming_open" model="ir.actions.act_window">
+            <field name="name">Data importing wizard</field>
+            <field name="res_model">rooming.list.get</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wizard_import_workshop"/>
+            <field name="target">current</field>
+        </record>
+        <record id="action_wizard_rooming_open1" model="ir.actions.act_window">
+            <field name="name">Data importing wizard1</field>
+            <field name="res_model">rooming.list.get</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="wizard_import_workshop1"/>
+            <field name="target">new</field>
+        </record>
+        <record id="synchronize_shot_server_action" model="ir.actions.server">
+            <field name="name">server action for synchronize shit</field>
+            <field name="model_id" ref="odoo_ito_external_integration.model_rooming_list_get"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['rooming.list.get'].sudo().get_sale_list_auto()
+            </field>
+
+
+        </record>
+        <!--the wizard menue (hidden to the super admin only )-->
+        <menuitem name="ITO integration" groups="base.group_no_one" id="odoo_ito_external_integration.main_menu"
+                  web_icon="odoo_ito_external_integration,static/description/icon.png"
+        />
+        <menuitem name="Data import Wizard" id="odoo_ito_external_integration.menu_1_list"
+                  parent="odoo_ito_external_integration.main_menu"
+                  action="action_wizard_rooming_open"/>
+        <menuitem name="synchronize excursions for some tickets ( might take up to 10sec ) "
+                  id="odoo_ito_external_integration.do_shit"
+                  parent="excursion.affectation_menu"
+                  action="action_wizard_rooming_open1"/>
+    </data>
+</odoo>

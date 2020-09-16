@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record model="res.groups" id="ctm_tools_group_fleet">
+        <field name="name">CTM fleet extra</field>
+
+        </record>
+ <record model="res.groups" id="ctm_paperwork_group">
+        <field name="name">CTM paperwork Team</field>
+
+        </record>
+
+
+    </data>
+</odoo>

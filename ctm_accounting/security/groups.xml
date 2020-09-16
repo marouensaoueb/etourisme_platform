@@ -1,0 +1,14 @@
+<odoo>
+    <data>
+        <record model="res.groups" id="ctm_acc_group">
+        <field name="name"> Finance</field>
+
+        </record><record model="res.groups" id="ctm_cont_group">
+        <field name="name"> Contracting management</field>
+
+    </record>
+
+
+
+    </data>
+</odoo>

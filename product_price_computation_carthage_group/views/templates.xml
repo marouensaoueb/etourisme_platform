@@ -1,0 +1,33 @@
+<odoo>
+
+<!--    <record id="hotel_send_request" model="mail.template">-->
+<!--        <field name="name"></field>-->
+<!--        <field name="model_id" ref="hotel_send_request.model_exemple.mail"/>-->
+<!--        <field name="email_from"></field>-->
+<!--        <field name="email_to"></field>-->
+<!--        <field name="subject"></field>-->
+<!--        <field name="body_html" type="html">-->
+<!--            <div style="">-->
+
+<!--            </div>-->
+<!--        </field>-->
+<!--    </record>-->
+    <!-- <template id="listing"> -->
+    <!--   <ul> -->
+    <!--     <li t-foreach="objects" t-as="object"> -->
+    <!--       <a t-attf-href="#{ root }/objects/#{ object.id }"> -->
+    <!--         <t t-esc="object.display_name"/> -->
+    <!--       </a> -->
+    <!--     </li> -->
+    <!--   </ul> -->
+    <!-- </template> -->
+    <!-- <template id="object"> -->
+    <!--   <h1><t t-esc="object.display_name"/></h1> -->
+    <!--   <dl> -->
+    <!--     <t t-foreach="object._fields" t-as="field"> -->
+    <!--       <dt><t t-esc="field"/></dt> -->
+    <!--       <dd><t t-esc="object[field]"/></dd> -->
+    <!--     </t> -->
+    <!--   </dl> -->
+    <!-- </template> -->
+</odoo>

@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="ctm_liquidation.wizard_report_form">
+            <field name="name">rapport Commisssion</field>
+            <field name="model">wizard.creport</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="2">
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+
+                    </group>
+
+
+                    <footer>
+                        <button name="get_report" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.wizard_calculadulte_form">
+            <field name="name">calculter pourcentage adulte</field>
+            <field name="model">wizard.calculadulte</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="2">
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+
+                    </group>
+                    <group col="2">
+                        <group>
+                            <field name="excursion"/>
+                        </group>
+                        <group>
+                            <field name="representant"/>
+                        </group>
+
+                    </group>
+
+
+                    <footer>
+                        <button name="calculer_adulte" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.wizard_report_vente_form">
+            <field name="name">rapport vente excursion</field>
+            <field name="model">wizard.ventereport</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group>
+
+                        <group>
+                            <field name="liquidation"/>
+                        </group>
+                        <group>
+                            <field name="noliquidation"/>
+                        </group>
+
+                    </group>
+
+                    <group>
+
+                        <group>
+                            <field name="debiteur"/>
+                        </group>
+                        <group>
+                            <field name="nodebiteur"/>
+                        </group>
+
+                    </group>
+
+                    <group>
+                        <field name="guide_id" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="date_liquidation_from"
+                                   attrs="{'invisible':[('noliquidation','=',True),('liquidation','=',False)]}"/>
+                        </group>
+                        <group>
+                            <field name="date_liquidation_to"
+                                   attrs="{'invisible':[('noliquidation','=',True),('liquidation','=',False)]}"/>
+                        </group>
+
+                    </group>
+
+                    <footer>
+                        <button name="get_report_vente" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <!--<record model="ir.ui.view" id="ctm_liquidation.wizard_report_vente_thalasso_form">-->
+        <!--<field name="name">rapport vente thalasso</field>-->
+        <!--<field name="model">wizard.ventereporttalasso</field>-->
+        <!--<field name="arch" type="xml">-->
+        <!--<form>-->
+
+        <!--<group >-->
+
+        <!--<group>-->
+        <!--<field name="liquidation"/>-->
+        <!--</group>-->
+        <!--<group>-->
+        <!--<field name="noliquidation"/>-->
+        <!--</group>-->
+
+        <!--</group>-->
+
+        <!--<group>-->
+        <!--<field name="guide_id" widget="many2many_tags"/>-->
+        <!--</group>-->
+        <!--<group>-->
+        <!--<group><field name="date_enc_from" attrs="{'invisible':[('noliquidation','=',True),('liquidation','=',False)]}"/></group>-->
+        <!--<group>  <field name="date_enc_to" attrs="{'invisible':[('noliquidation','=',True),('liquidation','=',False)]}"/></group>-->
+
+
+        <!--                    </group>-->
+        <!--</group>-->
+        <!--<group>-->
+        <!--<group><field name="date_from" attrs="{'invisible':[('noliquidation','=',True),('liquidation','=',False)]}"/></group>-->
+        <!--<group>  <field name="date_to" attrs="{'invisible':[('noliquidation','=',True),('liquidation','=',False)]}"/></group>-->
+
+
+        <!--</group>-->
+        <!--<group>-->
+        <!--<group><field name="date_paie_from" attrs="{'invisible':[('noliquidation','=',True),('liquidation','=',False)]}"/></group>-->
+        <!--<group>  <field name="date_paie_to" attrs="{'invisible':[('noliquidation','=',True),('liquidation','=',False)]}"/></group>-->
+
+
+        <!--</group>-->
+
+
+        <!--<footer>-->
+        <!--<button name="get_report_vente" string="Confirmer" type="object"-->
+        <!--class="oe_highlight"/>-->
+        <!--Or-->
+        <!--<button string="Annuler" class="oe_link" special="cancel"/>-->
+        <!--</footer>-->
+        <!--</form>-->
+        <!--</field>-->
+        <!--</record>-->
+
+        <record model="ir.ui.view" id="ctm_liquidation.wizard_form">
+            <field name="name">pas de Titre Maintenant</field>
+            <field name="model">wizard.report</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="2">
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+
+                    </group>
+                    <group>
+                        <field name="to" widget="many2many_tags"/>
+                    </group>
+
+                    <footer>
+                        <button name="get_reservations" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_reports_action">
+            <field name="name">Recuperation reservation de guide</field>
+            <field name="res_model">wizard.report</field>
+            <field name="view_id" ref="ctm_liquidation.wizard_form"/>
+            <field name="target">new</field>
+        </record>
+
+
+        <!--wizard target -->
+
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_calculadulte_action">
+            <field name="name">calculer pourcentage adulte</field>
+            <field name="res_model">wizard.calculadulte</field>
+            <field name="view_id" ref="ctm_liquidation.wizard_calculadulte_form"/>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.wizard_target_form">
+            <field name="name">aussi pas de Titre Maintenant</field>
+            <field name="model">wizard.target_report</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="2">
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+
+                    </group>
+
+                    <footer>
+                        <button name="get_target_reservations" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.wizard_duplication_form">
+            <field name="name">aussi pas de Titre Maintenant</field>
+            <field name="model">wizard.duplication</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="2">
+                        <group>
+                            <field name="nbre_duplication"/>
+                        </group>
+
+
+                    </group>
+
+                    <footer>
+                        <button name="dupliquer" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.target_report_commissionchauffeur_form">
+            <field name="name">aussi pas de Titre Maintenant</field>
+            <field name="model">wizard.target_report_commissionchauffeur</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="2">
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+
+                    </group>
+
+                    <footer>
+                        <button name="calculate_commission_chauffeur" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.target_report_commissionguide_form">
+            <field name="name">aussi pas de Titre Maintenant</field>
+            <field name="model">wizard.target_report_commissionguide</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="2">
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+
+                    </group>
+
+                    <footer>
+                        <button name="calculate_commission_guide" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.wizard_target_form_thalasso">
+            <field name="name">aussi pas de Titre Maintenant et pour les talassos</field>
+            <field name="model">wizard.target_report_thalasso</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="2">
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+
+                    </group>
+
+                    <footer>
+                        <button name="calculate_commission_thalasso" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.wizard_target_form_lagune">
+            <field name="name">aussi pas de Titre Maintenant et pour les lagune</field>
+            <field name="model">wizard.target_report_lagune</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="2">
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+
+                    </group>
+                    <group col="4">
+                        <group>
+                            <field name="lagune_bool"/>
+                        </group>
+                        <group>
+                            <field name="bellamarina_bool"/>
+                        </group>
+                        <group>
+                            <field name="levoilier_bool"/>
+                        </group>
+                        <group>
+                            <field name="lether_bool"/>
+                        </group>
+                        <group>
+                            <field name="photograph_bool"/>
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button name="calculate_commission_lagune" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.wizard_report_vente_thalasso_form">
+            <field name="name">rapport vente thalasso</field>
+            <field name="model">wizard.ventethalasso</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group>
+
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+
+                    </group>
+                    <group>
+                        <group>
+                            <field name="rep"/>
+                        </group>
+                        <group>
+                            <field name="centre_base" domain="[('centre_base','=',True)]"/>
+                        </group>
+                        <group>
+                            <field name="centre_autre" domain="[('centre_base','=',False)]"/>
+                        </group>
+
+
+                    </group>
+                    <group>
+                        <group>
+                            <field name="commission_calcule"/>
+                        </group>
+                        <group>
+                            <field name="commission_noncalcule"/>
+                        </group>
+
+
+                    </group>
+                    <group>
+
+                        <group>
+                            <field name="date_from_encaissement"
+                                   attrs="{'invisible':[('commission_noncalcule','=',True),('commission_calcule','=',False)]}"/>
+                        </group>
+                        <group>
+                            <field name="date_to_encaissement"
+                                   attrs="{'invisible':[('commission_noncalcule','=',True),('commission_calcule','=',False)]}"/>
+                        </group>
+
+                    </group>
+
+                    <group>
+                        <field name="date_payment"
+                               attrs="{'invisible':[('commission_noncalcule','=',True),('commission_calcule','=',False)]}"/>
+                    </group>
+
+
+                    <footer>
+                        <button name="get_report_vente_thalasso" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.wizard_report_historiquerep_form">
+            <field name="name">rapport histourique des affectations</field>
+            <field name="model">wizard.ventethalasso</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group>
+
+                        <group>
+                            <field name="date_from"/>
+                        </group>
+                        <group>
+                            <field name="date_to"/>
+                        </group>
+
+                    </group>
+                    <group>
+                        <group>
+                            <field name="rep"/>
+                        </group>
+
+
+                    </group>
+
+                    <footer>
+                        <button name="get_report_historique_rep" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.wizard_anveda_form">
+            <field name="name">avenda</field>
+            <field name="model">wizard.anveda</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+
+                        <group>
+                            <field name="by_checkin"/>
+                        </group>
+                        <group>
+                            <field name="by_liquid"/>
+                        </group>
+
+                    </group>
+                    <group>
+
+                        <group>
+                            <field name="checkin_from"
+                                   attrs="{'invisible':[('by_checkin','=',False)],'required': [('by_checkin', '=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="checkin_to"
+                                   attrs="{'invisible':[('by_checkin','=',False)],'required': [('by_checkin', '=', True)]}"/>
+                        </group>
+
+                    </group>
+                    <group>
+
+                        <group>
+                            <field name="lquid_from"
+                                   attrs="{'invisible':[('by_liquid','=',False)],'required': [('by_liquid', '=', True)]}"/>
+                        </group>
+                        <group>
+                            <field name="lquid_to"
+                                   attrs="{'invisible':[('by_liquid','=',False)],'required': [('by_liquid', '=', True)]}"/>
+                        </group>
+
+                    </group>
+                    <group>
+                        <group>
+                            <field name="seller" widget="many2many_tags"/>
+                        </group>
+                        <group>
+                            <field name="excursion" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="show_tickets"/>
+                        </group>
+                        <group>
+                            <field name="show_avoir"/>
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button name="print" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_target_reports_action5">
+            <field name="name">Rapport des ventes thalasso</field>
+            <field name="res_model">wizard.ventethalasso</field>
+            <field name="view_id" ref="ctm_liquidation.wizard_report_vente_thalasso_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_target_reports_action">
+            <field name="name">Aussi Rapport pas de Titre Maintenant</field>
+            <field name="res_model">wizard.target_report</field>
+            <field name="view_id" ref="ctm_liquidation.wizard_target_form"/>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_duplication_action">
+            <field name="name">Aussi Rapport pas de Titre Maintenant</field>
+            <field name="res_model">wizard.duplication</field>
+            <field name="view_id" ref="ctm_liquidation.wizard_duplication_form"/>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_commissionchauffeur_reports_action">
+            <field name="name">Aussi Rapport pas de Titre Maintenant</field>
+            <field name="res_model">wizard.target_report_commissionchauffeur</field>
+            <field name="view_id" ref="ctm_liquidation.target_report_commissionchauffeur_form"/>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_commissionguide_reports_action">
+            <field name="name">Aussi Rapport pas de Titre Maintenant</field>
+            <field name="res_model">wizard.target_report_commissionguide</field>
+            <field name="view_id" ref="ctm_liquidation.target_report_commissionguide_form"/>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_target_reports_action1">
+            <field name="name">Aussi Rapport pas de Titre Maintenant mais pour les thalasso</field>
+            <field name="res_model">wizard.target_report_thalasso</field>
+            <field name="view_id" ref="ctm_liquidation.wizard_target_form_thalasso"/>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_target_reports_action2">
+            <field name="name">Aussi Rapport pas de Titre Maintenant mais pour les Divers</field>
+            <field name="res_model">wizard.target_report_lagune</field>
+            <!--<field name="view_id" ref="ctm_liquidation.wizard_target_form_lagune"/>-->
+            <field name="target">new</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_target_reports_action3">
+            <field name="name">Rapport de Commission</field>
+            <field name="res_model">wizard.creport</field>
+            <field name="view_id" ref="ctm_liquidation.wizard_report_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <!--        <menuitem name="Generer Rapport commission " id="ctm_liquidation.menu_sub_root_rapport"-->
+        <!--                  parent="ctm_liquidation.menu_root"-->
+        <!--                  action="ctm_liquidation.wizard_target_reports_action3"-->
+        <!--                  groups="ctm_liquidation_group_rapport"-->
+        <!--        />-->
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_target_reports_action4">
+            <field name="name">Rapport de vente excursions</field>
+            <field name="res_model">wizard.ventereport</field>
+            <field name="view_id" ref="ctm_liquidation.wizard_report_vente_form"/>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_anveda_action">
+            <field name="name">Analyse des ventes par represenant / date arrivé</field>
+            <field name="res_model">wizard.anveda</field>
+            <field name="view_id" ref="ctm_liquidation.wizard_anveda_form"/>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.wizard_target_reports_action6">
+            <field name="name">Rapport historique des affectations des représetants</field>
+            <field name="res_model">wizard.historiquerep</field>
+            <field name="view_id" ref="ctm_liquidation.wizard_report_historiquerep_form"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem name="Générer rapport" id="ctm_liquidation.menu_rapport" parent="ctm_liquidation.menu_root"/>
+
+        <menuitem name="Generer Etat liuidation excursions " id="ctm_liquidation.menu_sub_root_rapport1"
+                  parent="excursion.affectation_menu"
+                  action="ctm_liquidation.wizard_target_reports_action4"
+                  groups="ctm_liquidation_group_rapport"
+        />
+        <menuitem name="Analyse des ventes par represenant / date arrivé" id="ctm_liquidation.menu_sub_root_avenda"
+                  parent="excursion.affectation_menu"
+                  action="ctm_liquidation.wizard_anveda_action"
+                  groups="ctm_liquidation_group_rapport"
+        />
+        <menuitem name="Generer etat liquidation thalasso" id="ctm_liquidation.menu_rapport_thalasso"
+                  parent="ctm_liquidation.menu_rapport" action="ctm_liquidation.wizard_target_reports_action5"
+                  groups="ctm_liquidation_group_rapport"/>
+        <menuitem name="Generer rapport histourique représentant" id="ctm_liquidation.menu_rapport_historiquerep"
+                  parent="ctm_liquidation.menu_rapport" action="ctm_liquidation.wizard_target_reports_action6"
+                  groups="ctm_liquidation_group_rapport"/>
+    </data>
+</odoo>

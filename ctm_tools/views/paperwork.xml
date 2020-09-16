@@ -1,0 +1,94 @@
+<odoo>
+    <data>
+        <!--form-->
+        <record id="individual_folder_form" model="ir.ui.view">
+            <field name="name">individual folder form</field>
+            <field name="model">paperwork.indiv</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button class="btn btn-success" type="object" string="Imprimer" name="print_folder"></button>
+                    </header>
+                    <sheet><group string="Dossier Individuel">
+
+
+                        <group>
+                             <field name="num_reserv" />
+                        </group>
+                        <group col="2">
+                            <group>
+                             <field name="instance" />
+
+                            </group>
+                            <group>
+                              <field name="code_agence" />
+                                <field name="code_circ" />
+                                <field name="code_hotel" />
+                            </group>
+                        </group>
+                        <group col="2">
+                            <group>
+                                <field name="name" />
+                                <field name="sejour_hotel" />
+                                <field name="circuit" />
+                                <field name="agence" />
+
+                            </group>
+                            <group>
+                                <field name="country" />
+                                <field name="pax" />
+                            </group>
+
+                        </group>
+                        <group>
+                            <field name="repartition" />
+                        </group>
+                        <group col="2">
+                            <group>
+                                <field name="arrive" />
+                            </group>
+                            <group>
+                                <field name="depart" />
+                            </group>
+                        </group>
+                        <group>
+                            <field name="sej_length" />
+                            <field name="payment_method" />
+                        </group>
+
+ </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--tree-->
+ <record id="individual_folder_tree" model="ir.ui.view">
+            <field name="name">individual folder tree</field>
+            <field name="model">paperwork.indiv</field>
+            <field name="arch" type="xml">
+                    <tree>
+
+                             <field name="num_reserv" />
+                              <field name="code_agence" />
+                                <field name="code_circ" />
+                                <field name="code_hotel" />
+                    </tree>
+            </field>
+ </record>
+
+        <!--action-->
+         <record model="ir.actions.act_window" id="ctm_tools.indiv_folder_action">
+            <field name="name">Dossier Individuel</field>
+            <field name="res_model">paperwork.indiv</field>
+            <field name="view_id" ref="individual_folder_tree"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--menu-->
+            <!--menu_root-->
+         <menuitem name="Documents et impression" groups="ctm_tools.ctm_paperwork_group" id="ctm_tools.menu_paperwork" parent="ctm_accounting.menu_root" sequence="3"/>
+            <!--menu childs-->
+         <menuitem name="Dossier individuel" groups="ctm_tools.ctm_paperwork_group" id="ctm_tools.paperwork" parent="ctm_tools.menu_paperwork"
+                  action="ctm_tools.indiv_folder_action"/>
+    </data>
+</odoo>

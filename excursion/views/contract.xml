@@ -1,0 +1,105 @@
+<odoo>
+    <data>
+
+
+        <record model="ir.ui.view" id="excursion.season_form">
+            <field name="name">Season</field>
+            <field name="model">excursion.season</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+
+                            <field name="name"/>
+                            <field name="date_de"/>
+                            <field name="date_a"/>
+                            <field name="liste_prix_prestation">
+                                <tree editable="top">
+                                    <field name="centre"/>
+                                    <field name="excursion_id"/>
+                                    <field name="prestation"/>
+                                    <field name="tarif_adulte"/>
+                                    <field name="tarif_enfnat"/>
+                                    <field name="pax_de"/>
+                                    <field name="pax_a"/>
+                                </tree>
+                            </field>
+
+
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.season_prestation_form">
+            <field name="name">Prestation</field>
+            <field name="model">excursion.season.prestation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="centre"/>
+                            <field name="excursion_id"/>
+                            <field name="prestation"/>
+                            <field name="tarif_adulte"/>
+                            <field name="tarif_enfnat"/>
+                            <field name="pax_de"/>
+                            <field name="pax_a"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="excursion.contract_form">
+            <field name="name">Prestation</field>
+            <field name="model">excursion.contract</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group string="Information génèrales">
+
+                            <field name="fournisseur"/>
+                            <field name="annee"/>
+                            <field name="date_debut"/>
+                            <field name="date_fin"/>
+                            <field name="monnaie"/>
+                            <field name="t_j"/>
+                            <field name="ttc"/>
+                            <field name="contingent"/>
+                            <field name="signer"/>
+                            <field name="date_signer"/>
+                            <field name="observation"/>
+                            <field name="liste_seasons"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.contract_tree">
+            <field name="name">Prestation</field>
+            <field name="model">excursion.contract</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="fournisseur"/>
+                    <field name="annee"/>
+                </tree>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="excursion.contract_actw">
+            <field name="name">liste des Contract Fournissuers</field>
+            <field name="res_model">excursion.contract</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excursion.contract_tree"/>
+        </record>
+
+        <menuitem name="Contrats Fournissuer" id="excursion.menu_contract" parent="excursion.menu_4"
+                  action="excursion.contract_actw" sequence="49"/>
+    </data>
+</odoo>

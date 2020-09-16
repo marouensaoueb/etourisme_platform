@@ -1,0 +1,19 @@
+<odoo>
+          <!--report declaration-->
+
+    <report
+            id="ctm_tools.report_docuemnt_indivduel"
+        model="paperwork.indiv"
+            string="Document individuel"
+            report_type="qweb-pdf"
+            name="ctm_tools.report_docuemnt_indiv"
+            file="ctm_tools.report_docuemnt_indiv"
+            attachment="object.name+'.pdf'"
+            print_report_name="object.name"
+
+        />
+        <!--report template-->
+</odoo>
+
+
+

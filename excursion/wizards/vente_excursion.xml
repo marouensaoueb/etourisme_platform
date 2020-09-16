@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+    <record model="ir.ui.view" id="excursion.venterecap_form">
+        <field name="name">rapport Commisssion</field>
+        <field name="model">wizard.venterecap</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <group col="2">
+                    <group>
+                        <field name="date_from"/>
+                    </group>
+                    <group>
+                        <field name="date_to"/>
+                    </group>
+
+                </group>
+
+
+
+                <footer>
+                    <button name="get_report_recap" string="Confirmer" type="object"
+                            class="oe_highlight"/>
+                    Or
+                    <button string="Annuler" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="excursion.venterecap_action">
+        <field name="name">Rapport Vente excursions par date et par device</field>
+        <field name="res_model">wizard.venterecap</field>
+        <field name="view_id" ref="excursion.venterecap_form"/>
+        <field name="target">new</field>
+    </record>
+    <menuitem name="Generer rapport recap" id="excursion.menu_rapport_venterecap"
+              parent="ctm_liquidation.menu_rapport" action="excursion.venterecap_action"/>
+</data>
+</odoo>

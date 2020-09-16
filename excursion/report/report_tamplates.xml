@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <template id="ep_report">
+            <t t-call="web.html_container">
+                <t t-call="web.internal_layout">
+                    <div class="page">
+                        <h2 class="text-center">ordre de mission Ref :
+                            <t t-esc="orde['num_ordre']"/>
+                            <br></br>
+                            excursion :
+                            <t t-esc="orde['excursion']"/>
+                        </h2>
+
+                        <br></br>
+                        <div class="float-left border borderr-3" style="height:250px;">
+                            <div class="mx-auto " style="width:400px;">
+                                <br></br>
+                                <h5 class="text-center">
+                                    Véhicule :
+                                    <t t-esc="orde['vehicule']"/>
+                                    <br></br>
+                                    Chauffeur :
+                                    <t t-esc="orde['chauffeur']"/>
+                                    <br></br>
+                                    Numero Tel Chauffeur :
+                                    <t t-esc="orde['num_chauf']"/>
+                                    <br></br>
+                                    Guide :
+                                    <t t-esc="orde['guide']"/>
+                                    <br></br>
+                                    Numero Tel Guide :
+                                    <t t-esc="orde['num_guide']"/>
+                                    <br></br>
+                                    <t t-if="orde['guide_doub'] != False">
+                                        Guide Doubleur :
+                                        <t t-esc="orde['guide_doub']"/>
+                                        <br></br>
+                                        Numero Tel Guide Doubleur :
+                                        <t t-esc="orde['num_guide_doub']"/>
+                                        <br></br>
+                                    </t>
+
+                                </h5>
+
+                            </div>
+                        </div>
+                        <br></br>
+                        <div class="float-right " style=" height:250px;">
+                            <div class="mx-auto " style="width:400px">
+                                <br></br>
+                                <h5 class="text-center">
+                                    Depart :
+                                    <t t-esc="orde['depart']"/>
+                                    <br></br>
+
+                                    Retour :
+                                    <t t-esc="orde['retour']"/>
+                                    <br></br>
+
+                                    KM depart :
+                                    <t t-esc="orde['km_sortie']"/>
+                                    <br></br>
+
+                                    KM arrivée : ................
+                                    <br></br>
+
+                                    KM parcouru : ................
+                                    <br></br>
+
+                                    Consommation / L : ............
+                                </h5>
+
+                            </div>
+                        </div>
+                        <br></br>
+
+
+                        <style>
+                            .borderr-3 {
+                            border-width:3px !important;
+                            }
+                            .table { border-top: 2px solid #000000;
+                            border-bottom: 2px solid #000000;
+                            border-left: 2px solid #000000;
+                            border-right: 2px solid #000000;
+                            border-top: 2px solid #000000;
+                            }
+                            .table-bordered > thead > tr > th,
+                            .table-bordered > tbody > tr > th,
+                            .table-bordered > tfoot > tr > th,
+                            .table-bordered > thead > tr > td,
+                            .table-bordered > tbody > tr > td,
+                            .table-bordered > tfoot > tr > td {
+                            border-top: 2px solid #000000;
+                            border-bottom: 2px solid #000000;
+                            border-left: 2px solid #000000;
+                            border-right: 2px solid #000000;
+                            }
+                        </style>
+                        <br></br>
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center" rowspan="2">Départ
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center" rowspan="2">Hotel
+                                    </th>
+
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center" rowspan="2">Client
+                                    </th>
+
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center" rowspan="2">Chambre
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center" colspan="2">pax prevus
+                                    </th>
+
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center" colspan="2">pax reels
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center" rowspan="2">Ticket
+                                    </th>
+                                </tr>
+
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Adulte
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Enfant
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Adulte
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Enfant
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="orde['liste_res']" t-as="ep">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['depart']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['hotel']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['client']"/>
+                                        </td>
+
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['room']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['adulte']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['enfant']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['reel_adulte']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['reel_enfant']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="ep['ticket']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                                <tr>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center" colspan="4">Total paxes
+                                    </td>
+
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="orde['total_adulte']"/>
+                                    </td>
+
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="orde['total_enfant']"/>
+                                    </td>
+
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="orde['rtadulte']"/>
+                                    </td>
+
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="orde['rtenfant']"/>
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        <t t-esc="orde['total_adulte']+ orde['total_enfant']"/>
+                                        PAX
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        Observation :
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center" colspan="8">
+                                        ........................................................................................................
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">
+                                        Fournisseurs :
+                                    </td>
+                                    <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center" colspan="8">
+                                        ........................................................................................................
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <pre class="tab">Chauffeur Guide Chef de Transport</pre>
+
+                    </div>
+                </t>
+            </t>
+
+        </template>
+
+        <template id="lt_report">
+            <t t-call="web.html_container">
+                <t t-call="web.internal_layout">
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <h2 class="text-center">Liste des Tarifs
+
+                    </h2>
+                    <br></br>
+                    <br></br>
+                    <br></br>
+                    <style>
+                        .table { border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        border-top: 2px solid #000000;
+                        }
+                        .table-bordered > thead > tr > th,
+                        .table-bordered > tbody > tr > th,
+                        .table-bordered > tfoot > tr > th,
+                        .table-bordered > thead > tr > td,
+                        .table-bordered > tbody > tr > td,
+                        .table-bordered > tfoot > tr > td {
+                        border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        }
+                    </style>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    colspan="2" class="align-middle text-center" rowspan="2">Itnerary
+                                </th>
+                                <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                    class="align-middle text-center" rowspan="2">Duration
+                                </th>
+                                <t t-foreach="noms" t-as="nom">
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center" colspan="2">From
+                                        <t t-esc="nom"></t>
+                                    </th>
+
+                                </t>
+
+                            </tr>
+                            <tr>
+                                <t t-foreach="noms" t-as="lm">
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">Adult
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="text-center">Child 2-11,99 y.o.(incl)
+                                    </th>
+                                </t>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="tarifs" t-as="ta">
+                                <tr>
+                                    <td colspan="2" class="text-center"
+                                        style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;">
+                                        <t t-esc="ta['itinerary']"></t>
+                                    </td>
+                                    <td class="text-center"
+                                        style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;">
+                                        <t t-esc="ta['duration']"></t>
+                                    </td>
+                                    <t t-foreach="noms" t-as="n">
+                                        <t t-set="mawjouda" t-value="0"/>
+                                        <t t-foreach="ta['liste_point']" t-as="point">
+
+
+                                            <t t-if="n == point['emplacement']">
+                                                <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                    class="text-center">
+                                                    <t t-esc="point['adult']"></t>
+                                                </td>
+                                                <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                    class="text-center">
+                                                    <t t-esc="point['children']"></t>
+                                                </td>
+
+                                                <t t-set="mawjouda" t-value="1"/>
+
+                                            </t>
+                                        </t>
+                                        <t t-if="mawjouda == 0">
+
+                                            <td class="text-center"
+                                                style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;">
+
+                                            </td>
+                                            <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                                class="text-center">
+
+                                            </td>
+
+                                        </t>
+                                    </t>
+
+
+                                </tr>
+                            </t>
+
+                        </tbody>
+                    </table>
+
+                </t>
+            </t>
+        </template>
+        <template id="excursion.venterecap_excursion">
+            <t t-call="web.html_container">
+                <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+                <div class="page">
+
+                    <br></br>
+                    <h1 class="text-center">Analyse vente des excursions par période</h1>
+                    <br></br>
+                    <br></br>
+                    <h3>Période entre :
+                        <span style="font-size: 80%">
+                            <t t-esc="date_from"/>
+                            et
+                            <t t-esc="date_to"/>
+                        </span>
+                    </h3>
+                    <style>
+                        .table { border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        border-top: 2px solid #000000;
+                        }
+                        .table-bordered > thead > tr > th,
+                        .table-bordered > tbody > tr > th,
+                        .table-bordered > tfoot > tr > th,
+                        .table-bordered > thead > tr > td,
+                        .table-bordered > tbody > tr > td,
+                        .table-bordered > tfoot > tr > td {
+                        border-top: 2px solid #000000;
+                        border-bottom: 2px solid #000000;
+                        border-left: 2px solid #000000;
+                        border-right: 2px solid #000000;
+                        }
+                    </style>
+                    <br></br>
+                    <t t-if="len(listevente_dolar)>0">
+                        <h3>Devise :
+                            <span style="font-size: 80%">
+                                USD
+                            </span>
+                            | Total :
+                            <t t-esc="total_vente_dolar"/>
+                            $
+                        </h3>
+
+                        <br></br>
+
+
+                        <br></br>
+
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">nom d'excursion
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Montant vendu
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Montant avoir
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Total net
+                                    </th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <t t-foreach="listevente_dolar" t-as="vente_dolar">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente_dolar['excursion_name']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente_dolar['somme_vente']"/>
+                                            $
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente_dolar['somme_avoir']"/>
+                                            $
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente_dolar['somme_vente'] - vente_dolar['somme_avoir']"/>
+                                            $
+                                        </td>
+
+                                    </tr>
+
+                                </t>
+
+                            </tbody>
+
+                        </table>
+                    </t>
+                    <t t-if="len(listevente_dinar)>0">
+                        <h3>Devise :
+                            <span style="font-size: 80%">
+                                TND
+                            </span>
+                            | Total :
+                            <t t-esc="total_vente_dinar"/>
+                            TND
+                        </h3>
+
+                        <br></br>
+
+
+                        <br></br>
+
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">nom d'excursion
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Montant vendu
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Montant avoir
+                                    </th>
+                                    <th style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                        class="align-middle text-center">Total net
+                                    </th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+                                <t t-foreach="listevente_dinar" t-as="vente_dinar">
+                                    <tr>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente_dinar['excursion_name']"/>
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente_dinar['somme_vente']"/>
+                                            TND
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente_dinar['somme_avoir']"/>
+                                            TND
+                                        </td>
+                                        <td style="border-top: 2px solid #000000; border-bottom: 1px solid #000000; border-left: 2px solid #000000; border-right: 1px solid #000000;"
+                                            class="text-center">
+                                            <t t-esc="vente_dinar['somme_vente'] - vente_dinar['somme_avoir']"/>
+                                            TND
+                                        </td>
+
+                                    </tr>
+
+                                </t>
+
+                            </tbody>
+
+                        </table>
+                    </t>
+
+
+                </div>
+            </t>
+
+        </template>
+    </data>
+</odoo>

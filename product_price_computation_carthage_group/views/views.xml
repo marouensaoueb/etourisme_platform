@@ -1,0 +1,559 @@
+<odoo>
+    <data>
+        <record id="product_price_computation_carthage_group.tourop_inherit" model="ir.ui.view">
+        <field name="name">TO inherit</field>
+        <field name="model">tour.operator</field>
+        <field name="inherit_id" ref="ctm_accounting.to_form"/>
+        <field name="arch" type="xml">
+        <xpath expr="//sheet" position="inside">
+            <group>
+                <field name="sequence_config" />
+            </group>
+        </xpath>
+        </field>
+        </record>
+        <record id="product_price_computation_carthage_group.hotels_inherit" model="ir.ui.view">
+            <field name="name">hotels inherit</field>
+            <field name="model">rooming.hotels</field>
+            <field name="inherit_id" ref="ctm_accounting.hotel_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="before">
+                    <header>
+                        <button type="object" name="change_state" string="Change state"/>
+
+                        <field name="working_state" widget="statusbar"
+                               statusbar_visible="a,h"/>
+                    </header>
+                </xpath>
+                <xpath position="inside" expr="//sheet">
+                    <group>
+                        <field name="rooms" widget="many2many_tags"/>
+                        <field name="meals" widget="many2many_tags"/>
+                    </group>
+                    <group>
+                        <field name="state"/>
+                        <field name="country"/>
+                        <field name="allowed_companys" widget="many2many_tags"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record id="product_price_computation_carthage_group.meals_inherit" model="ir.ui.view">
+            <field name="name">meals inherit</field>
+            <field name="model">room.meal</field>
+            <field name="inherit_id" ref="ctm_accounting.meal_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <group>
+                        <field name="code"/>
+                        <field name="sequence"/>
+                        <field name="base_price"/>
+                    </group>
+
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="product_price_computation_carthage_group.rooms_inherit" model="ir.ui.view">
+            <field name="name">rooms inherit</field>
+            <field name="model">room.categories</field>
+            <field name="inherit_id" ref="ctm_accounting.room_categ_form"/>
+            <field name="arch" type="xml">
+                <xpath position="inside" expr="//sheet">
+
+                    <group>
+                        <field name="accomodations" widget="many2many_tags"/>
+                        <field name="max_person"/>
+                        <field name="min_person"/>
+                        <field name="enf_counted"/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+        <record id="product_price_computation_carthage_group.rooming_listy_inherittree" model="ir.ui.view">
+            <field name="name">rooming list inherit</field>
+            <field name="model">ctm.reservation.list</field>
+            <field name="inherit_id" ref="ctm_accounting.reservation_list_tree"/>
+            <field name="arch" type="xml">
+                <xpath position="after" expr="//field[@name='num_fact_hotel']">
+
+                    <field name='exchange_rate' />
+                    <field name='tnd_amount' />
+                    <field name="currency_id" />
+                </xpath>
+            </field>
+        </record>
+        <record id="product_price_computation_carthage_group.rooming_listy_inherit" model="ir.ui.view">
+            <field name="name">rooming list inherit</field>
+            <field name="model">ctm.reservation.list</field>
+            <field name="inherit_id" ref="ctm_accounting.reservation_list_form"/>
+            <field name="arch" type="xml">
+                <xpath position="after" expr="//field[@name='reservation_number']">
+
+                    <field name='accomodation' />
+                </xpath>
+            </field>
+        </record>
+        
+        <record id="product_price_computation_carthage_group.contract_inherit" model="ir.ui.view">
+            <field name="name">contract inherit</field>
+            <field name="model">contract.contract</field>
+            <field name="inherit_id" ref="ctm_accounting.contract_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//group[1]" position="before">
+                    <div class="oe_button_box" name="button_box">
+                        <button type="action" name="product_price_computation_carthage_group.room_prices_transient_actw"
+                                class="oe_stat_button" icon="fa-dollar" string="Create room prices"/>
+
+
+                    </div>
+                </xpath>
+                <xpath position="replace" expr="//group[2]">
+                    <group>
+                        <!--<field name="date_ranges">-->
+                            <!--<tree editable="top">-->
+                                <!--<field name="frome"/>-->
+                                <!--<field name="to"/>-->
+                                <!--<field name="dn"/>-->
+                            <!--</tree>-->
+                        <!--</field>-->
+                        <field name="room_prices">
+                            <tree create="false">
+                                <field name="display_name"/>
+                                <field name="prices_type"/>
+                            </tree>
+                            <form>
+                                <header>
+                                    <button string="Final prices"
+                                            name="product_price_computation_carthage_group.show_final_price_actw"
+                                            context="{'contract':contract_id}" type="action" icon="fa-dollar"/>
+
+                                </header>
+                                <sheet>
+                                    <group>
+                                        <field name="contract_id" invisible="1"/>
+                                        <field name="prices_type"/>
+                                        <field name="room"/>
+                                        <field name="accomodations" groups="base.group_no_one" widget="many2many_tags"/>
+                                        <field name="min" groups="base.group_no_one"/>
+                                        <field name="max" groups="base.group_no_one"/>
+                                        <field name="meals" groups="base.group_no_one" widget="many2many_tags"/>
+                                        <field name="currency_id" widget="Monetary"/>
+                                        <field name="change_url" widget="url"/>
+                                        <field name="room_qty"/>
+                                        <field name="room_places"/>
+                                        <field name="is_hostel"/>
+                                        <field name="enf_counted"/>
+                                        <field name="can_generate_finals_net"/>
+                                        <field name="can_generate_finals_sale"/>
+                                        <field name="base_prices">
+                                            <tree>
+                                                <field name="accomodation"/>
+                                                <field name="meal"/>
+                                                <field name="ac_spos_id"/>
+
+                                                <field name="pprice"/>
+                                                <field name="room_prices_detail_dates_id"/>
+                                            </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="accomodation"/>
+                                                    <field name="meal"/>
+                                                    <field name="room_prices_id" invisible="1"/>
+                                                </group>
+                                                <group col="2">
+                                                    <group>
+                                                        <field name="pprice"/>
+                                                    </group>
+                                                    <group>
+                                                        <button
+                                                                name="apply_value_v1"
+                                                                context="{'room_price_id':room_prices_id}" type="object"
+                                                                icon="fa-check"
+                                                        />
+                                                    </group>
+
+
+                                                </group>
+
+                                                <field name="room_prices_detail_dates_id">
+                                                    <tree editable="top">
+                                                        <field name="date_range"/>
+                                                        <field name="date_from"/>
+                                                        <field name="date_to"/>
+                                                        <field name="age_max"/>
+                                                        <field name="age_min"/>
+                                                        <field name="price"/>
+                                                        <field name="blocked"/>
+                                                        <field name="is_relative"/>
+                                                    </tree>
+
+                                                </field>
+                                                <field name="ac_spos_id">
+                                                    <tree >
+                                                        <field name="spo_config_id"/>
+                                                        <field name="showed_name"/>
+                                                        <field name="chekin_from"/>
+                                                        <field name="chekin_to"/>
+                                                        <field name="chekout_from"/>
+                                                        <field name="chekout_to"/>
+                                                        <field name="date_creation_from"/>
+                                                        <field name="date_creation_to"/>
+                                                        <field name="age_from"/>
+                                                        <field name="age_to"/>
+                                                        <field name="night_number_from"/>
+                                                        <field name="night_number_to"/>
+                                                        <field name="day_stay_from"/>
+                                                        <field name="day_stay_to"/>
+                                                        <field name="pay_stay"/>
+                                                        <field name="is_relative"/>
+                                                        <field name="spo_value"/>
+                                                        <field name="spo_type"/>
+                                                        <field name="blocked_spo"/>
+                                                        <field name="not_commulable_with"/>
+                                                        <field name="one_time_payement"/>
+
+                                                        <field name="sequence"/>
+
+                                                    </tree>
+
+                                                </field>
+
+                                            </form>
+                                        </field>
+                                        <field name="other_prices">
+                                            <tree>
+                                                <field name="accomodation"/>
+                                                <field name="meal"/>
+                                                <field name="ac_spos_id"/>
+                                                <!--                                                <field name="ac_spos" widget="many2many_tags"/>-->
+                                                <field name="pprice"/>
+                                                <field name="room_prices_detail_dates_id"/>
+                                                <field name="room_prices_id" invisible="1"/>
+                                            </tree>
+                                            <form>
+                                                <group>
+                                                    <field name="accomodation"/>
+                                                    <field name="meal"/>
+
+
+                                                    <field name="room_prices_id" invisible="1"/>
+                                                </group>
+                                                <group col="2">
+                                                    <group>
+                                                        <field name="pprice"/>
+                                                    </group>
+                                                    <group>
+                                                        <button
+                                                                name="apply_value"
+                                                                context="{'room_price_id':room_prices_id}" type="object"
+                                                                icon="fa-check"
+                                                        />
+                                                    </group>
+
+
+                                                </group>
+
+                                                <field name="room_prices_detail_dates_id">
+                                                    <tree editable="top">
+                                                        <field name="date_range"/>
+                                                        <field name="date_from"/>
+                                                        <field name="date_to"/>
+                                                        <field name="age_max"/>
+                                                        <field name="age_min"/>
+                                                        <field name="price"/>
+                                                        <field name="blocked"/>
+                                                        <field name="is_relative"/>
+                                                    </tree>
+
+                                                </field>
+                                                <field name="ac_spos_id">
+                                                    <tree >
+                                                        <field name="spo_config_id"/>
+                                                        <field name="showed_name"/>
+                                                        <field name="chekin_from"/>
+                                                        <field name="chekin_to"/>
+                                                        <field name="chekout_from"/>
+                                                        <field name="chekout_to"/>
+                                                        <field name="date_creation_from"/>
+                                                        <field name="date_creation_to"/>
+                                                        <field name="age_from"/>
+                                                        <field name="age_to"/>
+                                                        <field name="night_number_from"/>
+                                                        <field name="night_number_to"/>
+                                                        <field name="day_stay_from"/>
+                                                        <field name="day_stay_to"/>
+                                                        <field name="pay_stay"/>
+                                                        <field name="is_relative"/>
+                                                        <field name="spo_value"/>
+                                                        <field name="spo_type"/>
+                                                        <field name="blocked_spo"/>
+                                                        <field name="not_commulable_with"/>
+                                                        <field name="one_time_payement"/>
+
+                                                        <field name="sequence"/>
+                                                    </tree>
+
+                                                </field>
+
+                                            </form>
+                                        </field>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                        <!--<field name="cancellation_release">-->
+                            <!--<tree editable="top">-->
+                                <!--<field name="date_range"/>-->
+                                <!--<field name="cancellation"/>-->
+                                <!--<field name="release"/>-->
+                            <!--</tree>-->
+                        <!--</field>-->
+
+                    </group>
+                </xpath>
+                <xpath position="after" expr="//field[@name='date_end']">
+                    <field name="meals" widget="many2many_tags"/>
+                    <field name="rooms" widget="many2many_tags"/>
+
+                    <field name="base_accomodation"/>
+
+
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="product_price_computation_carthage_group.accomodations_form" model="ir.ui.view">
+            <field name="name">accomodations</field>
+            <field name="model">accomodations</field>
+            <field name="arch" type="xml">
+                <form>
+
+
+                    <sheet>
+                        <h1>CODE :
+                            <field name="code"/>
+                        </h1>
+                        <group>
+                            <group>
+                                <field name="parent_id"/>
+                                <field name="codef"/>
+                                <field name="visible_in_prices"/>
+                                <field name="is_base"/>
+                                <field name="is_sub_accomodation"/>
+                            </group>
+                            <group>
+                                <field name="adult"/>
+                                <field name="child"/>
+                                <field name="inf"/>
+                            </group>
+                            <group>
+                                <field name="sequence"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="product_price_computation_carthage_group.room_prices_transient_form" model="ir.ui.view">
+            <field name="name">bla bla bla</field>
+            <field name="model">room.prices.transient</field>
+            <field name="arch" type="xml">
+
+                <form modifiers="{}">
+                    <sheet string="room.prices.transient" modifiers="{}">
+                        <h1>Contract :
+                            <field name="contract_id" can_create="false" can_write="false"
+                                   modifiers="{'readonly':true}"/>
+                        </h1>
+                        <group col="4" modifiers="{}">
+                            <field name="meal"/>
+                            <field name="accomodation"/>
+                            <newline modifiers="{}"/>
+                            <field name="room" can_create="false" can_write="false" modifiers="{}"/>
+                            <!--                            <field name="ac_spos" widget="many2many_tags"/>-->
+                            <newline modifiers="{}"/>
+
+                            <field name="enf_counted"/>
+                            <field name="currency_id"/>
+                            <newline modifiers="{}"/>
+                            <field name="min_person"/>
+                            <field name="max_person"/>
+
+
+                            <newline modifiers="{}"/>
+                            <field name="av_acc" colspan="4" widget="many2many_tags"/>
+
+
+                            <field colspan="4" name="base_prices" modifiers="{}">
+                                <tree editable="top">
+
+                                    <field name="date_range"/>
+                                    <field name="price"/>
+                                    <field name="spo" widget="many2many_tags"/>
+                                </tree>
+                            </field>
+                            <field colspan="4" name="sgl_prices" attrs="{'invisible':[('sgl','=',False)]}">
+                                <tree editable="top">
+
+                                    <field name="date_range"/>
+                                    <field name="price"/>
+                                    <field name="spo" widget="many2many_tags"/>
+                                </tree>
+                            </field>
+                            <newline modifiers="{}"/>
+
+                            <field name="sgl" modifiers="{}"/>
+                            <separator modifiers="{}"/>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="save" name="sandgop" class="btn btn-primary btn-lg " type="object"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="product_price_computation_carthage_group.accomodations_tree" model="ir.ui.view">
+            <field name="name">accomodations</field>
+            <field name="model">accomodations</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="code"/>
+                    <field name="codef"/>
+                    <field name="parent_id"/>
+                    <field name="sequence"/>
+                    <field name="visible_in_prices"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="product_price_computation_carthage_group.spo_configuration_tree" model="ir.ui.view">
+            <field name="name">SPO configuration</field>
+            <field name="model">spo.configuration</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name_spo"/>
+                    <field name="period_chekin"/>
+                    <field name="period_chekout"/>
+                    <field name="period_date_creation"/>
+                    <field name="age"/>
+                    <field name="night_number"/>
+                    <field name="date_stay"/>
+                    <field name="pay_stay"/>
+                    <field name="days_applicability"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record id="product_price_computation_carthage_group.spo_values_tree" model="ir.ui.view">
+            <field name="name">SPO values</field>
+            <field name="model">spo.values</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="spo_config_id"/>
+                    <field name="showed_name"/>
+                    <field name="chekin_from"/>
+                    <field name="chekin_to"/>
+                    <field name="chekout_from"/>
+                    <field name="chekout_to"/>
+                    <field name="date_creation_from"/>
+                    <field name="date_creation_to"/>
+                    <field name="age_from"/>
+                    <field name="age_to"/>
+                    <field name="night_number_from"/>
+                    <field name="night_number_to"/>
+                    <field name="day_stay_from"/>
+                    <field name="day_stay_to"/>
+                    <field name="pay_stay">
+                        <tree editable="top">
+                            <field name="stay"/>
+                            <field name="pay"/>
+                        </tree>
+                    </field>
+                    <field name="is_relative"/>
+                    <field name="spo_value"/>
+                    <field name="spo_type"/>
+                    <field name="blocked_spo"/>
+                    <field name="hotel_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="product_price_computation_carthage_group.accomodations_actw">
+            <field name="name">Accomodations</field>
+            <field name="res_model">accomodations</field>
+            <field name="view_id" ref="product_price_computation_carthage_group.accomodations_tree"/>
+
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="product_price_computation_carthage_group.room_prices_transient_actw">
+            <field name="name">Base prices wizard</field>
+            <field name="res_model">room.prices.transient</field>
+            <field name="view_id" ref="product_price_computation_carthage_group.room_prices_transient_form"/>
+
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window" id="product_price_computation_carthage_group.spo_configuration_actw">
+            <field name="name">SPO configuration</field>
+            <field name="res_model">spo.configuration</field>
+            <field name="view_id" ref="product_price_computation_carthage_group.spo_configuration_tree"/>
+
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="product_price_computation_carthage_group.spo_values_actw">
+            <field name="name">SPO values</field>
+            <field name="res_model">spo.values</field>
+            <field name="view_id" ref="product_price_computation_carthage_group.spo_values_tree"/>
+
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <menuitem name="Accomodations" id="product_price_computation_carthage_group.menu_accomodations"
+                  action="product_price_computation_carthage_group.accomodations_actw" parent="ctm_accounting.menu_root"
+                  sequence="100"/>
+        <menuitem name="SPO" id="product_price_computation_carthage_group.menu_spo" parent="ctm_accounting.menu_root"
+                  sequence="99"/>
+        <menuitem name="SPO configuration" id="product_price_computation_carthage_group.spo_configuration"
+                  action="product_price_computation_carthage_group.spo_configuration_actw"
+                  parent="product_price_computation_carthage_group.menu_spo"
+                  sequence="1"/>
+        <menuitem name="SPO values" id="product_price_computation_carthage_group.spo_values"
+                  action="product_price_computation_carthage_group.spo_values_actw"
+                  parent="product_price_computation_carthage_group.menu_spo"
+                  sequence="2"/>
+        <record model="ir.actions.server" id="synchron_spo_values_actw">
+            <field name="name">Synchronize selected hotel </field>
+
+            <!--<field name="activity_user_type">generic</field>-->
+            <field name="binding_model_id" ref="model_spo_values"/>
+            <field name="model_id" ref="model_spo_values"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['spo.values'].ajouter_hotel()
+            </field>
+        </record>
+        <record model="ir.actions.server" id="synchron_spo_values2_actw">
+            <field name="name">Synchronize showed name </field>
+
+            <!--<field name="activity_user_type">generic</field>-->
+            <field name="binding_model_id" ref="model_spo_values"/>
+            <field name="model_id" ref="model_spo_values"/>
+            <field name="state">code</field>
+            <field name="code">
+                env['spo.values'].edit_showedname()
+            </field>
+        </record>
+
+    </data>
+</odoo>

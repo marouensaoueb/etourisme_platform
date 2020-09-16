@@ -1,0 +1,71 @@
+<odoo>
+    <data noupdate="1">
+        <record model="res.partner.industry" id="industry_field_tourism">
+            <field name="name" >Tourism - H</field>
+            <field name="full_name">Hotellerie</field>
+            <field name="active">True</field>
+        </record>
+        <record model="res.partner.industry" id="industry_field_travel">
+            <field name="name" >Tourism - A</field>
+            <field name="full_name"> Agence de voyage </field>
+            <field name="active">True</field>
+        </record>
+        <record model="res.partner.industry" id="industry_field_travel_aireport">
+            <field name="name" >Tourism - Ai</field>
+            <field name="full_name"> Aireport </field>
+            <field name="active">True</field>
+        </record>
+        <record model="mail.alias" id="ctm_tools.alias1">
+            <field name="alias_model_id" ref="hr.model_hr_job"/>
+            <field name="alias_contact">everyone</field>
+            <field name="alias_defaults">{}</field>
+        </record>
+        <record model="mail.alias" id="ctm_tools.alias2">
+            <field name="alias_model_id" ref="hr.model_hr_job"/>
+            <field name="alias_contact">everyone</field>
+            <field name="alias_defaults">{}</field>
+        </record>
+        <record model="mail.alias" id="ctm_tools.alias3">
+            <field name="alias_model_id" ref="hr.model_hr_job"/>
+            <field name="alias_contact">everyone</field>
+            <field name="alias_defaults">{}</field>
+        </record>
+        <record model="mail.alias" id="ctm_tools.alias4">
+            <field name="alias_model_id" ref="hr.model_hr_job"/>
+            <field name="alias_contact">everyone</field>
+            <field name="alias_defaults">{}</field>
+        </record>
+        <record model="mail.alias" id="ctm_tools.alias5">
+            <field name="alias_model_id" ref="hr.model_hr_job"/>
+            <field name="alias_contact">everyone</field>
+            <field name="alias_defaults">{}</field>
+        </record>
+        <record model="hr.job" id="ctm_tools.job_driver">
+            <field name="name">Conducteur</field>
+            <field name="state">recruit</field>
+            <field name="alias_id" ref="ctm_tools.alias1" />
+        </record>
+        <record model="hr.job" id="ctm_tools.job_tour_guide">
+            <field name="name">Guide touristique</field>
+            <field name="state">recruit</field>
+           <field name="alias_id" ref="ctm_tools.alias2" />
+        </record>
+        <record model="hr.job" id="ctm_tools.job_tour_guide_assistant">
+            <field name="name">Assistant guide</field>
+            <field name="state">recruit</field>
+           <field name="alias_id" ref="ctm_tools.alias3" />
+        </record>
+        <record model="hr.job" id="ctm_tools.job_aireport_representant">
+            <field name="name">Representant a l'aireport</field>
+            <field name="state">recruit</field>
+      <field name="alias_id" ref="ctm_tools.alias4" />
+        </record>
+        <record model="hr.job" id="ctm_tools.job_saleman">
+            <field name="name">Vendeur</field>
+            <field name="state">recruit</field>
+          <field name="alias_id" ref="ctm_tools.alias5" />
+        </record>
+
+
+    </data>
+</odoo>

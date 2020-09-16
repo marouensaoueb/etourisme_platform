@@ -1,0 +1,159 @@
+<odoo>
+    <data>
+        <record id="form_subscriptions_generated_form" model="ir.ui.view">
+            <field name="name">wizard import hotels and roomings</field>
+            <field name="model">ctm.clients.subscription.generated</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="client"/>
+                            <field name="sub"/>
+                            <field name="check_out"/>
+                            <field name="num"/>
+                            <field name="datenaiss"/>
+                            <field name="status"/>
+                            <field name="age"/>
+                            <field name="hotel" widget="many2many_tags"/>
+                            <field name="tour_operator"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+        <record id="form_subscriptions_generated" model="ir.ui.view">
+            <field name="name">wizard import hotels and roomings</field>
+            <field name="model">ctm.clients.subscription.generated</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="client"/>
+                    <field name="sub"/>
+                    <field name="check_out"/>
+                    <field name="datenaiss"/>
+                    <field name="age"/>
+                    <field name="status"/>
+                    <field name="num"/>
+                    <field name="hotel"/>
+                    <field name="tour_operator"/>
+
+                </tree>
+            </field>
+        </record>
+        <record id="form_subscriptions_conf" model="ir.ui.view">
+            <field name="name">wizard import hotels and roomings</field>
+            <field name="model">ctm.subscription.conf</field>
+            <field name="arch" type="xml">
+                <tree editable="bottom">
+                    <field name="name"/>
+                    <field name="num"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record id="form_subscriptions_tree" model="ir.ui.view">
+            <field name="name">wizard import hotels and roomings</field>
+            <field name="model">ctm.clients.subscription</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="generated_subscriptions"/>
+                </tree>
+            </field>
+        </record>
+        <record id="form_subscriptions_form" model="ir.ui.view">
+            <field name="name">wizard import hotels and roomings</field>
+            <field name="model">ctm.clients.subscription</field>
+            <field name="arch" type="xml">
+                <form string="Import options">
+                    <header>
+                        <button name="generate_subscription" type="object" string="generate subscriptions"
+                                class="btn btn-success"/>
+                    </header>
+                    <sheet>
+
+                        <div colass="col-md-12">
+                            <p>
+                                By pressing the button generate subscription , the program will look in the rooming list
+                                and then it will just count the occurence of the client
+                                and determin it's subscription based on it's occurence
+                            </p>
+                        </div>
+
+
+                        <group>
+
+                            <field name="generated_subscriptions">
+                                <tree create="false">
+                                    <field name="client"/>
+                                    <field name="sub"/>
+                                    <field name="check_out"/>
+                                    <field name="num"/>
+                                    <field name="datenaiss"/>
+
+                                    <field name="age"/>
+                                    <field name="hotel"/>
+                                    <field name="tour_operator"/>
+
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="client"/>
+                                        <field name="sub"/>
+                                        <field name="check_out"/>
+                                        <field name="num"/>
+                                        <field name="hotel" widget="many2many_tags"/>
+                                        <field name="tour_operator"/>
+                                    </group>
+                                </form>
+                            </field>
+
+                        </group>
+
+
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+        <record model="ir.actions.act_window" id="programme_de_fidelite_novostar.gener">
+            <field name="name">Subscription Detailed list</field>
+            <field name="res_model">ctm.clients.subscription.generated</field>
+            <field name="view_id" ref="form_subscriptions_generated"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="programme_de_fidelite_novostar.action_window_sub">
+            <field name="name">Subscriptions</field>
+            <field name="res_model">ctm.clients.subscription</field>
+            <field name="view_id" ref="form_subscriptions_tree"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="programme_de_fidelite_novostar.action_window_subconf">
+            <field name="name">Subscription configuration</field>
+            <field name="res_model">ctm.subscription.conf</field>
+            <field name="view_id" ref="form_subscriptions_conf"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree</field>
+        </record>
+        <menuitem name="programme de fidelité novostar " id="programme_de_fidelite_novostar.menu_root"/>
+        <menuitem name="Subscriptions" id="programme_de_fidelite_novostar_sub_root"
+                  parent="programme_de_fidelite_novostar.menu_root"
+        />
+
+        <menuitem name="Subscription" id="programme_de_fidelite_novostar_sub"
+                  parent="programme_de_fidelite_novostar_sub_root"
+                  action="programme_de_fidelite_novostar.action_window_sub"/>
+        <menuitem name="Subscriptions Generated" id="programme_de_fidelite_novostar_sub_fin"
+                  parent="programme_de_fidelite_novostar_sub_root"
+                  action="programme_de_fidelite_novostar.gener"/>
+        <menuitem name="Subscription Config" id="programme_de_fidelite_novostar_subconf"
+                  parent="programme_de_fidelite_novostar_sub_root"
+                  action="programme_de_fidelite_novostar.action_window_subconf"/>
+
+
+    </data>
+</odoo>

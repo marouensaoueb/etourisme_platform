@@ -1,0 +1,229 @@
+<odoo>
+    <data>
+        <!--form-->
+        <record id="contract_form" model="ir.ui.view">
+            <field name="name">contract form</field>
+            <field name="model">contract.contract</field>
+            <field name="arch" type="xml">
+                <form string="Contract details">
+                    <!--<header>-->
+                    <!--<button name="generate_subscription" type="object" string="generate subscriptions"-->
+                    <!--class="btn btn-success"/>-->
+                    <!--</header>-->
+                    <header>
+                        <button name="prices_contract" attrs="{'invisible':['|',('state', '==', 'p')]}" type="object"
+                                string="Prices entry" groups="ctm_accounting.ctm_acc_group"/>
+                        <button name="spos_contract" attrs="{'invisible':['|',('state', '==', 's')]}" type="object"
+                                string="SPOS entry" groups="ctm_accounting.ctm_acc_group"/>
+                        <button name="validate_contract" attrs="{'invisible':['|',('state', '==', 'v')]}" type="object"
+                                string="Validate" groups="ctm_accounting.ctm_acc_group"/>
+
+
+                        <field name="state" widget="statusbar"
+                               statusbar_visible="v,s,p"/>
+                    </header>
+                    <sheet>
+                        <group string="Hotel Identifications">
+                            <field name="company_id"/>
+                            <field name="mr_id" widget="many2many_tags"/>
+                            <field name="hotel"/>
+                            <field name="date_start"/>
+                            <field name="date_end"/>
+                            <field name="base_meal"/>
+                            <field name="min_adult_age"/>
+                            <field name="min_enf_age"/>
+                            <field name="currency_id"/>
+                            <field name="echeance"/>
+
+                        </group>
+                        <group string="Prices and rules">
+                            <field name="prices_table">
+                                <tree>
+
+                                    <field name="categ_chambre"/>
+                                    <field name="type_chambre"/>
+                                    <field name="ppp_bool"/>
+                                    <field name="prices"/>
+                                </tree>
+                                <form>
+                                    <div colass="col-md-12">
+                                        <p>
+                                            <b>NB</b>
+                                            :
+                                            <br/>
+                                            <ol>
+                                                <li>
+                                                    <b>due to ITO logic , when we cant to declare a room with supplement
+                                                        view :
+                                                        <br/>
+                                                        - if the room supplement price is per room : we just check price
+                                                        per room and we create a supplement with choosing the room
+                                                        category and the base price
+                                                        <br/>
+                                                        - if the room supplement price is per person : we do the same
+                                                        previous thing but without checking price per room and that
+                                                        should do it
+                                                    </b>
+                                                </li>
+                                            </ol>
+                                        </p>
+                                    </div>
+
+                                    <group>
+                                        <field name="categ_chambre" widget="many2many_tags"/>
+                                        <field name="type_chambre" widget="many2many_tags"/>
+                                        <field name="ppp_bool"/>
+                                    </group>
+                                    <group>
+                                        <field name="prices">
+                                            <tree editable="bottom">
+                                                <field name="season"/>
+                                                <field name="date_form"/>
+                                                <field name="date_to"/>
+                                                <field name="price"/>
+                                            </tree>
+                                        </field>
+                                    </group>
+
+
+                                </form>
+                            </field>
+                            <field name="reductions_lines">
+                                <tree default_order="sequence">
+                                    <field name="name"/>
+                                    <field name="typee"/>
+                                    <field name="valeur"/>
+                                    <field name="sequence"/>
+                                    <field name="do_nothing"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="sequence"/>
+                                        <field name="rule_type"/>
+                                        <field name="typee"/>
+                                        <field name="valeur"/>
+                                        <field name="do_nothing"/>
+
+                                        <field name="Age"/>
+                                        <field name="typechabbrebool"/>
+                                        <field name="datebool"/>
+                                        <field name="creation_date_bool"/>
+                                        <field name="persons_bool"/>
+                                        <field name="meal_bool"/>
+                                        <field name="season_bool"/>
+                                        <field name="has_base_price_bool"/>
+                                        <field name="apply_to_invoice_bool"/>
+                                        <field name="night_number_bool"/>
+                                        <field name="has_non_cummulable"/>
+                                        <field name="promo_room_bool"/>
+                                        <field name="temp"/>
+
+
+                                    </group>
+                                    <group>
+                                        <field name="min_creation_date"
+                                               attrs="{'invisible':[('creation_date_bool', '!=', True)]}"/>
+                                        <field name="max_creation_date"
+                                               attrs="{'invisible':[('creation_date_bool', '!=', True)]}"/>
+                                    </group>
+                                    <group>
+                                        <!--<field name="non_commulable_with" widget="many2many_tags"-->
+                                        <!--attrs="{'invisible':[('has_non_cummulable', '!=', True)]}"/>-->
+
+                                    </group>
+                                    <group>
+                                        <field name="promo_room"
+                                               attrs="{'invisible':[('promo_room_bool', '!=', True)]}"/>
+
+                                    </group>
+                                    <group>
+                                        <field name="min_night_number"
+                                               attrs="{'invisible':[('night_number_bool', '!=', True)]}"/>
+                                        <field name="max_night_number"
+                                               attrs="{'invisible':[('night_number_bool', '!=', True)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="season" widget="many2many_tags"
+                                               attrs="{'invisible':[('season_bool', '!=', True)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="base_price"
+                                               attrs="{'invisible':[('has_base_price_bool', '!=', True)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="meal" attrs="{'invisible':[('meal_bool', '!=', True)]}"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="paxes_validity"
+                                               attrs="{'invisible':[('persons_bool', '!=', True)]}"/>
+                                        <field name="paxes_validity_applied"
+                                               attrs="{'invisible':[('paxes_validity', '!=', 'sp')]}"/>
+                                        <field name="min_pax_enf"
+                                               attrs="{'invisible':[('paxes_validity', '!=', 'sp')]}"/>
+                                        <field name="max_pax_enf"
+                                               attrs="{'invisible':[('paxes_validity', '!=', 'sp')]}"/>
+                                        <field name="min_pax_adl"
+                                               attrs="{'invisible':[('paxes_validity', '!=', 'sp')]}"/>
+                                        <field name="max_pax_adl"
+                                               attrs="{'invisible':[('paxes_validity', '!=', 'sp')]}"/>
+
+                                    </group>
+                                    <group>
+                                        <field name="tpye_ch" attrs="{'invisible':[('typechabbrebool', '!=', True)]}"/>
+                                        <field name="categ_ch" widget="many2many_tags"
+                                               attrs="{'invisible':[('typechabbrebool', '!=', True)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="start" attrs="{'invisible':[('datebool', '!=', True)]}"/>
+                                        <field name="end" attrs="{'invisible':[('datebool', '!=', True)]}"/>
+                                    </group>
+                                    <group>
+                                        <field name="age_min" attrs="{'invisible':[('Age', '!=', True)]}"/>
+                                        <field name="age_max" attrs="{'invisible':[('Age', '!=', True)]}"/>
+                                        <field name="adultonly" attrs="{'invisible':[('Age', '!=', True)]}"/>
+                                    </group>
+
+                                </form>
+                            </field>
+                            <field name="observation"/>
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <!--tree-->
+        <record id="contract_tree" model="ir.ui.view">
+            <field name="name">contract.contract</field>
+            <field name="model">contract.contract</field>
+            <field name="arch" type="xml">
+                <tree decoration-danger="state=='nv'" decoration-success="state=='v'">
+                    <field name="hotel"/>
+                    <field name="mr_id"/>
+
+
+                    <field name="state"/>
+                    <field name="observation"/>
+                </tree>
+            </field>
+        </record>
+        <!--action-->
+        <record model="ir.actions.act_window" id="contracts_action">
+            <field name="name">Contracts Management</field>
+            <field name="res_model">contract.contract</field>
+            <field name="view_id" ref="contract_tree"/>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <!--menu-->
+        <menuitem name="Contracts" groups="ctm_accounting.ctm_cont_group" id="ctm_accounting.menu_contracts"
+                  parent="ctm_accounting.menu_root"
+                  action="contracts_action" sequence="2"/>
+    </data>
+</odoo>

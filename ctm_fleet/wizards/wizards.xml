@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="ctm_fleet.wizard_form">
+        <field name="name">Etat des depenses par vehicule</field>
+        <field name="model">wizard.print.states</field>
+        <field name="arch" type="xml">
+        <form >
+            <group>
+                <field name="report_type" />
+            </group>
+            <group col="3">
+                <group>
+                    <field name="filter_type"  attrs="{'invisible':[('report_type','!=','erd')]}" />
+                </group>
+                <group>
+                    <field name="filter_date" attrs="{'invisible':[('report_type','=','lv')]}"/>
+                </group>
+                <group>
+                    <field name="filter_lo"  />
+                </group>
+            </group>
+            <group>
+                <field name="months" attrs="{'invisible':[('filter_date','!=','m')]}" />
+                <field name="years" attrs="{'invisible':[('filter_date','!=','a')]}"/>
+
+            </group>
+            <footer>
+                <button name="get_report" string="Confirmer" type="object"
+                        class="oe_highlight" />
+                Or
+                <button string="Annuler" class="oe_link" special="cancel" />
+            </footer>
+        </form>
+        </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_fleet.wizard_reports_action">
+            <field name="name">Etat des dépenses et interventions</field>
+            <field name="res_model">wizard.print.states</field>
+            <field name="view_id" ref="ctm_fleet.wizard_form" />
+            <field name="target">new</field>
+        </record>
+        <menuitem id="ctm_fleet.wizard_menu" name="Etat et interventions a imprimer"
+                  parent="ctm_fleet.menu_root" action="ctm_fleet.wizard_reports_action" />
+    </data>
+</odoo>

@@ -1,0 +1,1899 @@
+<odoo>
+    <data>
+        <!--        general template -->
+        <template id="product_price_computation_carthage_group.web_layout" name="Customized layout">
+            <html>
+                <head>
+                    <link rel="icon" href="/product_price_computation_carthage_group/static/src/img/favicon.png"/>
+
+
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+                    <link rel="stylesheet"
+                          href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+                    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+                    <link rel="stylesheet" href="/product_price_computation_carthage_group/static/src/css/style.css"/>
+                    <link rel="stylesheet" href="/product_price_computation_carthage_group/static/src/fo/css/all.css"/>
+
+
+                    <script src="https://unpkg.com/gijgo@1.9.13/js/gijgo.min.js" type="text/javascript"></script>
+                    <link href="https://unpkg.com/gijgo@1.9.13/css/gijgo.min.css" rel="stylesheet" type="text/css"/>
+                    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"/>
+                    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+                    <!-- Latest compiled and minified CSS -->
+
+
+                    <!-- Latest compiled and minified JavaScript -->
+
+                    <!--<script src="/product_price_computation_carthage_group/static/src/js/plugins/fuzzydropdown/fuzzy-dropdown.min.js"></script>-->
+                    <script>
+                        $(function () {
+                        $('[data-toggle="tooltip"]').tooltip()
+                        })
+
+                    </script>
+                    <title>
+                        <t t-esc="page_title"/>
+                    </title>
+                </head>
+                <body>
+                    <div id="main_container" class="container-fluid">
+                        <section id="header">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <img id="main_logo"
+                                         src="/product_price_computation_carthage_group/static/src/img/logo-carthage-GROUP-PNG-500-400.png"/>
+                                </div>
+                                <div class="col-md-3"></div>
+                                <div class="col-md-3"></div>
+                                <div class="col-md-3" id="logout_div">
+                                    <t t-if="request.session.uid">
+                                        <t t-if="user_id.has_group('base.group_no_one')">
+                                            <a href="/web" id="logout_link">
+                                                <t t-esc="user_id.name"/>
+
+                                            </a>
+                                        </t>
+                                        <t t-if="not user_id.has_group('base.group_no_one')">
+                                            <a href="#" id="logout_link">
+                                                <t t-esc="user_id.name"/>
+
+                                            </a>
+                                        </t>
+                                        <a href="/web/session/logout?redirect=/" id="logout_link">
+
+                                            - Log out
+                                            <i class="fas fa-sign-out-alt"></i>
+                                        </a>
+                                    </t>
+                                </div>
+                            </div>
+
+                        </section>
+                        <t t-if="request.session.uid">
+                            <t t-if="int(company_id) > 0">
+                                <section id="navbar" class="">
+                                    <nav class="navbar navbar-expand-lg  ">
+                                        <a class="navbar-brand" href="#">
+                                            <t t-esc="request.env['res.company'].search([('id','=',company_id)]).name"/>
+                                        </a>
+                                        <button class="navbar-toggler" type="button" data-toggle="collapse"
+                                                data-target="#navbarSupportedContent"
+                                                aria-controls="navbarSupportedContent" aria-expanded="false"
+                                                aria-label="Toggle navigation">
+                                            <span class="navbar-toggler-icon"></span>
+                                        </button>
+
+                                        <div class=" navbar-collapse" id="navbarSupportedContent">
+                                            <ul class="navbar-nav mr-auto">
+                                                <li class="nav-item active">
+                                                    <a class="nav-link" href="/home">Home
+                                                        <span class="sr-only">(current)</span>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="/choose_service">Choose Service</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Contact support</a>
+                                                </li>
+
+
+                                            </ul>
+                                            <form class="form-inline my-2 my-lg-0">
+                                                <input class="form-control mr-sm-2" type="search" placeholder="Search"
+                                                       aria-label="Search"/>
+                                                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </nav>
+                                </section>
+                            </t>
+                        </t>
+
+
+                        <t t-raw="0"/>
+                    </div>
+
+
+                    <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+
+                    <!--<script>-->
+                    <!--$('select').selectpicker();-->
+                    <!--</script>-->
+                </body>
+            </html>
+        </template>
+        <!--        odoo login override -->
+        <template id="product_price_computation_carthage_group.login" name="Customized Login">
+            <t t-call="product_price_computation_carthage_group.web_layout">
+                <form id="form_login" class="oe_login_form" role="form"
+                      t-attf-action="/web/login{{ '?debug' if debug else '' }}" method="post"
+                      onsubmit="this.action = this.action + location.hash">
+                    <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+
+
+                    <div class="form-group field-login">
+                        <label for="login">Login</label>
+                        <input type="text" placeholder="Email" name="login" t-att-value="login" id="login"
+                               t-attf-class="form-control #{'form-control-sm' if form_small else ''}"
+                               required="required" autofocus="autofocus" autocapitalize="off"/>
+                    </div>
+
+                    <div class="form-group field-password">
+                        <label for="password">Password</label>
+                        <input type="password" placeholder="Password" name="password" id="password"
+                               t-attf-class="form-control #{'form-control-sm' if form_small else ''}"
+                               required="required" autocomplete="current-password"
+                               t-att-autofocus="'autofocus' if login else None" maxlength="4096"/>
+                    </div>
+
+                    <p class="alert alert-danger" t-if="error" role="alert">
+                        <t t-esc="error"/>
+                    </p>
+                    <p class="alert alert-success" t-if="message" role="status">
+                        <t t-esc="message"/>
+                    </p>
+
+                    <div t-attf-class="clearfix oe_login_buttons text-center mb-1 {{'pt-2' if form_small else 'pt-3'}}"
+                         style="
+    display: inline-block;
+">
+                        <button type="submit" class="btn btn-secondary btn-block">Confirm</button>
+                        <t t-if="debug">
+                            <button type="submit" style="
+    display: inline-block;
+" name="redirect" value="/web/become" class="btn btn-link btn-sm btn-block">Log in as superuser
+                            </button>
+                        </t>
+                        <div class="o_login_auth"/>
+                    </div>
+
+                    <input type="hidden" name="redirect" t-att-value="redirect"/>
+                </form>
+            </t>
+        </template>
+        <!--        choose partner -->
+        <template id="product_price_computation_carthage_group.index" name="choose partner template">
+            <t t-call="product_price_computation_carthage_group.web_layout">
+                <section id="home_section">
+                    <div class="container">
+                        <div class="row">
+                            <t t-if="company_id == False ">
+                                <div class="col-md-4" id="home_left">
+                                    <form action="/home" method="post" autocomplete="off">
+                                        <input type="hidden"
+                                               name="csrf_token"
+                                               t-att-value="request.csrf_token()"/>
+                                        <div class="form-group">
+                                            <select name="partner_selection" id="partner_selection"
+                                                    class="form-control">
+                                                <t t-foreach="user_id.company_ids" t-as="comp">
+                                                    <option name="company_id" id="company_id"
+                                                            t-attf-value="{{comp.id}}">
+                                                        <t t-esc="comp.name"/>
+                                                    </option>
+                                                </t>
+                                            </select>
+                                            <button class="btn btn-secondary" type="submit">Confirm</button>
+                                        </div>
+
+                                    </form>
+                                </div>
+                                <div class="col-md-6" id="home_right">
+                                    <t t-raw="0"/>
+
+                                </div>
+                            </t>
+                            <t t-if="int(company_id) > 0 ">
+
+
+                                <div class="col-md-12">
+                                    <t t-raw="0"/>
+
+                                </div>
+                            </t>
+
+
+                        </div>
+                    </div>
+                </section>
+
+
+            </t>
+
+        </template>
+        <!--        choose service prices or reservation :  -->
+        <template id="product_price_computation_carthage_group.choose_service" name="Choose service template">
+            <t t-call="product_price_computation_carthage_group.index">
+                <div class="col-md-12 text-center">
+                    <a href="/home?choose_partner=True">Change partner</a>
+                </div>
+                <div class="choose_service text-center col-md-12 ">
+                    <div class="col-md-6 text-center">
+                        <a href="/choose_product_price">
+                            <img class="img-thumbnail" style="width:300px;height:300px;"
+                                 src="/product_price_computation_carthage_group/static/src/img/services.jpeg"/>
+                            <br/>Prices &amp; Contracts
+                        </a>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <a href="/choose_product_reservation">
+                            <img class="img-thumbnail" style="width:300px;height:300px;"
+                                 src="/product_price_computation_carthage_group/static/src/img/reservations.png"/>
+                            <br/>Reservations
+                        </a>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <!--after choosing the service , you need to choose the product-->
+        <template name="choose product " id="product_price_computation_carthage_group.choose_product_price">
+            <t t-call="product_price_computation_carthage_group.index">
+                <div class="choose_service text-center col-md-12 ">
+                    <div class="col-md-6 text-center">
+                        <a href="/prices_contracts">
+                            <img class="img-thumbnail" style="width:300px;height:300px;"
+                                 src="/product_price_computation_carthage_group/static/src/img/services.jpeg"/>
+                            <br/>Hotel prices
+                        </a>
+                    </div>
+
+                </div>
+            </t>
+        </template>
+        <template name="choose product " id="product_price_computation_carthage_group.choose_product_reservation">
+            <t t-call="product_price_computation_carthage_group.index">
+                <div class="choose_service text-center col-md-12 ">
+                    <div class="col-md-6 text-center">
+                        <a href="/reservations">
+                            <img class="img-thumbnail" style="width:300px;height:300px;"
+                                 src="/product_price_computation_carthage_group/static/src/img/reservations.png"/>
+                            <br/>Hotel Reservations
+                        </a>
+                    </div>
+
+                </div>
+            </t>
+        </template>
+        <!--        choose hotel after choosing the product  as a hotel-->
+        <template id="product_price_computation_carthage_group.choose_hotel" name="Choose hotel interface ">
+            <t t-call="product_price_computation_carthage_group.index">
+                <div class="row">
+                    <div class="col-md-12" style="display: flex;">
+                        <div class="col-md-10 text-center" style="display=flex">
+                            <form action="/hotel" method="post">
+                                <input type="hidden" name="csrf_token"
+                                       t-att-value="request.csrf_token()"/>
+                                <label>Choose a Hotel</label>
+                                <select class="form-control" name="state_selection" onchange="get_hotels()"
+                                        id="state_selection">
+                                    <option name="state_id" id="state_id">Choose a City</option>
+                                    <t t-foreach="request.env['res.country.state'].search([('country_id','=',221)])"
+                                       t-as="state">
+                                        <option t-attf-value="{{state.id}}" name="state_id" id="state_id">
+                                            <t t-esc="state.name"/>
+                                        </option>
+                                    </t>
+
+                                </select>
+                                <select class="form-control" name="hotel_selection" id="hotel_selection">
+                                    <option name="hotel_id" id="hotel_id">Choose a Hotel</option>
+
+
+                                </select>
+
+
+                                <button type="submit" class="btn btn-outline-warning  btn-sm btn-block">Confirm</button>
+                            </form>
+                        </div>
+                        <div class="col-md-2">
+                            <span>
+                                <a href="/choose_service">Change Service</a>
+                            </span>
+                            <br></br>
+
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <script src="/product_price_computation_carthage_group/static/src/js/apicons.js"></script>
+            </t>
+        </template>
+        <!--        manage reservations after choosing the reservation manager-->
+        <template id="product_price_computation_carthage_group.reservations_manager" name="manage reservations ">
+            <t t-call="product_price_computation_carthage_group.web_layout">
+                <div class="container-fluid reservation-wrapper">
+                    <div class="col-md-12">
+                        <a class="btn btn-light" href="#">External reservation</a>
+                        |
+                        <a class="btn btn-light" href="/reservations/create">Create reservation</a>
+
+                    </div>
+
+                    <hr/>
+                    <div class="search_reservations">
+                        <div class="filters">
+                            <div class="search_area">
+
+                                <div id="search_parameters" style="display:flex;padding: 30px;">
+                                    <div class="col-md-3 col-xs-12">
+                                        <div class="form-group row">
+                                            <label for="country" class=" col-sm-4 col-form-label">Country</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="country" name="country">
+                                                    <t t-if="search">
+                                                        <t t-if="search['country'] == '0'">
+
+                                                            <option value="0" selected="true"></option>
+
+                                                            <t t-foreach="request.env['res.country'].search([])"
+                                                               t-as="c">
+                                                                <option t-attf-value="{{c.id}}">
+                                                                    <t t-esc="c.name"/>
+                                                                </option>
+                                                            </t>
+
+                                                        </t>
+                                                        <t t-if="search['country'] != '0'">
+                                                            <t t-foreach="request.env['res.country'].search([])"
+                                                               t-as="c">
+                                                                <t t-if="search['country'] == str(c.id)">
+                                                                    <option selected="true" t-attf-value="{{c.id}}">
+                                                                        <t t-esc="c.name"/>
+                                                                    </option>
+                                                                </t>
+                                                                <t t-if="search['country'] != str(c.id)">
+                                                                    <option t-attf-value="{{c.id}}">
+                                                                        <t t-esc="c.name"/>
+                                                                    </option>
+                                                                </t>
+
+                                                            </t>
+                                                        </t>
+                                                    </t>
+                                                    <t t-if="not search">
+                                                        <option value="0" selected="true"></option>
+
+                                                        <t t-foreach="request.env['res.country'].search([])" t-as="c">
+                                                            <option t-attf-value="{{c.id}}">
+                                                                <t t-esc="c.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </t>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="city" class="col-form-label col-sm-4">City</label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="city" name="city">
+                                                    <t t-if="search">
+                                                        <t t-if="search['city'] =='0'">
+                                                            <option value="0" selected="true"></option>
+
+                                                            <t t-foreach="request.env['res.country.state'].search([])"
+                                                               t-as="ci">
+                                                                <option t-attf-value="{{ci.id}}">
+                                                                    <t t-esc="ci.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </t>
+                                                        <t t-if="search['city'] !='0'">
+                                                            <option value="0" selected="true"></option>
+
+                                                            <t t-foreach="request.env['res.country.state'].search([])"
+                                                               t-as="ci">
+                                                                <t t-if="search['city'] == str(ci.id)">
+                                                                    <option selected="true" t-attf-value="{{ci.id}}">
+                                                                        <t t-esc="ci.name"/>
+                                                                    </option>
+                                                                </t>
+                                                                <t t-if="search['city'] != str(ci.id)">
+                                                                    <option t-attf-value="{{ci.id}}">
+                                                                        <t t-esc="ci.name"/>
+                                                                    </option>
+                                                                </t>
+
+                                                            </t>
+                                                        </t>
+                                                    </t>
+                                                    <t t-if="not search">
+                                                        <option value="0" selected="true"></option>
+
+                                                        <t t-foreach="request.env['res.country.state'].search([])"
+                                                           t-as="ci">
+                                                            <option t-attf-value="{{ci.id}}">
+                                                                <t t-esc="ci.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </t>
+
+                                                </select>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-3 col-xs-12">
+                                        <div class="form-group row">
+                                            <label for="hotel_id" class=" col-sm-4 col-form-label">Tour operator
+                                            </label>
+                                            <div class="col-sm-8">
+
+                                                <select class="form-control" id="to_id" name="to_id">
+                                                    <t t-if="search">
+                                                        <t t-if="search['to_id'] != '0'">
+
+
+                                                            <t t-foreach="request.env['tour.operator'].search([('company_id','in',allowed_companys)])"
+                                                               t-as="to">
+                                                                <t t-if="search['to_id'] == str(to.id)">
+                                                                    <option selected="true" t-attf-value="{{to.id}}">
+                                                                        <t t-esc="to.name"/>
+                                                                    </option>
+                                                                </t>
+                                                                <t t-if="search['to_id'] != str(to.id)">
+                                                                    <option t-attf-value="{{to.id}}">
+                                                                        <t t-esc="to.name"/>
+                                                                    </option>
+                                                                </t>
+
+                                                            </t>
+                                                        </t>
+                                                        <t t-if="search['to_id'] == '0'">
+                                                            <option value="0" selected="true"></option>
+
+                                                            <t t-foreach="request.env['tour.operator'].search([('company_id','in',allowed_companys)])"
+                                                               t-as="to">
+                                                                <option t-attf-value="{{to.id}}">
+                                                                    <t t-esc="to.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </t>
+                                                    </t>
+                                                    <t t-if="not search">
+                                                        <option value="0" selected="true"></option>
+
+                                                        <t t-foreach="request.env['tour.operator'].search([('company_id','in',allowed_companys)])"
+                                                           t-as="to">
+                                                            <option t-attf-value="{{to.id}}">
+                                                                <t t-esc="to.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </t>
+
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="hotel_id" class=" col-sm-4 col-form-label">Hotel name
+                                            </label>
+                                            <div class="col-sm-8">
+
+                                                <select class="form-control" id="hotel_id" name="hotel_id">
+                                                    <t t-if="search">
+                                                        <t t-if="search['hotel_id'] == '0'">
+                                                            <option value="0" selected="true"></option>
+
+                                                            <t t-foreach="request.env['rooming.hotels'].search([('allowed_companys','in',allowed_companys)])"
+                                                               t-as="h">
+                                                                <option t-attf-value="{{h.id}}">
+                                                                    <t t-esc="h.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </t>
+                                                        <t t-if="search['hotel_id'] != '0'">
+
+
+                                                            <t t-foreach="request.env['rooming.hotels'].search([('allowed_companys','in',allowed_companys)])"
+                                                               t-as="h">
+                                                                <t t-if="search['hotel_id'] == str(h.id)">
+                                                                    <option selected="true" t-attf-value="{{h.id}}">
+                                                                        <t t-esc="h.name"/>
+                                                                    </option>
+                                                                </t>
+                                                                <t t-if="search['hotel_id'] != str(h.id)">
+                                                                    <option t-attf-value="{{h.id}}">
+                                                                        <t t-esc="h.name"/>
+                                                                    </option>
+                                                                </t>
+
+                                                            </t>
+                                                        </t>
+                                                    </t>
+                                                    <t t-if="not search">
+                                                        <option value="0" selected="true"></option>
+
+                                                        <t t-foreach="request.env['rooming.hotels'].search([('allowed_companys','in',allowed_companys)])"
+                                                           t-as="h">
+                                                            <option t-attf-value="{{h.id}}">
+                                                                <t t-esc="h.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </t>
+
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="reservation_number" class="col-form-label col-sm-4">Reservation
+                                                number
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <t t-if="search">
+                                                    <t t-if="search['reservation_number'] == ''">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="Reservation number"
+                                                               id="reservation_number" name="reservation_number"/>
+                                                    </t>
+                                                    <t t-if="search['reservation_number'] != ''">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="Reservation number"
+                                                               id="reservation_number" name="reservation_number"
+                                                               t-attf-value="{{search['reservation_number']}}"/>
+                                                    </t>
+                                                </t>
+                                                <t t-if="not search">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Reservation number"
+                                                           id="reservation_number" name="reservation_number"/>
+
+                                                </t>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="res_to_ref" class="col-form-label col-sm-4">Tour operator code
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <t t-if="search">
+                                                    <t t-if="search['res_to_ref'] == ''">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="Tour operator code"
+                                                               id="res_to_ref" name="res_to_ref"/>
+                                                    </t>
+                                                    <t t-if="search['res_to_ref'] != ''">
+                                                        <input type="text" class="form-control"
+                                                               placeholder="Tour operator code"
+                                                               id="res_to_ref" name="res_to_ref"
+                                                               t-attf-value="{{search['res_to_ref']}}"/>
+                                                    </t>
+                                                </t>
+                                                <t t-if="not search">
+                                                    <input type="text" class="form-control"
+                                                           placeholder="Tour operator code"
+                                                           id="res_to_ref" name="res_to_ref"/>
+
+                                                </t>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-xs-12">
+                                        <div class="form-group row">
+                                            <label for="check_in_f" class="col-form-label col-sm-4">Check IN From
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <t t-if="search">
+                                                    <t t-if="search['check_in_f'] == ''">
+                                                        <input type="date" class="form-control"
+                                                               placeholder="Check in from"
+                                                               id="check_in_f" name="check_in_f"/>
+                                                    </t>
+                                                    <t t-if="search['check_in_f'] != ''">
+                                                        <input type="date" class="form-control"
+                                                               placeholder="Check in from"
+                                                               id="check_in_f" name="check_in_f"
+                                                               t-attf-value="{{search['check_in_f']}}"/>
+                                                    </t>
+                                                </t>
+
+
+                                                <t t-if="not search">
+                                                    <input type="date" class="form-control" placeholder="Check in from"
+                                                           id="check_in_f" name="check_in_f"/>
+
+                                                </t>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="check_in_t" class="col-form-label col-sm-4">Check To</label>
+                                            <div class="col-sm-8">
+                                                <t t-if="search">
+                                                    <t t-if="search['check_in_t'] == ''">
+                                                        <input type="date" class="form-control"
+                                                               placeholder="Check in to"
+                                                               id="check_in_t" name="check_in_t"/>
+                                                    </t>
+                                                    <t t-if="search['check_in_t'] != ''">
+                                                        <input type="date" class="form-control"
+                                                               placeholder="Check in to"
+                                                               id="check_in_t" name="check_in_t"
+                                                               t-attf-value="{{search['check_in_t']}}"/>
+                                                    </t>
+                                                </t>
+                                                <t t-if="not search">
+                                                    <input type="date" class="form-control" placeholder="Check in to"
+                                                           id="check_in_t" name="check_in_t"/>
+
+                                                </t>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="check_out_f" class="col-form-label col-sm-4">Check out from
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <t t-if="search">
+                                                    <t t-if="search['check_out_f'] == ''">
+                                                        <input type="date" class="form-control"
+                                                               placeholder="Check out from"
+                                                               id="check_out_f" name="check_out_f"/>
+                                                    </t>
+                                                    <t t-if="search['check_out_f'] != ''">
+                                                        <input type="date" class="form-control"
+                                                               placeholder="Check out from"
+                                                               id="check_out_f" name="check_out_f"
+                                                               t-attf-value="{{search['check_out_f']}}"/>
+                                                    </t>
+                                                </t>
+                                                <t t-if="not search">
+                                                    <input type="date" class="form-control" placeholder="Check out from"
+                                                           id="check_out_f" name="check_out_f"/>
+
+                                                </t>
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="check_out_t" class="col-form-label col-sm-4">Check out to
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <t t-if="search">
+                                                    <t t-if="search['check_out_t'] == ''">
+                                                        <input type="date" class="form-control"
+                                                               placeholder="Check out to"
+                                                               id="check_out_t" name="check_out_t"/>
+                                                    </t>
+                                                    <t t-if="search['check_out_t'] != ''">
+                                                        <input type="date" class="form-control"
+                                                               placeholder="Check out to"
+                                                               id="check_out_t" name="check_out_t"
+                                                               t-attf-value="{{search['check_out_t']}}"/>
+                                                    </t>
+                                                </t>
+                                                <t t-if="not search">
+                                                    <input type="date" class="form-control" placeholder="Check out to"
+                                                           id="check_out_t" name="check_out_t"/>
+
+                                                </t>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="col-md-3 col-xs-12">
+
+                                        <div class="form-group row">
+                                            <label for="meal" class=" col-sm-4 col-form-label">Meal</label>
+                                            <div class="col-sm-8">
+
+                                                <select class="form-control" id="meal" name="meal">
+                                                    <t t-if="search">
+                                                        <t t-if="search['meal'] == '0'">
+                                                            <option value="0" selected="true"></option>
+
+                                                            <t t-foreach="request.env['room.meal'].search([])" t-as="m">
+                                                                <option t-attf-value="{{m.id}}">
+                                                                    <t t-esc="m.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </t>
+                                                        <t t-if="search['meal'] != '0'">
+
+
+                                                            <t t-foreach="request.env['room.meal'].search([])" t-as="m">
+                                                                <t t-if="search['meal'] == str(m.id)">
+                                                                    <option selected="true" t-attf-value="{{m.id}}">
+                                                                        <t t-esc="m.name"/>
+                                                                    </option>
+                                                                </t>
+                                                                <t t-if="search['meal'] != str(m.id)">
+                                                                    <option t-attf-value="{{m.id}}">
+                                                                        <t t-esc="m.name"/>
+                                                                    </option>
+                                                                </t>
+
+                                                            </t>
+                                                        </t>
+                                                    </t>
+                                                    <t t-if="not search">
+                                                        <option value="0" selected="true"></option>
+
+                                                        <t t-foreach="request.env['room.meal'].search([])" t-as="m">
+                                                            <option t-attf-value="{{m.id}}">
+                                                                <t t-esc="m.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </t>
+
+                                                </select>
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <label for="room_categ" class="col-form-label col-sm-4">Room category
+                                            </label>
+                                            <div class="col-sm-8">
+
+                                                <select class="form-control" id="room_categ" name="room_categ">
+                                                    <t t-if="search">
+                                                        <t t-if="search['room_categ'] == '0'">
+                                                            <option value="0" selected="true"></option>
+
+                                                            <t t-foreach="request.env['room.categories'].search([], order='name Asc')"
+                                                               t-as="r">
+                                                                <option t-attf-value="{{r.id}}">
+                                                                    <t t-esc="r.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </t>
+                                                        <t t-if="search['room_categ'] != '0'">
+                                                            <t t-foreach="request.env['room.categories'].search([])"
+                                                               t-as="r">
+                                                                <t t-if="search['room_categ'] == str(r.id)">
+                                                                    <option selected="true" t-attf-value="{{r.id}}">
+                                                                        <t t-esc="r.name"/>
+                                                                    </option>
+                                                                </t>
+                                                                <t t-if="search['room_categ'] != str(r.id)">
+                                                                    <option t-attf-value="{{r.id}}">
+                                                                        <t t-esc="r.name"/>
+                                                                    </option>
+                                                                </t>
+
+                                                            </t>
+                                                        </t>
+                                                    </t>
+                                                    <t t-if="not search">
+                                                        <option value="0" selected="true"></option>
+
+                                                        <t t-foreach="request.env['room.categories'].search([])"
+                                                           t-as="r">
+                                                            <option t-attf-value="{{r.id}}">
+                                                                <t t-esc="r.name"/>
+                                                            </option>
+                                                        </t>
+                                                    </t>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="accomodation" class=" col-sm-4 col-form-label">
+                                                Accomodation
+                                            </label>
+                                            <div class="col-sm-8">
+                                                <select class="form-control" id="accomodation" name="accomodation">
+                                                    <t t-if="search">
+                                                        <t t-if="search['accomodation'] == '0'">
+                                                            <option value="0" selected="true"></option>
+
+                                                            <t t-foreach="request.env['accomodations'].search([])"
+                                                               t-as="a">
+                                                                <option t-attf-value="{{a.id}}">
+                                                                    <t t-esc="a.code"/>
+                                                                </option>
+                                                            </t>
+                                                        </t>
+                                                        <t t-if="search['accomodation'] != '0'">
+
+
+                                                            <t t-foreach="request.env['accomodations'].search([])"
+                                                               t-as="a">
+                                                                <t t-if="search['accomodation'] == str(a.id)">
+                                                                    <option selected="true" t-attf-value="{{a.id}}">
+                                                                        <t t-esc="a.code"/>
+                                                                    </option>
+                                                                </t>
+                                                                <t t-if="search['accomodation'] != str(a.id)">
+                                                                    <option t-attf-value="{{a.id}}">
+                                                                        <t t-esc="a.code"/>
+                                                                    </option>
+                                                                </t>
+
+                                                            </t>
+                                                        </t>
+                                                    </t>
+                                                    <t t-if="not search">
+                                                        <option value="0" selected="true"></option>
+
+                                                        <t t-foreach="request.env['accomodations'].search([])" t-as="a">
+                                                            <option t-attf-value="{{a.id}}">
+                                                                <t t-esc="a.code"/>
+                                                            </option>
+                                                        </t>
+                                                    </t>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="note" class="col-form-label col-sm-4">Note</label>
+                                            <div class="col-sm-8">
+                                                <t t-if="search">
+                                                    <t t-if="search['note'] == ''">
+                                                        <input type="text" class="form-control" placeholder="Note"
+                                                               id="note" name="note"/>
+                                                    </t>
+                                                    <t t-if="search['note'] != ''">
+                                                        <input type="text" class="form-control" placeholder="Note"
+                                                               id="note" name="note" t-attf-value="{{search['note']}}"/>
+                                                    </t>
+                                                </t>
+                                                <t t-if="not search">
+                                                    <input type="text" class="form-control" placeholder="Note"
+                                                           id="note" name="note"/>
+
+                                                </t>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                                <div class="" style="display:flex;">
+                                    <button class="btn btn-success" style="width:50%;" id="search_button"
+                                            type="button">Search
+                                    </button>
+                                    <button class="btn btn-danger" style="width:50%;" id="search_button_reset"
+                                            type="button">reset search
+                                    </button>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="list_reservations">
+                        <div class="res_table_info col-md-12" style="display: flex;">
+                            <div class="pgr col-md-6">
+                                <t t-call="website.pager">
+                                    <t t-set="_classes">ml-2</t>
+                                </t>
+                            </div>
+                            <div id="pager_offset" class="pgr_det col-md-2" style="text-align: end;top: 8px;">
+                                <t t-esc="pager['offset']"/>
+                                -
+                                <t t-esc="int(pager['offset']) + int(ppg)"/>
+
+                                /
+                                <t t-esc="reservations_count"/>
+                            </div>
+                            <div class="col-md-4">
+                                <t t-if=" not order">
+                                    <select class="form-control" id="order_reservation_select"
+                                            name="order_reservation_select">
+                                        <option value="0">order by</option>
+                                        <option value="1">Reservation number</option>
+                                        <option value="2">Check in</option>
+                                        <option value="3">Check out</option>
+                                        <option value="4">Nights</option>
+                                        <option value="5">Brut</option>
+                                        <option value="6">Net</option>
+                                        <option value="7">State</option>
+                                    </select>
+                                </t>
+                                <t t-if="order">
+                                    <select class="form-control" id="order_reservation_select"
+                                            name="order_reservation_select">
+                                        <t t-if="order == 0">
+                                            <option value="0" selected="true">order by</option>
+                                        </t>
+                                        <t t-if="order != 0">
+                                            <option value="0">order by</option>
+                                        </t>
+                                        <t t-if="order == 1">
+                                            <option value="1" selected="true">Reservation number</option>
+                                        </t>
+
+                                        <t t-if="order != 1">
+                                            <option value="1">Reservation number</option>
+                                        </t>
+                                        <t t-if="order == 2">
+                                            <option value="2" selected="true">Check in</option>
+                                        </t>
+                                        <t t-if="order != 2">
+                                            <option value="2">Check in</option>
+                                        </t>
+                                        <t t-if="order == 3">
+                                            <option value="3" selected="true">Check out</option>
+                                        </t>
+                                        <t t-if="order != 3">
+                                            <option value="3">Check out</option>
+                                        </t>
+
+                                        <t t-if="order == 4">
+                                            <option value="4" selected="true">Nights</option>
+                                        </t>
+                                        <t t-if="order != 4">
+                                            <option value="4">Nights</option>
+                                        </t>
+                                        <t t-if="order == 5">
+                                            <option value="5" selected="true">Brut</option>
+                                        </t>
+                                        <t t-if="order != 5">
+                                            <option value="5">Brut</option>
+                                        </t>
+                                        <t t-if="order == 6">
+                                            <option value="6" selected="true">Net</option>
+                                        </t>
+                                        <t t-if="order != 6">
+                                            <option value="6">Net</option>
+                                        </t>
+                                        <t t-if="order == 7">
+                                            <option value="7" selected="true">State</option>
+                                        </t>
+                                        <t t-if="order != 7">
+                                            <option value="7">State</option>
+                                        </t>
+                                    </select>
+                                </t>
+
+                                <t t-if="sense is not False">
+                                    <select class="form-control order_sense" id="order_reservation_sense"
+                                            name="order_reservation_sense" style="display:block;">
+                                        <t t-if="sense == 0">
+                                            <option value="0" selected="true">Asc</option>
+                                        </t>
+                                        <t t-if="sense !=0">
+                                            <option value="0">Asc</option>
+                                        </t>
+                                        <t t-if="sense == 1">
+                                            <option value="1" selected="true">Dsc</option>
+                                        </t>
+                                        <t t-if="sense !=1">
+                                            <option value="1">Dsc</option>
+                                        </t>
+
+
+                                    </select>
+                                </t>
+                                <t t-else="">
+                                    <select class="form-control order_sense" id="order_reservation_sense"
+                                            name="order_reservation_sense" style="display:none;">
+                                        <t t-if="sense == 0">
+                                            <option value="0" selected="true">Asc</option>
+                                        </t>
+                                        <t t-if="sense !=0">
+                                            <option value="0">Asc</option>
+                                        </t>
+                                        <t t-if="sense == 1">
+                                            <option value="1" selected="true">Dsc</option>
+                                        </t>
+                                        <t t-if="sense !=1">
+                                            <option value="1">Dsc</option>
+                                        </t>
+
+
+                                    </select>
+                                </t>
+                            </div>
+                            <div id="pager_offset_edit" class="pgr_det col-md-4"
+                                 style="display:none;text-align: end;top: 8px;">
+
+                                <input style="width: 60px;text-align: center;" name="offset" type="text" id="offset"
+                                       t-attf-value="{{ pager['offset'] }} - {{int(pager['offset']) + int(ppg)}}"/>
+                                /
+                                <t t-esc="reservations_count"/>
+
+                            </div>
+
+
+                        </div>
+                        <hr/>
+                        <table style=" font-size:smaller;overflow:auto"
+                               class="table table-responsive table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Reservation number</th>
+                                    <th>Check in</th>
+                                    <th>Check out</th>
+                                    <th>Hotel</th>
+                                    <th>Room category</th>
+                                    <!--<th>Room type</th>-->
+                                    <!--<th>Ecart</th>-->
+                                    <!--<th>Observation</th>-->
+                                    <!--<th>Ref fact sale</th>-->
+                                    <!--<th>Sale amount</th>-->
+                                    <th>Currency</th>
+                                    <th>Tour operator</th>
+                                    <th>Accomodation</th>
+
+                                    <th>Nights</th>
+                                    <th>Sale</th>
+                                    <th>Net</th>
+                                    <!--<th>Company</th>-->
+                                    <!--<th>Fact Hotel</th>-->
+                                    <!--<th>Ref fact hotel</th>-->
+                                    <!--<th>Echeance</th>-->
+                                    <!--<th>Rest to pay</th>-->
+                                    <th>Note</th>
+                                    <!--<th>Creation date</th>-->
+                                    <th>State</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <t t-foreach="reservations" t-as="r">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="r.reservation_number"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="r.chekin"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="r.checkout"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="r.hotel_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="r.room_category.name"/>
+                                        </td>
+                                        <!--<td><t t-esc="r.room_type.name" /> </td>-->
+                                        <!--<td><t t-esc="r.ecart" /> </td>-->
+                                        <!--<td><t t-esc="r.observation" /> </td>-->
+                                        <!--<td><t t-esc="r.ref_fact_vente" /> </td>-->
+                                        <!--<td><t t-esc="r.mnt_vente" /> </td>-->
+                                        <td>
+                                            <t t-esc="r.currency_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="r.touroperator_id.name"/>
+                                        </td>
+                                        <td>
+                                            <t t-if="len(r.accomodation) >0">
+                                                <t t-esc="r.accomodation.codef"/>
+                                            </t>
+
+                                        </td>
+
+                                        <td>
+                                            <t t-esc="r.night_number"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="r.sale"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="r.net"/>
+                                        </td>
+                                        <!--<td><t t-esc="r.company_id.name" /> </td>-->
+                                        <!--<td><t t-esc="r.fact_hotel" /> </td>-->
+                                        <!--<td><t t-esc="r.num_fact_hotel" /> </td>-->
+                                        <!--<td><t t-esc="r.echeance" /> </td>-->
+                                        <!--<td><t t-esc="r.reste_to_pay" /> </td>-->
+                                        <td>
+                                            <t t-esc="r.note"/>
+                                        </td>
+                                        <!--<td><t t-esc="r.creation_date" /> </td>-->
+                                        <td>
+                                            <t t-esc="{'c':'Confirmed','d':'Draft','s':'Request sended','cn':'Canceled','f':'Finalized','e':'Error',False:'None'}[r.state]"/>
+                                        </td>
+                                        <td style="display: flex;">
+                                            <a style="width" t-attf-href="/reservations/show/{{r.id}}"
+                                               class="btn btn-default">
+                                                <i data-toggle="tooltip" data-placement="top"
+                                                   title="Show detail and edit" class="far fa-edit"></i>
+                                            </a>
+                                            <a class="btn btn-default">
+                                                <i data-toggle="tooltip" data-placement="top" title="Send reservation"
+                                                   class="far fa-paper-plane"></i>
+                                            </a>
+                                            <a class="btn btn-default">
+                                                <i data-toggle="tooltip" data-placement="top" title="Change state"
+                                                   class="fa fa-check"></i>
+                                            </a>
+                                            <a t-attf-href="/reservations/delete?id={{r.id}}" class="btn btn-danger">
+                                                <i data-toggle="tooltip" data-placement="top" title="Delete reservation"
+                                                   class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </tbody>
+                        </table>
+                        <hr/>
+                        <!--<div class="res_table_info col-md-12" style="display: flex;">-->
+                        <!--<div class="pgr col-md-6">-->
+                        <!--<t t-call="website.pager">-->
+                        <!--<t t-set="_classes">ml-2</t>-->
+                        <!--</t>-->
+                        <!--</div>-->
+                        <!--<div class="pgr_det col-md-6" style="text-align: end;top: 8px;">-->
+                        <!--<t t-esc="pager['offset']"/>-->
+                        <!--/-->
+                        <!--<t t-esc="reservations_count"/>-->
+                        <!--</div>-->
+
+
+                        <!--</div>-->
+                        <!--<hr/>-->
+                    </div>
+                </div>
+                <script src="/product_price_computation_carthage_group/static/src/js/res_interface.js"/>
+
+            </t>
+        </template>
+        <!--we can of course create reservations manually -->
+        <template id="product_price_computation_carthage_group.reservations_create" name="reservations manual creation">
+            <t t-call="product_price_computation_carthage_group.web_layout">
+                <div class="container-fluid reservation-wrapper">
+                    <br/>
+                    <div class="row">
+                        <form>
+                            <input type="hidden" name="csrf_token" id="csrf_token"
+                                   t-att-value="request.csrf_token()"/>
+
+                            <div class=" col-md-12" style="padding: 30; ">
+                                <div class="res_creation_area" style="display:flex;">
+                                    <div class="col-md-4">
+
+
+                                        <div class="form-group row">
+                                            <label for="company_id" class=" col-sm-4 col-form-label">Company
+                                            </label>
+                                            <div class="col-sm-8">
+
+                                                <select class="form-control" id="company_id" name="company_id"
+                                                        onchange="get_hotel_company()">
+                                                    <option value="0">select campany</option>
+                                                    <t t-foreach="request.env['res.company'].search([('id','in',allowed_companys)])"
+                                                       t-as="c">
+                                                        <option t-attf-value="{{c.id}}">
+                                                            <t t-esc="c.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label for="hotel_id" class=" col-sm-4 col-form-label">Hotel
+                                            </label>
+                                            <div class="col-sm-8">
+
+                                                <select class="form-control" id="hotel_id" name="hotel_id"
+                                                        onchange="get_room_category()">
+
+                                                    <option value="0">
+                                                        select hotel
+                                                    </option>
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label for="to_id" class=" col-sm-4 col-form-label">Tour operator
+                                            </label>
+                                            <div class="col-sm-8">
+
+                                                <select class="form-control" id="to_id" name="to_id">
+                                                    <t t-foreach="request.env['tour.operator'].search([('company_id','in',allowed_companys)])"
+                                                       t-as="t">
+                                                        <option t-attf-value="{{t.id}}">
+                                                            <t t-esc="t.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                                <br/>
+
+
+                                            </div>
+                                            <div style="width: 100%; display: flex; text-align: left; padding: 15px;">
+                                                <label for="res_to_ref" class="col-md-6">Tour operator res. ref.</label>
+                                                <input type="text" class="form-control" placeholder="Ref. Code"
+                                                       name="res_to_ref col-md-6" id="res_to_ref"/>
+                                            </div>
+                                            <div style="width: 100%; display: flex; text-align: left; padding: 15px;">
+                                                <label for="currency_id" class="col-md-6">Currency</label>
+                                                <select class="form-control" id="currency_id" name="currency_id">
+                                                    <t t-foreach="request.env['res.currency'].search([('active','=',True)])"
+                                                       t-as="cr">
+                                                        <option t-attf-value="{{cr.id}}">
+                                                            <t t-esc="cr.name"/>
+                                                        </option>
+                                                    </t>
+                                                </select>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class=" col-md-12" style="padding: 30;">
+                                <div class="res_creation_area" style="text-align:left;">
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label for="res_num" class="col-form-label col-sm-5">Reservation number
+                                            </label>
+                                            <div class="col-sm-7">
+                                                <input type="text" readonly="true" style="    background-color: #de497c;
+                                                color: #FFFF; font-weight: 600;" class="form-control"
+                                                       placeholder="Res Num" id="res_num" name="res_num"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="" style="display:flex">
+                                        <div class="col-md-3">
+                                            <div class="form-group row">
+                                                <label for="check_in" class="col-form-label col-sm-4">Check In</label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control" placeholder="Check IN"
+                                                           id="check_in" name="check_in"/>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="check_out" class="col-form-label col-sm-4">Check Out</label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control" placeholder="Check IN"
+                                                           id="check_out" name="check_out"/>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="night_number" class="col-form-label col-sm-4">Nights</label>
+                                                <div class="col-sm-8">
+                                                    <input type="number" readonly="true" class="form-control"
+                                                           placeholder="Nights"
+                                                           id="night_number" name="night_number"/>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+
+                                            <div class="form-group row">
+                                                <label for="cr_date" class="col-form-label col-sm-4">Creation Date
+                                                </label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control" readonly="true"
+                                                           placeholder="Creation Date"
+                                                           id="cr_date" name="cr_date"/>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="sen_date" class="col-form-label col-sm-4">Sending date
+                                                </label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control" readonly="true"
+                                                           placeholder="Sending date"
+                                                           id="sen_date" name="sen_date"/>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+
+
+                                            <div class="form-group row">
+                                                <label for="room_c" class="col-form-label col-sm-4">Room Category
+                                                </label>
+                                                <div class="col-sm-8">
+
+                                                    <select class="form-control" id="room_c" name="room_c"
+                                                            onchange="get_meal_acc()">
+
+                                                        <option value="0">
+                                                            select room category
+                                                        </option>
+
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group row">
+                                                <label for="acc" class="col-form-label col-sm-4">Accomodation</label>
+                                                <div class="col-sm-8">
+                                                    <select class="form-control" id="acc" name="acc">
+                                                        <option value="0">
+                                                            select accomodation
+                                                        </option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="meal" class="col-form-label col-sm-4">Meal</label>
+                                                <div class="col-sm-8">
+
+                                                    <select class="form-control" id="meal" name="meal">
+                                                        <option value="0">
+                                                            select meal
+                                                        </option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="col-md-8">
+                                            <div class="form-group row">
+                                                <label for="note" class="col-form-label col-sm-1">Note</label>
+                                                <div class="col-sm-8">
+                                                    <textarea class="form-control" cols="50"
+                                                              placeholder="add some note here" rows="5"
+                                                              id="note"></textarea>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class=" col-md-12" style="padding: 30;">
+                                <div class="res_creation_area" style="text-align:left;">
+                                    <div class="col-md-8">
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-sm-5">Clients details:</label>
+                                        </div>
+                                    </div>
+                                    <div id="clients_detail">
+                                        <div class="col-md-12">
+                                            <table id="clients_table" class="col-md-12 table  table-stripped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Gender</th>
+                                                        <th>Name</th>
+                                                        <th>Surname</th>
+                                                        <th>Birthday</th>
+                                                        <th>Age</th>
+                                                        <th>Passport Number</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="form-group col-md-12"
+                                             style="display: flex;border: 1px solid #ddd;border-radius: 10px;padding: 10;">
+                                            <div class="form-group col-md-12"
+                                                 style="display: flex;border: 1px solid #ddd;border-radius: 10px;padding: 10;">
+                                                <div class="form-group  col-md-4">
+                                                    <label>Gender</label>
+
+                                                    <select class="form-control" id="gen" name="gen">
+                                                        <option value="-">Select gender</option>
+                                                        <option value="mal">Male</option>
+                                                        <option value="fem">Female</option>
+                                                        <option value="chd">Child</option>
+                                                    </select>
+                                                    <label>Birthday</label>
+                                                    <input type="date" name="birth" id="birth" class="form-control"
+                                                           placeholder="Birthday"/>
+                                                </div>
+                                                <div class="form-group  col-md-4">
+                                                    <label>Name</label>
+                                                    <input type="text" name="name" id="name" class="form-control"
+                                                           placeholder="Name"/>
+
+                                                    <label>Age</label>
+                                                    <input type="text" name="age" id="age" class="form-control"
+                                                           placeholder="Age"/>
+                                                </div>
+                                                <div class="form-group  col-md-4">
+
+                                                    <label>Surname</label>
+                                                    <input type="text" name="sname" id="sname" class="form-control"
+                                                           placeholder="Surname"/>
+                                                    <label>Passport Number</label>
+                                                    <input type="text" name="p_number" id="p_number"
+                                                           class="form-control"
+                                                           placeholder="Passport Number"/>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <button class="add_client_button btn btn-light" id="add_client" name="add_client"
+                                            type="button">Add client
+                                    </button>
+                                    <button class="add_client_button delete_r btn btn-light" id="empty_table"
+                                            name="empty_table" type="button">Empty table
+                                    </button>
+                                </div>
+                            </div>
+                            <button class="btn btn-light" id="creation_reservation"
+                                    name="creation_reservation" type="button">create reservation
+                            </button>
+
+                        </form>
+                        <hr/>
+                        <div class=" col-md-12" style="padding: 30;">
+                            <div class="res_creation_area">section four</div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <script src="/product_price_computation_carthage_group/static/src/js/res_interface.js"/>
+            </t>
+        </template>
+        <!--and maybe display it's content for further operations ? -->
+        <template id="product_price_computation_carthage_group.reservations_show" name="display reservation">
+            <t t-call="product_price_computation_carthage_group.web_layout">
+                <div class="container-fluid reservation-wrapper">
+                    <br/>
+                    <div class="row">
+                        <form>
+                            <input type="hidden" name="csrf_token" id="csrf_token"
+                                   t-att-value="request.csrf_token()"/>
+                            <div class="col-md-12 text-center">
+                                <button class="btn btn-light" id="modification_reservation"
+                                        name="modification_reservation" type="button">edit reservation
+                                </button>
+                                <button class="btn btn-light" id="send_request"
+                                        name="send_request" type="button">Send request
+                                </button>
+                                <button class="btn btn-light" id="add_service"
+                                        name="add_service" type="button">Add service
+                                </button>
+                                <button class="btn btn-light hidden" id="confirm_edit"
+                                        name="confirm_edit" style="display:none;" type="button">confirm
+                                </button>
+                                <a class="btn btn-light " href="/reservations">return to main page
+                                </a>
+                                <a class="btn btn-light " t-attf-href="/reservations/get_price/{{reservation.id}}">
+                                    Calculate reservation
+                                </a>
+                            </div>
+                            <hr/>
+                            <t t-if="reservation.net > 0 or reservation.sale > 0">
+                            <div class=" col-md-12" style="padding: 30; ">
+                                <div class="res_creation_area" style="display:flex;">
+                                    <div class="col-md-6">
+                                        <label for="net">Net price: </label><span t-esc="reservation.net" />
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="net">Sale price: </label><span t-esc="reservation.sale" />
+                                    </div>
+                                </div>
+                            </div>
+                                <hr/>
+                            </t>
+
+
+                            <div class=" col-md-12" style="padding: 30; ">
+                                <div class="res_creation_area" style="display:flex;">
+                                    <div class="col-md-4">
+
+
+                                        <div class="form-group row">
+                                            <label for="company_id" class=" col-sm-4 col-form-label">Company
+                                            </label>
+                                            <div class="col-sm-8">
+
+                                                <select disabled="true" class="form-control" id="company_id"
+                                                        name="company_id">
+                                                    <t t-foreach="request.env['res.company'].search([('id','in',allowed_companys)])"
+                                                       t-as="c">
+                                                        <t t-if="reservation.company_id.id == c.id">
+                                                            <option selected="true" t-attf-value="{{c.id}}">
+                                                                <t t-esc="c.name"/>
+                                                            </option>
+                                                        </t>
+                                                        <t t-if="reservation.company_id.id != c.id">
+                                                            <option t-attf-value="{{c.id}}">
+                                                                <t t-esc="c.name"/>
+                                                            </option>
+                                                        </t>
+
+                                                    </t>
+                                                </select>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label for="hotel_id" class=" col-sm-4 col-form-label">Hotel
+                                            </label>
+                                            <div class="col-sm-8">
+
+                                                <select class="form-control" id="hotel_id" disabled="true"
+                                                        name="hotel_id">
+                                                    <t t-foreach="request.env['rooming.hotels'].search([('allowed_companys','in',allowed_companys)])"
+                                                       t-as="h">
+                                                        <t t-if="reservation.hotel_id.id == h.id">
+                                                            <option selected="true" t-attf-value="{{h.id}}">
+                                                                <t t-esc="h.name"/>
+                                                            </option>
+                                                        </t>
+                                                        <t t-if="reservation.hotel_id.id != h.id">
+                                                            <option t-attf-value="{{h.id}}">
+                                                                <t t-esc="h.name"/>
+                                                            </option>
+                                                        </t>
+
+                                                    </t>
+                                                </select>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label for="to_id" class=" col-sm-4 col-form-label">Tour operator
+                                            </label>
+                                            <div class="col-sm-8">
+
+                                                <select disabled="true" class="form-control" id="to_id" name="to_id">
+                                                    <t t-foreach="request.env['tour.operator'].search([('company_id','in',allowed_companys)])"
+                                                       t-as="t">
+                                                        <t t-if="reservation.touroperator_id == t.id">
+                                                            <option selected="true" t-attf-value="{{t.id}}">
+                                                                <t t-esc="t.name"/>
+                                                            </option>
+                                                        </t>
+                                                        <t t-if="reservation.touroperator_id != t.id">
+                                                            <option t-attf-value="{{t.id}}">
+                                                                <t t-esc="t.name"/>
+                                                            </option>
+                                                        </t>
+
+                                                    </t>
+                                                </select>
+                                                <br/>
+
+
+                                            </div>
+                                            <div style="width: 100%; display: flex; text-align: left; padding: 15px;">
+                                                <label for="res_to_ref" class="col-md-6">Tour operator res. ref.</label>
+                                                <input type="text" disabled="true" class="form-control"
+                                                       placeholder="Ref. Code"
+                                                       name="res_to_ref col-md-6"
+                                                       t-attf-value="{{reservation.res_to_ref}}" id="res_to_ref"/>
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class=" col-md-12" style="padding: 30;">
+                                <div class="res_creation_area" style="text-align:left;">
+                                    <div class="col-md-4">
+                                        <div class="form-group row">
+                                            <label for="res_num" class="col-form-label col-sm-5">Reservation number
+                                            </label>
+                                            <div class="col-sm-7">
+                                                <input type="text" disabled="true"
+                                                       t-attf-value="{{reservation.reservation_number}}" style="    background-color: #de497c;
+                                                color: #FFFF; font-weight: 600;" class="form-control"
+                                                       placeholder="Res Num" id="res_num" name="res_num"/>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="" style="display:flex">
+                                        <div class="col-md-3">
+                                            <div class="form-group row">
+                                                <label for="check_in" class="col-form-label col-sm-4">Check In</label>
+                                                <div class="col-sm-8">
+                                                    <input disabled="true" t-attf-value="{{reservation.chekin}}"
+                                                           type="date" class="form-control" placeholder="Check IN"
+                                                           id="check_in" name="check_in"/>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="check_out" class="col-form-label col-sm-4">Check Out</label>
+                                                <div class="col-sm-8">
+                                                    <input disabled="true" t-attf-value="{{reservation.checkout}}"
+                                                           type="date" class="form-control" placeholder="Check out"
+                                                           id="check_out" name="check_out"/>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="night_number" class="col-form-label col-sm-4">Nights</label>
+                                                <div class="col-sm-8">
+                                                    <input type="number" disabled="true" class="form-control"
+                                                           placeholder="Nights"
+                                                           t-attf-value="{{reservation.night_number}}"
+                                                           id="night_number" name="night_number"/>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+
+                                            <div class="form-group row">
+                                                <label for="cr_date" class="col-form-label col-sm-4">Creation Date
+                                                </label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" class="form-control" disabled="true"
+                                                           t-attf-value="{{reservation.creation_date}}"
+                                                           placeholder="Creation Date"
+                                                           id="cr_date" name="cr_date"/>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="sen_date" class="col-form-label col-sm-4">Sending date
+                                                </label>
+                                                <div class="col-sm-8">
+                                                    <input type="date" t-attf-value="{{reservation.s_date}}"
+                                                           class="form-control" disabled="true"
+                                                           placeholder="Sending date"
+                                                           id="sen_date" name="sen_date"/>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+
+
+                                            <div class="form-group row">
+                                                <label for="room_c" class="col-form-label col-sm-4">Room Category
+                                                </label>
+                                                <div class="col-sm-8">
+
+                                                    <select class="form-control" disabled="true" id="room_c"
+                                                            name="room_c">
+
+                                                        <t t-if="len(reservation.room_category) >0">
+                                                            <t t-foreach="request.env['room.categories'].search([])"
+                                                               t-as="rc">
+                                                                <t t-if="reservation.room_category.id == rc.id">
+                                                                    <option selected="true" t-attf-value="{{rc.id}}">
+                                                                        <t t-esc="rc.name"/>
+                                                                    </option>
+                                                                </t>
+                                                                <t t-if="reservation.room_category.id != rc.id">
+                                                                    <option t-attf-value="{{rc.id}}">
+                                                                        <t t-esc="rc.name"/>
+                                                                    </option>
+                                                                </t>
+
+                                                            </t>
+
+                                                        </t>
+                                                        <t t-if="len(reservation.room_category) == 0">
+                                                            <option>------</option>
+                                                            <t t-foreach="request.env['room.categories'].search([])"
+                                                               t-as="rc">
+                                                                <option t-attf-value="{{rc.id}}">
+                                                                    <t t-esc="rc.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </t>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-group row">
+                                                <label for="acc" class="col-form-label col-sm-4">Accomodation</label>
+                                                <div class="col-sm-8">
+                                                    <select disabled="true" class="form-control" id="acc" name="acc">
+                                                        <t t-if="len(reservation.accomodation) > 0 ">
+                                                            <t t-foreach="request.env['accomodations'].search([])"
+                                                               t-as="acc">
+                                                                <t t-if="reservation.accomodation.id == acc.id">
+                                                                    <option selected="true" t-attf-value="{{acc.id}}">
+                                                                        <t t-esc="acc.codef"/>
+                                                                    </option>
+                                                                </t>
+                                                                <t t-if="reservation.accomodation.id != acc.id">
+                                                                    <option t-attf-value="{{acc.id}}">
+                                                                        <t t-esc="acc.codef"/>
+                                                                    </option>
+                                                                </t>
+                                                            </t>
+                                                        </t>
+                                                        <t t-if="len(reservation.accomodation) == 0">
+                                                            <option selected="True">------</option>
+                                                            <t t-foreach="request.env['accomodations'].search([])"
+                                                               t-as="acc">
+                                                                <option t-attf-value="{{acc.id}}">
+                                                                    <t t-esc="acc.code"/>
+                                                                </option>
+                                                            </t>
+                                                        </t>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="meal" class="col-form-label col-sm-4">Meal</label>
+                                                <div class="col-sm-8">
+
+                                                    <select class="form-control" disabled="true" id="meal" name="meal">
+
+                                                        <t t-if="len(reservation.meal) > 0">
+                                                            <t t-foreach="request.env['room.meal'].search([])"
+                                                               t-as="m">
+                                                                <t t-if="reservation.meal.id == m.id">
+                                                                    <option selected="true" t-attf-value="{{m.id}}">
+                                                                        <t t-esc="m.name"/>
+                                                                    </option>
+                                                                </t>
+                                                                <t t-if="reservation.meal.id != m.id">
+                                                                    <option t-attf-value="{{m.id}}">
+                                                                        <t t-esc="m.name"/>
+                                                                    </option>
+                                                                </t>
+
+                                                            </t>
+
+                                                        </t>
+                                                        <t t-if="len(reservation.meal) == 0">
+                                                            <option>------</option>
+                                                            <t t-foreach="request.env['room.meal'].search([])"
+                                                               t-as="m">
+                                                                <option t-attf-value="{{m.id}}">
+                                                                    <t t-esc="m.name"/>
+                                                                </option>
+                                                            </t>
+                                                        </t>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <div class="col-md-8">
+                                            <div class="form-group row">
+                                                <label for="note" class="col-form-label col-sm-1">Note</label>
+                                                <div class="col-sm-8">
+                                                    <textarea disabled="true" class="form-control" cols="50"
+                                                              placeholder="add some note here" rows="5"
+                                                              id="note">
+                                                        <t t-esc="reservation.note"/>
+                                                    </textarea>
+
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr/>
+                            <div class=" col-md-12" style="padding: 30;">
+                                <div class="res_creation_area" style="text-align:left;">
+                                    <div class="col-md-8">
+                                        <div class="form-group row">
+                                            <label class="col-form-label col-sm-5">Clients details:</label>
+                                        </div>
+                                    </div>
+                                    <div id="clients_detail">
+                                        <div class="col-md-12">
+                                            <table id="clients_table" class="col-md-12 table  table-stripped">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Gender</th>
+                                                        <th>Name</th>
+                                                        <th>Surname</th>
+                                                        <th>Birthday</th>
+                                                        <th>Age</th>
+                                                        <th>Passport Number</th>
+
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <t t-foreach="reservation.reservation_detail" t-as="det">
+                                                        <tr>
+                                                            <td>
+                                                                <t t-esc="det.gen"/>
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="det.client_name"/>
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="det.sname"/>
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="det.datenaiss"/>
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="det.age"/>
+                                                            </td>
+                                                            <td>
+                                                                <t t-esc="det.p_number"/>
+                                                            </td>
+
+                                                        </tr>
+                                                    </t>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+
+                        </form>
+                        <hr/>
+                        <div class=" col-md-12 text-center" style="padding: 30;">
+                            <div class="res_creation_area">section four</div>
+                        </div>
+                    </div>
+                </div>
+                <script src="/product_price_computation_carthage_group/static/src/js/res_edit_interface.js"/>
+
+            </t>
+        </template>
+    </data>
+</odoo>
+

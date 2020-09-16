@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="excursion.wizards_form">
+            <field name="name">Etat des prestataires</field>
+            <field name="model">wizards.print.prestataires</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="report_type"/>
+                        <field name="years" attrs="{'invisible':[('report_type','!=','ep')]}"/>
+
+                    </group>
+                    <footer>
+                        <button name="get_report" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+
+                </form>
+            </field>
+        </record>
+        <!--dima tekteb esme el module.esme el class ama el point etwali _-->
+
+        <record model="ir.ui.view" id="excursion.wizard_liquidation_ticket_form">
+            <field name="name">liquidation par tickets</field>
+            <field name="model">wizards.liquidationtickets</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="2">
+                        <group>
+                            <field name="ticket_from"/>
+                        </group>
+                        <group>
+                            <field name="ticket_to"/>
+                        </group>
+
+                    </group>
+                    <group>
+                        <field name="date_liquidation"/>
+                    </group>
+                    <group>
+                        <field name="list_excursion" readonly="1"/>
+                    </group>
+
+                    <footer>
+                        <button name="liquider" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="excursion.wizard_ajouter_camel_form">
+            <field name="name">ajouter camel</field>
+            <field name="model">wizards.ajoutcamel</field>
+            <field name="arch" type="xml">
+                <form>
+
+                    <group col="2">
+                        <group>
+                            <field name="ajouter_ligne"/>
+                        </group>
+                    </group>
+
+                    <footer>
+                        <button name="ajout_camel" string="Confirmer" type="object"
+                                class="oe_highlight"/>
+                        Or
+                        <button string="Annuler" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.wizards_ajouter_camel_action">
+            <field name="name">ajouter camel</field>
+            <field name="res_model">wizards.ajoutcamel</field>
+            <field name="view_id" ref="excursion.wizard_ajouter_camel_form"/>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window" id="excursion.wizards_reports_action">
+            <field name="name">Etat à imprimer</field>
+            <field name="res_model">wizards.print.prestataires</field>
+            <field name="view_id" ref="excursion.wizards_form"/>
+            <field name="target">new</field>
+        </record>
+        <record model="ir.actions.act_window" id="excursion.wizard_liquidation_ticket_action">
+            <field name="name">liquidation par tickets</field>
+            <field name="res_model">wizards.liquidationtickets</field>
+            <field name="view_id" ref="excursion.wizard_liquidation_ticket_form"/>
+            <field name="target">new</field>
+        </record>
+        <menuitem name="liquidation par ticket " id="excursion.menu_sub_root_liquidation"
+                  parent="excursion.affectation_menu"
+                  action="excursion.wizard_liquidation_ticket_action"
+        />
+        <!--<menuitem id="excursion.wizard_menu" name="Etat à imprimer" sequence="2"-->
+        <!--parent="excursion.menu_root" action="excursion.wizards_reports_action"/>-->
+    </data>
+</odoo>

@@ -1,0 +1,389 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="excursion_extra_pivot">
+            <field name="name">Vente Excursion pivot</field>
+            <field name="model">excursion.extra</field>
+            <field name="arch" type="xml">
+                <pivot>
+
+                    <field name="dat"/>
+                    <field name="crdat"/>
+                    <field name="excursion_id"/>
+                    <field name="adulte"/>
+                    <field name="enfant"/>
+                    <field name="inf"/>
+                    <field name="tour_operateur"/>
+                    <field name="booking_number"/>
+                    <field name="ticket_number"/>
+                    <field name="vendeur_id"/>
+                    <field name="selling_price"/>
+                    <field name="seller_commission"/>
+                    <field name="paid_sum"/>
+                    <field name="hotel_id"/>
+                    <field name="room_nbr"/>
+                    <field name="liquidation"/>
+                    <field name="doc_nbr"/>
+                    <field name="region_id"/>
+
+                </pivot>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="excursion_reservation_pivot">
+            <field name="name">Vente reservation Excursion pivot</field>
+            <field name="model">excursion.reservations</field>
+            <field name="arch" type="xml">
+                <pivot>
+
+                    <field name="dat"/>
+                    <field name="crdat"/>
+                    <field name="excursion_id"/>
+                    <field name="adulte"/>
+                    <field name="enfant"/>
+                    <field name="inf"/>
+                    <field name="tour_operateur"/>
+                    <field name="booking_number"/>
+                    <field name="ticket_number"/>
+                    <field name="vendeur_id"/>
+                    <field name="selling_price"/>
+                    <field name="seller_commission"/>
+                    <field name="paid_sum"/>
+                    <field name="hotel_id"/>
+                    <field name="room_nbr"/>
+                    <field name="liquidation"/>
+                    <field name="doc_nbr"/>
+                    <field name="region_id"/>
+
+                </pivot>
+            </field>
+        </record>
+
+        <record id="excursion__graph" model="ir.ui.view">
+            <field name="name">Vente Excursion graph</field>
+            <field name="model">excursion.extra</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="dat"/>
+                    <field name="crdat"/>
+                    <field name="excursion_id"/>
+                    <field name="adulte"/>
+                    <field name="enfant"/>
+                    <field name="inf"/>
+                    <field name="tour_operateur"/>
+                    <field name="booking_number"/>
+                    <field name="ticket_number"/>
+                    <field name="vendeur_id"/>
+                    <field name="selling_price"/>
+                    <field name="seller_commission"/>
+                    <field name="paid_sum"/>
+                    <field name="hotel_id"/>
+                    <field name="room_nbr"/>
+                    <field name="liquidation"/>
+                    <field name="doc_nbr"/>
+                    <field name="region_id"/>
+
+
+                </graph>
+            </field>
+        </record>
+        <record id="excursion_reservation_graph" model="ir.ui.view">
+            <field name="name">Vente Excursion reservation graph</field>
+            <field name="model">excursion.reservations</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="dat"/>
+                    <field name="crdat"/>
+                    <!--<field name="excursion_id"/>-->
+
+                    <field name="adulte"/>
+                    <field name="enfant"/>
+                    <field name="inf"/>
+                    <!--<field name="tour_operateur"/>-->
+                    <!--<field name="booking_number"/>-->
+                    <field name="tour_operateur"/>
+
+                    <field name="ticket_number"/>
+                    <!--<field name="vendeur_id"/>-->
+
+                    <field name="selling_price"/>
+                    <field name="seller_commission"/>
+                    <field name="paid_sum"/>
+                    <!--<field name="hotel_id"/>-->
+
+                    <field name="room_nbr"/>
+                    <field name="liquidation"/>
+                    <field name="doc_nbr"/>
+                    <!--<field name="region_id"/>-->
+
+
+
+
+                </graph>
+            </field>
+        </record>
+
+        <!--<record model="ir.ui.view" id="excursion.excursion_extra_form">-->
+            <!--<field name="name">Excursion Extra</field>-->
+            <!--<field name="model">excursion.extra</field>-->
+            <!--<field name="arch" type="xml">-->
+                <!--<form>-->
+                    <!--<group>-->
+                        <!--<field name="dat"/>-->
+                        <!--<field name="excursion_id"/>-->
+                        <!--<field name="adulte"/>-->
+                        <!--<field name="enfant"/>-->
+                        <!--<field name="inf"/>-->
+                        <!--<field name="tour_operateur"/>-->
+                        <!--<field name="booking_number"/>-->
+                        <!--<field name="ticket_number"/>-->
+                        <!--<field name="vendeur_id"/>-->
+                        <!--<field name="selling_price"/>-->
+                        <!--<field name="seller_commission"/>-->
+                        <!--<field name="paid_sum"/>-->
+                        <!--<field name="hotel_id"/>-->
+                        <!--<field name="room_nbr"/>-->
+                        <!--<field name="liquidation"/>-->
+                        <!--<field name="doc_nbr"/>-->
+
+
+                    <!--</group>-->
+                <!--</form>-->
+            <!--</field>-->
+        <!--</record>-->
+        <record id="excursions_extra_search_view" model="ir.ui.view">
+            <field name="name">excursion.extra.search.view</field>
+            <field name="model">excursion.extra</field>
+            <field name="arch" type="xml">
+                <search string="Excursion sale Information">
+                    <field name="vendeur_id"/>
+                    <field name="ticket_number"/>
+                    <field name="booking_number"/>
+                    <field name="excursion_id"/>
+                    <field name="dat"/>
+                    <field name="crdat"/>
+                    <field name="liquidation"/>
+                    <field name="dat_liquidation"/>
+                    <group expand="0" string="Group By">
+                        <filter name="groupby_vendeur_id" string="Vendeur"  context="{'group_by':'vendeur_id'}"
+                                help="Group Students Course Wise"/>
+                        <filter name="groupby_excursion_id" context="{'group_by': 'excursion_id'}" string="Excursion"
+                                help="Group Students by Year" />
+                        <filter name="groupby_dat_liquidation" context="{'group_by': 'dat_liquidation:month'}" string="Date de liquidation"/>
+                        <filter name="groupby_dat_exc" context="{'group_by': 'crdat:month'}" string="Date de reservation"/>
+                    </group>
+                    <filter name="liquidation_is_true" string="Liquidé" domain="[('liquidation','=','True')]"
+                            help="Show all liquided records" />
+                    <filter name="liquidation_is_false" string="NON liquidé" domain="[('liquidation','=','False')]"
+                            help="Show all records that are not liquided" />
+
+                </search>
+            </field>
+        </record>
+        <record id="excursions_reservation_search_view" model="ir.ui.view">
+            <field name="name">excursion.reservation.extra.search.view</field>
+            <field name="model">excursion.reservations</field>
+            <field name="arch" type="xml">
+                <search string="Excursion sale Information">
+                    <field name="vendeur_id"/>
+                    <field name="ticket_number"/>
+                    <field name="booking_number"/>
+                    <field name="excursion_id"/>
+                    <field name="dat"/>
+                    <field name="crdat"/>
+                    <field name="liquidation"/>
+                    <field name="dat_liquidation"/>
+                    <group expand="0" string="Group By">
+                        <filter name="groupby_vendeur_id" string="Vendeur"  context="{'group_by':'vendeur_id'}"
+                                help="Group Students Course Wise"/>
+                        <filter name="groupby_excursion_id" context="{'group_by': 'excursion_id'}" string="Excursion"
+                                help="Group Students by Year" />
+                        <filter name="groupby_dat_liquidation" context="{'group_by': 'dat_liquidation:month'}" string="Date de liquidation"/>
+                        <filter name="groupby_dat_exc" context="{'group_by': 'crdat:month'}" string="Date de reservation"/>
+                    </group>
+                    <filter name="liquidation_is_true" string="Liquidé" domain="[('liquidation','=','True')]"
+                            help="Show all liquided records" />
+
+                    <filter name="liquidation_is_canceled" string="annulé" domain="[('state', '=', 'cncl')]"
+                            help="Show all canceled records" />
+
+                    <filter name="liquidation_is_false" string="NON liquidé" domain="[('liquidation','=','False')]"
+                            help="Show all records that are not liquided" />
+
+                </search>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.excursion_extra_tree">
+            <field name="name">Excursion Extra</field>
+            <field name="model">excursion.extra</field>
+            <field name="arch" type="xml">
+                <tree editable="top" decoration-success="liquidation is True">
+                    <field name="dat"/>
+                    <field name="crdat"/>
+                    <field name="excursion_id"/>
+                    <field name="adulte" sum="adulte"/>
+                    <field name="enfant" sum="enfant"/>
+                    <field name="inf" />
+                    <field name="tour_operateur"/>
+                    <field name="booking_number"/>
+                    <field name="ticket_number"/>
+                    <field name="vendeur_id"/>
+                    <field name="selling_price" sum="selling_price"/>
+                    <field name="seller_commission"/>
+                    <field name="paid_sum" sum="paid_sum"/>
+                    <field name="ext25" groups="excursion.group_excursion_ctm_admin"/>
+                    <field name="ext25amount" invisible="1"/>
+                    <field name="hotel_id"/>
+                    <field name="room_nbr"/>
+                    <field name="liquidation"/>
+                    <field name="dat_liquidation"/>
+                    <field name="doc_nbr"/>
+                    <field name="currency_id"/>
+                    <field name="tu_key" invisible="1"/>
+                    <field name="region_id"/>
+                    <field name="city_key"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="excursion.excursion_reservations_tree">
+            <field name="name">Excursion reservations</field>
+            <field name="model">excursion.reservations</field>
+            <field name="arch" type="xml">
+                <tree editable="top" decoration-success="liquidation is True">
+                    <field name="state" />
+					<field name="dat"/>
+                    <field name="crdat"/>
+                    <field name="excursion_id"/>
+                    <field name="adulte" sum="adulte"/>
+                    <field name="enfant" sum="enfant"/>
+                    <field name="inf" sum="inf" />
+                    <field name="tour_operateur"/>
+                    <field name="booking_number"/>
+                    <field name="ticket_number"/>
+                    <field name="vendeur_id"/>
+                    <field name="selling_price" sum="selling_price"/>
+                    <field name="seller_commission" invisible="1"/>
+                    <field name="paid_sum" sum="paid_sum" invisible="1"/>
+                    <field name="ext25" groups="excursion.group_excursion_ctm_admin"/>
+                    <field name="ext25amount" invisible="1"/>
+                    <field name="hotel_id"/>
+                    <field name="room_nbr"/>
+                    <field name="liquidation"/>
+                    <field name="dat_liquidation"/>
+                    <field name="doc_nbr"/>
+                    <field name="currency_id"/>
+                    <field name="tu_key" invisible="1"/>
+                    <field name="region_id"/>
+                    <field name="city_key"/>
+                    <field name="excursion_detail" groups="base.group_no_one" />
+                    <field name="debiteur"/>
+                    <field name="is_manuel" groups="excursion.group_excursion_ctm_admin"/>
+                    <field name="avoir_bool" groups="excursion.group_excursion_ctm_admin"/>
+                    <field name="avoir_amount" sum="avoir_amount" groups="excursion.group_excursion_ctm_admin"/>
+                    <field name="avoir_date" groups="excursion.group_excursion_ctm_admin"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="excursion.excursion_reservations_form">
+            <field name="name">Excursion reservations form</field>
+            <field name="model">excursion.reservations</field>
+            <field name="arch" type="xml">
+                <form >
+                    <sheet>
+                        <group>
+						<field name="state" />
+                            <field name="dat"/>
+                            <field name="crdat"/>
+                            <field name="excursion_id"/>
+                            <field name="adulte" sum="adulte"/>
+                            <field name="enfant" sum="enfant"/>
+                            <field name="inf" sum="inf" />
+                            <field name="tour_operateur"/>
+                            <field name="booking_number"/>
+                            <field name="ticket_number"/>
+                            <field name="vendeur_id"/>
+                            <field name="selling_price" sum="selling_price"/>
+                            <field name="seller_commission" invisible="1"/>
+                            <field name="paid_sum" sum="paid_sum" invisible="1"/>
+                            <field name="ext25" groups="excursion.group_excursion_ctm_admin"/>
+                            <field name="ext25amount" invisible="1"/>
+                            <field name="hotel_id"/>
+                            <field name="room_nbr"/>
+                            <field name="liquidation"/>
+                            <field name="dat_liquidation"/>
+                            <field name="doc_nbr"/>
+                            <field name="currency_id"/>
+                            <field name="tu_key" invisible="1"/>
+                            <field name="region_id"/>
+                            <field name="city_key"/>
+                            <field name="excursion_detail" groups="base.group_no_one" />
+                            <field name="debiteur"/>
+                            <field name="is_manuel" groups="excursion.group_excursion_ctm_admin"/>
+                            <field name="avoir_bool" groups="excursion.group_excursion_ctm_admin"/>
+                            <field name="avoir_amount" sum="avoir_amount" groups="excursion.group_excursion_ctm_admin"/>
+                            <field name="avoir_date" groups="excursion.group_excursion_ctm_admin"/>
+                        </group>
+
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.excursion_extra_actw">
+            <field name="name">Etat des Vente Excursion detaillé</field>
+            <field name="res_model">excursion.extra</field>
+            <field name="view_id" ref="excursion.excursion_extra_tree"/>
+            <field name="search_view_id" ref="excursion.excursions_extra_search_view" />
+            <field name="view_mode">tree,form,graph,pivot</field>
+        </record>
+        <record model="ir.actions.act_window" id="excursion.excursion_reservation_liquide_actw">
+            <field name="name">Etat des Vente Excursion</field>
+            <field name="res_model">excursion.reservations</field>
+            <field name="view_id" ref="excursion.excursion_reservations_tree"/>
+            <field name="search_view_id" ref="excursion.excursions_reservation_search_view" />
+            <field name="view_mode">tree,form,graph,pivot</field>
+            <field name="domain">[('liquidation', '=', True)]</field>
+        </record>
+        <record model="ir.actions.act_window" id="excursion.excursion_reservation_noliquide_actw">
+            <field name="name">Etat des Vente Excursion</field>
+            <field name="res_model">excursion.reservations</field>
+            <field name="view_id" ref="excursion.excursion_reservations_tree"/>
+            <field name="search_view_id" ref="excursion.excursions_reservation_search_view" />
+            <field name="view_mode">tree,form,graph,pivot</field>
+            <field name="domain">[('liquidation', '=', False), ('state', '=', 'cnf')]</field>
+        </record>
+        <record model="ir.actions.act_window" id="excursion.excursion_reservation_canceled_actw">
+            <field name="name">Etat des Vente Excursion annulé</field>
+            <field name="res_model">excursion.reservations</field>
+            <field name="view_id" ref="excursion.excursion_reservations_tree"/>
+            <field name="search_view_id" ref="excursion.excursions_reservation_search_view" />
+            <field name="view_mode">tree,form,graph,pivot</field>
+            <field name="domain">[('liquidation', '=', False),('state', '=', 'cncl')]</field>
+        </record>
+
+        <menuitem name="Etat Vente Excursion " id="excursion.affectation_liste"
+                  parent="excursion.affectation_menu" sequence="1"/>
+        <menuitem name="Etat Vente Excursion liquidé" id="excursion.affectation_liste_liquide"
+                  parent="excursion.affectation_liste"
+                  action="excursion.excursion_reservation_liquide_actw" sequence="1"/>
+        <menuitem name="Etat Vente Excursion non liquidé" id="excursion.affectation_listeno"
+                  parent="excursion.affectation_liste"
+                  action="excursion.excursion_reservation_noliquide_actw" sequence="1"/>
+        <menuitem name="Etat Vente Excursion annulé" id="excursion.affectation_listcncl"
+                  parent="excursion.affectation_liste"
+                  action="excursion.excursion_reservation_canceled_actw" sequence="1"/>
+        <menuitem name="Etat Vente Excursion detaille" id="excursion.affectation_liste1"
+                  parent="excursion.affectation_menu"
+                  action="excursion.excursion_extra_actw" groups="base.group_no_one" sequence="2"/>
+    </data>
+</odoo>

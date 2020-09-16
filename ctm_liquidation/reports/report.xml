@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+            id="ctm_liquidation.com_report"
+            string="Etat des Prestataires "
+            model="wizard.creport"
+            report_type="qweb-pdf"
+            name="ctm_liquidation.com_report"
+            menu="False"
+    />
+    <report
+            id="liquidation_report"
+            string="etat de vente excursions "
+            model="wizard.ventereport"
+            report_type="qweb-pdf"
+            name="ctm_liquidation.vente_excursion"
+            menu="False"
+    />
+    <report
+            id="ctm_liquidation.thalasso_report"
+            string="etat de vente thalasso "
+            model="wizard.ventethalasso"
+            report_type="qweb-pdf"
+            name="ctm_liquidation.vente_thalasso"
+            menu="False"
+    />
+    <report
+            id="ctm_liquidation.historique_report"
+            string="etat historique affectation "
+            model="wizard.historiquerep"
+            report_type="qweb-pdf"
+            name="ctm_liquidation.historique_report"
+            menu="False"
+    />
+    <report
+            id="ctm_liquidation.avenda_report"
+            string="Analyse des vente represenant"
+            model="wizard.anveda"
+            report_type="qweb-pdf"
+            name="ctm_liquidation.avenda_report"
+            menu="False"
+    />
+
+
+</odoo>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <report
+            id="ep_report"
+            string="Order de mission "
+            model="excursion.movementday"
+            report_type="qweb-pdf"
+            name="excursion.ep_report"
+            menu="False"
+    />
+
+    <report
+            id="lt_report"
+            string="Liste des Tarifs "
+            model="excursion.tarif"
+            report_type="qweb-pdf"
+            name="excursion.lt_report"
+            menu="False"
+    />
+    <report
+            id="excursion.venterecap_excursion"
+            string="vente excursions recap"
+            model="wizard.venterecap"
+            report_type="qweb-pdf"
+            name="excursion.venterecap_excursion"
+            menu="False"
+    />
+
+</odoo>

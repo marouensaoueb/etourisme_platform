@@ -1,0 +1,16 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_matrix_module_matrix_module,matrix_module_matrix_module,model_accomodations,,1,1,1,1
+access_matrix_module_matrix_modul1,matrix_module_matrix_module1,model_room_prices,,1,1,1,1
+access_matrix_module_matrix_modul2,matrix_module_matrix_module2,model_room_prices_detail,,1,1,1,1
+access_matrix_module_matrix_modul3,matrix_module_matrix_module3,model_room_prices_transient,,1,1,1,1
+access_matrix_module_matrix_modul4,matrix_module_matrix_module4,model_room_prices_detail_transient,,1,1,1,1
+access_matrix_module_matrix_modul9,matrix_module_matrix_module9,model_room_prices_detail_sgl_transient,,1,1,1,1
+access_matrix_module_matrix_modul5,matrix_module_matrix_module5,model_room_prices_date_ranges,,1,1,1,1
+access_matrix_module_matrix_modu6,matrix_module_matrix_module6,model_room_prices_detail_dates_other,,1,1,1,1
+access_matrix_module_matrix_modu7,matrix_module_matrix_module7,model_room_prices_detail_dates,,1,1,1,1
+access_matrix_module_matrix_modu8,matrix_module_matrix_module8,model_room_prices_detail_other,,1,1,1,1
+access_matrix_module_product_price,product_price,model_accomodation_prices,,1,1,1,1
+access_matrix_cancellation_release_policy,model_cancellation_release_policy,model_cancellation_release_policy,,1,1,1,1
+access_matrix_spo_configuration,model_spo_configuration,model_spo_configuration,,1,1,1,1
+access_matrix_spo_values,model_spo_values,model_spo_values,,1,1,1,1
+access_matrix_spo_paystay,model_spo_paystay,model_spo_paystay,,1,1,1,1

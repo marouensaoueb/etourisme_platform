@@ -1,0 +1,324 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="ctm_liquidation.thalasso_form">
+            <field name="name">liquidation Thalasso</field>
+            <field name="model">liquidation.thalasso</field>
+            <field name="arch" type="xml">
+                <form>
+
+
+                    <sheet>
+
+                        <group string="Reservation Thalasso">
+
+
+
+                            <field name="representant"/>
+                            <field name="num_reservation"/>
+                            <field name="vochar"/>
+                            <field name="reservation"/>
+                            <field name="date_arrivee"/>
+                            <field name="nom_hotel"/>
+                            <field name="num_reservation"/>
+                            <field name="nom_agence"/>
+                            <field name="centre_thalasso"/>
+                            <field name="cure_thalasso"/>
+                            <field name="nembre_jours"/>
+                            <field name="nembre_soins"/>
+                            <field name="paxe"/>
+                            <field name="tarif"/>
+                            <field name="tarif_agence"/>
+                            <field name="commission_to"/>
+                            <field name="commission"/>
+                            <field name="date"/>
+                            <field name="date_recu"/>
+                            <field name="date_paiement"/>
+                            <field name="numero_etat"/>
+                            <field name="pourcentage"/>
+
+
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.thalasso_tree">
+
+            <field name="name">Thalasso</field>
+            <field name="model">liquidation.thalasso</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date" string="Date"/>
+
+                    <field name="representant" string="REP" widget="many2many_tags"/>
+
+                    <field name="nom_hotel" string="Hotel"/>
+                    <field name="client_name"/>
+                    <field name="num_reservation" string="N.Book" />
+                    <field name="centre_thalasso" string="Centre"/>
+                    <field name="cure"/>
+                    <field name="cure_thalasso" string="type"/>
+                    <field name="paxe" string="Pax" invisible="1"/>
+                    <field name="nembre_jours" string="N.jrs" invisible="1"/>
+                    <field name="nembre_soins" string="N.Soins" invisible="1"/>
+                    <field name="tarif" string="Mont"/>
+
+                    <field name="commission" string="Rep Com" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+                    <field name="commission_to" string="TO Com" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+
+
+                    <field name="date_recu" string="Date Enc"/>
+                    <field name="date_paiement" string="Date Paie"/>
+                    <field name="numero_etat"/>
+                    <field name="pourcentage" string="%"/>
+                    <field name="statut" string="Status"/>
+                    <button type="object" string="confirmer" name="confirmer" />
+                    <button type="object" string="déconfirmer" name="deconfirmer" />
+                    <button type="action" string="dupliquer" name="ctm_liquidation.wizard_duplication_action"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.cure_form">
+            <field name="name">cure thalasso</field>
+            <field name="model">liquidation.cure</field>
+            <field name="arch" type="xml">
+                <form>
+
+
+                    <group string="cures">
+
+
+                        <field name="code"/>
+                        <field name="nom_cure"/>
+                        <field name="prix_individuel"/>
+                        <field name="prix_agence"/>
+
+
+                    </group>
+
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.cure_tree">
+            <field name="name">cure</field>
+            <field name="model">liquidation.cure</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+
+                    <field name="code"/>
+                    <field name="nom_cure"/>
+                    <field name="prix_individuel"/>
+                    <field name="prix_agence"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.etatliquidationthalasso_form">
+            <field name="name">état liquidation thalasso</field>
+            <field name="model">liquidation.etatliquidationthalasso</field>
+            <field name="arch" type="xml">
+                <form>
+
+
+                    <group string="état liquidation thalasso">
+
+
+                        <field name="code"/>
+                        <field name="representant" domain="[('etat', '=', 'representant')]"/>
+                        <field name="date_liquidation"/>
+                        <field name="type_liquidation"/>
+                        <field name="tarif_individuel"/>
+                        <field name="tarif_agence"/>
+                        <field name="commision_reps"/>
+                        <field name="net_payer"/>
+                        <field name="date_paiement_commision"/>
+                        <field name="paye"/>
+
+
+
+                    </group>
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.etatliquidationthalasso_tree">
+            <field name="name">état liquidation thalasso</field>
+            <field name="model">liquidation.etatliquidationthalasso</field>
+            <field name="arch" type="xml">
+                <tree>
+
+
+                    <field name="code"/>
+                    <field name="representant"/>
+                    <field name="date_liquidation"/>
+                    <field name="type_liquidation"/>
+                    <field name="tarif_individuel"/>
+                    <field name="tarif_agence"/>
+                    <field name="commision_reps"/>
+                    <field name="net_payer"/>
+                    <field name="date_paiement_commision"/>
+                    <field name="paye"/>
+                    <field name="currency_id" invisible="1"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.centrethalasso_form">
+            <field name="name">centres thalasso</field>
+            <field name="model">liquidation.centrethalasso</field>
+            <field name="arch" type="xml">
+                <form>
+
+
+                    <sheet>
+
+                        <group string="centres">
+
+
+                            <field name="code"/>
+                            <field name="nom_centre"/>
+                            <field name="centre_base"/>
+                            <field name="cure_id" widget="many2many_tags"/>
+                            <field name="num_telephone"/>
+                            <field name="nom_hotel" widget="many2many_tags"/>
+                            <field name="pourcentage_cure"/>
+                            <field name="pourcentage_carte"/>
+
+
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.configthalasso_tree">
+            <field name="name">configuration commissions thalasso</field>
+            <field name="model">liquidation.configthalasso</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+
+                    <field name="date_debut_saison"/>
+                    <field name="date_fin_saison"/>
+                    <field name="montant_moyen"/>
+
+                    <field name="centre_base"/>
+                    <field name="commission_representant_max"/>
+                    <field name="commission_representant_min"/>
+                    <field name="currency_id" invisible="1"/>
+
+
+                </tree>
+
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.centrethalasso_tree">
+            <field name="name">centres thalasso</field>
+            <field name="model">liquidation.centrethalasso</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+
+                    <field name="code"/>
+                    <field name="nom_centre"/>
+                    <field name="centre_base"/>
+                    <field name="cure_id" widget="many2many_tags"/>
+                    <field name="num_telephone"/>
+                    <field name="nom_hotel" widget="many2many_tags"/>
+                    <field name="pourcentage_cure"/>
+                    <field name="pourcentage_carte"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.afficher_actw">
+            <field name="name">etat de vente Thalasso avec commission non calculée</field>
+
+            <field name="res_model">liquidation.thalasso</field>
+            <field name="view_id" ref="ctm_liquidation.thalasso_tree"/>
+            <field name="view_mode">tree,form</field>
+            <field name="domain" >[('commission', '=', 0)]</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.afficher_actw1">
+            <field name="name">etat de vente Thalasso avec commission calculée</field>
+
+            <field name="res_model">liquidation.thalasso</field>
+            <field name="view_id" ref="ctm_liquidation.thalasso_tree"/>
+            <field name="view_mode">tree,form</field>
+            <field name="domain" >[('commission', '!=', 0)]</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.cure_actw">
+            <field name="name">Cures</field>
+
+            <field name="res_model">liquidation.cure</field>
+            <field name="view_id" ref="ctm_liquidation.cure_tree"/>
+
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.centrethalasso_actw">
+            <field name="name">centres thalasso</field>
+
+            <field name="res_model">liquidation.centrethalasso</field>
+            <field name="view_id" ref="ctm_liquidation.centrethalasso_tree"/>
+
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.configthalasso_actw">
+            <field name="name">configuration thalasso</field>
+
+            <field name="res_model">liquidation.configthalasso</field>
+            <field name="view_id" ref="ctm_liquidation.configthalasso_tree"/>
+
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.etatliquidationthalasso_actw">
+            <field name="name">Etat liquidation thalasso</field>
+            <field name="res_model">liquidation.etatliquidationthalasso</field>
+            <field name="view_id" ref="ctm_liquidation.etatliquidationthalasso_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Controle de mouvement Thalasso" sequence="3" id="ctm_liquidation.menu_sub_root_1_4"
+                  parent="ctm_liquidation.menu_sub_root_1"/>
+        <menuitem name="etat de vente Thalasso avec commission non calculé" id="ctm_liquidation.menu_2_1" parent="ctm_liquidation.menu_sub_root_1_4"
+                  action="ctm_liquidation.afficher_actw"/>
+        <menuitem name="etat de vente Thalasso avec commission calculé" id="ctm_liquidation.menu_2_calcul" parent="ctm_liquidation.menu_sub_root_1_4"
+                  action="ctm_liquidation.afficher_actw1"/>
+        <!--<menuitem name="Etat liquidation thalasso" id="ctm_liquidation.menu_sub_sub_2" sequence="2" parent="ctm_liquidation.menu_sub_root"-->
+        <!--action="ctm_liquidation.etatliquidationthalasso_actw"/>-->
+        <menuitem name="Cures" id="ctm_liquidation.menu_2_2" parent="ctm_liquidation.menu_7"
+                  action="ctm_liquidation.cure_actw"/>
+
+        <menuitem name="centres thalasso" id="ctm_liquidation.menu_2_3" parent="ctm_liquidation.menu_7"
+                  action="ctm_liquidation.centrethalasso_actw"/>
+
+        <menuitem name="configuration thalasso" id="ctm_liquidation.menu_2_4" parent="ctm_liquidation.menu_7"
+                  action="ctm_liquidation.configthalasso_actw"/>
+
+
+    </data>
+</odoo>

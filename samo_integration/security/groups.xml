@@ -1,0 +1,18 @@
+<odoo>
+    <data>
+        <record model="res.groups" id="samo_reference">
+            <field name="name">reference samo</field>
+
+        </record>
+        <record model="res.groups" id="samo_prices">
+            <field name="name">prices samo</field>
+
+        </record>
+        <record model="res.groups" id="samo_wizard">
+            <field name="name"> interogation wizard samo</field>
+
+        </record>
+
+
+    </data>
+</odoo>

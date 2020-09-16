@@ -1,0 +1,194 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <record model="ir.ui.view" id="ctm_facturation.list_factures_sejours">
+            <field name="name">ctm_facturation list</field>
+            <field name="model">ctm_facturation.ctm_facturation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date_facture"/>
+                    <field name="number_facture"/>
+                    <field name="vendeur_facture"/>
+                    <field name="montant_facture"/>
+<!--                    <field name="invoice_res_line_sejour" string="liste des reservations séjours"/>-->
+                    <!--                    <field name="invoice_res_line_excursion" string="liste des reservations excursions" attrs="{'invisible':[(context.get('type'),'!=','exc')]}"/>-->
+                    <!--                    <field name="invoice_res_line_transfert" string="liste des reservations transferts" attrs="{'invisible':[(context.get('type'),'!=','trf')]}"/>-->
+                </tree>
+            </field>
+        </record>
+        <record id="ctm_facturation.list_factures_sejours_view_form" model="ir.ui.view">
+            <field name="name">ctm_facturation.list_factures_sejours_view_form</field>
+            <field name="model">ctm_facturation.ctm_facturation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="date_facture"/>
+                            <field name="number_facture"/>
+                            <field name="vendeur_facture"/>
+                            <field name="montant_facture"/>
+<!--                            <field name="invoice_res_line_sejour" string="liste des reservations séjours"-->
+<!--                                   invisible="context.get('sej','false'),context.get('exc','true'),context.get('trf','true')"/>-->
+<!--                            <field name="invoice_res_line_excursion" string="liste des reservations excursion"-->
+<!--                                   invisible="context.get('sej','true'),context.get('exc','false'),context.get('trf','true')"/>-->
+<!--                            <field name="invoice_res_line_transfert" string="liste des reservations transfert"-->
+<!--                                   invisible="context.get('sej','true'),context.get('exc','true'),context.get('trf','false')"/>-->
+
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <!--              <record model="ir.ui.view" id="ctm_facturation.list_factures_excursions">-->
+        <!--                <field name="name">ctm_facturation list</field>-->
+        <!--                <field name="model">ctm_facturation.ctm_facturation</field>-->
+        <!--                <field name="arch" type="xml">-->
+        <!--                  <tree>-->
+        <!--                    <field name="date_facture"/>-->
+        <!--                    <field name="number_facture"/>-->
+        <!--                    <field name="vendeur_facture"/>-->
+        <!--                    <field name="montant_facture" />-->
+        <!--                    <field name="invoice_res_line_excursion" string="listes des reservations excursions"/>-->
+        <!--                  </tree>-->
+        <!--                </field>-->
+        <!--              </record>-->
+        <!--      <record id="ctm_facturation.list_factures_excursions_view_form" model="ir.ui.view">-->
+        <!--          <field name="name">ctm_facturation.list_factures_excursions_view_form</field>-->
+        <!--          <field name="model">ctm_facturation.ctm_facturation</field>-->
+        <!--          <field name="arch" type="xml">-->
+        <!--              <form>-->
+        <!--                  <sheet>-->
+        <!--                      <group>-->
+        <!--                        <field name="date_facture"/>-->
+        <!--                        <field name="number_facture"/>-->
+        <!--                        <field name="vendeur_facture"/>-->
+        <!--                        <field name="montant_facture" />-->
+        <!--                          <field name="invoice_res_line_excursion" string="listes des reservations excursions">-->
+        <!--                              <tree>-->
+        <!--                                  <field name="excursion_name"/>-->
+        <!--                                  <field name="date_excursion"/>-->
+        <!--                                  <field name="vendeur"/>-->
+        <!--                                  <field name="nbre_adulte"/>-->
+        <!--                                  <field name="nbre_enfant"/>-->
+        <!--                                  <field name="prix_adulte"/>-->
+        <!--                                  <field name="prix_enfant"/>-->
+        <!--                                  -->
+        <!--                                  <field name="montant"/>-->
+        <!--                                  -->
+        <!--                              </tree>-->
+        <!--                              <form>-->
+        <!--                                  <field name="excursion_name"/>-->
+        <!--                                  <field name="date_excursion"/>-->
+        <!--                                  <field name="vendeur"/>-->
+        <!--                                  <field name="nbre_adulte"/>-->
+        <!--                                  <field name="nbre_enfant"/>-->
+        <!--                                  <field name="prix_adulte"/>-->
+        <!--                                  <field name="prix_enfant"/>-->
+        <!--                                  -->
+        <!--                                  <field name="montant"/>-->
+        <!--                              </form>-->
+        <!--                          </field>-->
+
+        <!--                      </group>-->
+        <!--                  </sheet>-->
+        <!--              </form>-->
+        <!--          </field>-->
+        <!--      </record>-->
+        <!--      <record model="ir.ui.view" id="ctm_facturation.list_factures_transferts">-->
+        <!--        <field name="name">ctm_facturation list</field>-->
+        <!--        <field name="model">ctm_facturation.ctm_facturation</field>-->
+        <!--        <field name="arch" type="xml">-->
+        <!--          <tree>-->
+        <!--            <field name="date_facture"/>-->
+        <!--            <field name="number_facture"/>-->
+        <!--            <field name="vendeur_facture"/>-->
+        <!--            <field name="montant_facture" />-->
+        <!--            <field name="invoice_res_line_transfert" string="liste de transferts"/>-->
+        <!--          </tree>-->
+        <!--        </field>-->
+        <!--      </record>-->
+        <!--      <record id="ctm_facturation.list_factures_transferts_view_form" model="ir.ui.view">-->
+        <!--          <field name="name">ctm_facturation.list_factures_transferts_view_form</field>-->
+        <!--          <field name="model">ctm_facturation.ctm_facturation</field>-->
+        <!--          <field name="arch" type="xml">-->
+        <!--              <form>-->
+        <!--                  <sheet>-->
+        <!--                      <group>-->
+        <!--                        <field name="date_facture"/>-->
+        <!--                        <field name="number_facture"/>-->
+        <!--                        <field name="vendeur_facture"/>-->
+        <!--                        <field name="montant_facture" />-->
+        <!--                        <field name="invoice_res_line_transfert" string="liste de transferts"/>-->
+
+        <!--                      </group>-->
+        <!--                  </sheet>-->
+        <!--              </form>-->
+        <!--          </field>-->
+        <!--      </record>-->
+
+
+        <!-- actions opening views on models -->
+
+        <record model="ir.actions.act_window" id="ctm_facturation.action_window_sejour_factures">
+            <field name="name">ctm_facturation window</field>
+            <field name="res_model">ctm_facturation.ctm_facturation</field>
+            <field name="view_id" ref="ctm_facturation.list_factures_sejours"/>
+            <field name="context">{'sej':'true','exc':'false','trf':'false'}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_facturation.action_window_excursion_factures">
+            <field name="name">ctm_facturation window</field>
+            <field name="res_model">ctm_facturation.ctm_facturation</field>
+            <field name="view_id" ref="ctm_facturation.list_factures_sejours"/>
+            <field name="context">{'sej':'false','exc':'true','trf':'false'}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_facturation.action_window_transfert_factures">
+            <field name="name">ctm_facturation window</field>
+            <field name="res_model">ctm_facturation.ctm_facturation</field>
+            <field name="view_id" ref="ctm_facturation.list_factures_sejours"/>
+            <field name="context">{'sej':'false','exc':'false','trf':'true'}</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <!-- server action to the one above -->
+        <!--
+        <record model="ir.actions.server" id="ctm_facturation.action_server">
+          <field name="name">ctm_facturation server</field>
+          <field name="model_id" ref="model_ctm_facturation_ctm_facturation"/>
+          <field name="state">code</field>
+          <field name="code">
+            action = {
+              "type": "ir.actions.act_window",
+              "view_mode": "tree,form",
+              "res_model": self._name,
+            }
+          </field>
+        </record>
+        -->
+
+        <!-- Top menu item -->
+
+        <menuitem name="ctm_facturation" id="ctm_facturation.menu_root"/>
+
+        <!-- menu categories -->
+
+        <menuitem name="facturation séjour" id="ctm_facturation.sejour" parent="ctm_facturation.menu_root"/>
+        <menuitem name="facturation excursion" id="ctm_facturation.excursion" parent="ctm_facturation.menu_root"/>
+        <menuitem name="facturation transfert" id="ctm_facturation.transfert" parent="ctm_facturation.menu_root"/>
+
+
+        <!-- actions -->
+
+        <menuitem name="Factures Séjour" id="ctm_facturation.sejour_factures" parent="ctm_facturation.sejour"
+                  action="ctm_facturation.action_window_sejour_factures"/>
+        <menuitem name="Factures excursions" id="ctm_facturation.excursion_factures" parent="ctm_facturation.excursion"
+                  action="ctm_facturation.action_window_excursion_factures"/>
+        <menuitem name="Factures transfert" id="ctm_facturation.transfert_factures" parent="ctm_facturation.transfert"
+                  action="ctm_facturation.action_window_transfert_factures"/>
+
+        -->
+    </data>
+</odoo>

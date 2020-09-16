@@ -1,0 +1,363 @@
+<odoo>
+    <data noupdate="1">
+        <!--todo : meals-->
+        <!--only 5 paxes are pre_coded due to diversity of cases in the beginning of the tree ,-->
+        <!--the rest will be entered manually depending to the case-->
+        <!--baby coats-->
+        <record model="accomodations" id="accomodation_bb_c">
+            <field name="code" >Baby Coat</field>
+            <field name="codef">Baby Coat</field>
+            <field name="adult">0</field>
+            <field name="child">0</field>
+            <field name="inf">1</field>
+            <!--<field name="parent_id">True</field>-->
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">True</field>
+            <field name="sequence">-1</field>
+        </record>
+        <record model="accomodations" id="accomodation_n_bb_c">
+            <field name="code" >No Baby Coat</field>
+            <field name="codef">No Baby Coat</field>
+            <field name="adult">0</field>
+            <field name="child">0</field>
+            <field name="inf">1</field>
+            <!--<field name="parent_id">True</field>-->
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">True</field>
+            <field name="sequence">-2</field>
+        </record>
+        <!--DBL tree -->
+        <record model="accomodations" id="accomodation_dbl">
+            <field name="code" >DBL</field>
+            <field name="codef">Half double</field>
+            <field name="adult">1</field>
+            <field name="child">0</field>
+            <field name="inf">0</field>
+            <!--<field name="parent_id">True</field>-->
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">True</field>
+            <field name="sequence">10</field>
+        </record>
+
+        <record model="accomodations" id="accomodation_dbl_plus_1">
+            <field name="code" >DBL + 1</field>
+            <field name="codef">1 AD + 1 CHD</field>
+            <field name="adult">1</field>
+            <field name="child">1</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_dbl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_dbl_plus_1_of_2">
+            <field name="code" >DBL + 1 (2) </field>
+            <field name="codef">1 AD + 1 (2) </field>
+            <field name="adult">1</field>
+            <field name="child">1</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_dbl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_dbl_plus_2_of_2">
+            <field name="code" >DBL + 2 (2) </field>
+            <field name="codef">1 AD + 2 (2) </field>
+            <field name="adult">1</field>
+            <field name="child">2</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_dbl_plus_1_of_2" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_dbl_plus_1_of_3">
+            <field name="code" >DBL + 1 (3) </field>
+            <field name="codef">1 AD + 1 (3) </field>
+            <field name="adult">1</field>
+            <field name="child">1</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_dbl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_dbl_plus_2_of_3">
+            <field name="code" >DBL + 2 (3) </field>
+            <field name="codef">1 AD + 2 (3) </field>
+            <field name="adult">1</field>
+            <field name="child">2</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_dbl_plus_1_of_3" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_dbl_plus_3_of_3">
+            <field name="code" >DBL + 3 (3) </field>
+            <field name="codef">1 AD + 3 (3) </field>
+            <field name="adult">1</field>
+            <field name="child">3</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_dbl_plus_2_of_3" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_dbl_plus_2">
+            <field name="code" >DBL + 2</field>
+            <field name="codef">1 AD + 2 CHD</field>
+            <field name="adult">1</field>
+            <field name="child">2</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_dbl_plus_1" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_dbl_plus_3">
+            <field name="code" >DBL + 3</field>
+            <field name="codef">1 AD + 3 CHD</field>
+            <field name="adult">1</field>
+            <field name="child">3</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_dbl_plus_2" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_dbl_plus_4">
+            <field name="code" >DBL + 4</field>
+            <field name="codef">1 AD + 4 CHD</field>
+            <field name="adult">1</field>
+            <field name="child">4</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_dbl_plus_3" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_2_dbl">
+            <field name="code" >2 DBL</field>
+            <field name="codef">Double</field>
+            <field name="adult">2</field>
+            <field name="child">0</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_dbl" />
+            <field name="visible_in_prices">False</field>
+            <field name="is_base">False</field>
+            <field name="sequence">7</field>
+        </record>
+        <record model="accomodations" id="accomodation_2_dbl_plus_1">
+            <field name="code" >First kid from 2 AD </field>
+            <field name="codef">2 AD + 1 CHD</field>
+            <field name="adult">2</field>
+            <field name="child">1</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_2_dbl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">7</field>
+        </record>
+        <record model="accomodations" id="accomodation_2_dbl_plus_2">
+            <field name="code" >Second kid from 2 AD </field>
+            <field name="codef">2 AD + 2 CHD</field>
+            <field name="adult">2</field>
+            <field name="child">2</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_2_dbl_plus_1" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">7</field>
+        </record>
+        <record model="accomodations" id="accomodation_2_dbl_plus_3">
+            <field name="code" >Third kid from 2 AD </field>
+            <field name="codef">2 AD + 3 CHD</field>
+            <field name="adult">2</field>
+            <field name="child">3</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_2_dbl_plus_2" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">7</field>
+        </record>
+        <record model="accomodations" id="accomodation_3_dbl">
+            <field name="code" >3 AD</field>
+            <field name="codef">3 AD</field>
+            <field name="adult">3</field>
+            <field name="child">0</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_2_dbl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">6</field>
+        </record>
+        <record model="accomodations" id="accomodation_3_dbl_plus_1">
+            <field name="code" >First child from 3 AD </field>
+            <field name="codef">3 AD +1</field>
+            <field name="adult">3</field>
+            <field name="child">1</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_3_dbl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">6</field>
+        </record>
+        <record model="accomodations" id="accomodation_3_dbl_plus_2">
+            <field name="code" >Second child from 3 AD </field>
+            <field name="codef">3 AD +1</field>
+            <field name="adult">3</field>
+            <field name="child">2</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_3_dbl_plus_1" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">6</field>
+        </record>
+        <record model="accomodations" id="accomodation_4_dbl">
+            <field name="code" >4 AD</field>
+            <field name="codef">4 AD</field>
+            <field name="adult">4</field>
+            <field name="child">0</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_3_dbl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">5</field>
+        </record>
+        <record model="accomodations" id="accomodation_4_dbl_plus_1">
+            <field name="code" >4 AD + 1 CHD</field>
+            <field name="codef">4 AD + 1 CHD</field>
+            <field name="adult">4</field>
+            <field name="child">1</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_4_dbl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">5</field>
+        </record>
+        <record model="accomodations" id="accomodation_5_dbl">
+            <field name="code" >5 AD</field>
+            <field name="codef">5 AD</field>
+            <field name="adult">5</field>
+            <field name="child">0</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_4_dbl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">4</field>
+        </record>
+        <!--SGL tree -->
+        <record model="accomodations" id="accomodation_sgl">
+            <field name="code" >SGL</field>
+            <field name="codef">Single</field>
+            <field name="adult">1</field>
+            <field name="child">0</field>
+            <field name="inf">0</field>
+            <!--<field name="parent_id">True</field>-->
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">True</field>
+            <field name="sequence">9</field>
+        </record>
+        <record model="accomodations" id="accomodation_sgl_plus_1">
+            <field name="code" >SGL + 1 </field>
+            <field name="codef">Single + 1 </field>
+            <field name="adult">1</field>
+            <field name="child">1</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_sgl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">9</field>
+        </record>
+        <record model="accomodations" id="accomodation_sgl_plus_2">
+            <field name="code" >SGL + 2 </field>
+            <field name="codef">Single + 2 </field>
+            <field name="adult">1</field>
+            <field name="child">2</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_sgl_plus_1" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_sgl_plus_3">
+            <field name="code" >SGL + 3 </field>
+            <field name="codef">Single + 3 </field>
+            <field name="adult">1</field>
+            <field name="child">3</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_sgl_plus_2" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_sgl_plus_4">
+            <field name="code" >SGL + 4 </field>
+            <field name="codef">Single + 4 </field>
+            <field name="adult">1</field>
+            <field name="child">4</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_sgl_plus_3" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_sgl_plus_1_of_2">
+            <field name="code" >SGL + 1 (2) </field>
+            <field name="codef">Single + 1 (2) </field>
+            <field name="adult">1</field>
+            <field name="child">1</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_sgl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_sgl_plus_2_of_2">
+            <field name="code" >SGL + 2 (2) </field>
+            <field name="codef">Single + 2 (2) </field>
+            <field name="adult">1</field>
+            <field name="child">2</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_sgl_plus_1_of_2" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_sgl_plus_1_of_3">
+            <field name="code" >SGL + 1 (3) </field>
+            <field name="codef">Single + 1 (3) </field>
+            <field name="adult">1</field>
+            <field name="child">1</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_sgl" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_sgl_plus_2_of_3">
+            <field name="code" >SGL + 2 (3) </field>
+            <field name="codef">Single + 2 (3) </field>
+            <field name="adult">1</field>
+            <field name="child">2</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_sgl_plus_1_of_3" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+        <record model="accomodations" id="accomodation_sgl_plus_3_of_3">
+            <field name="code" >SGL + 3 (3) </field>
+            <field name="codef">Single + 3 (3) </field>
+            <field name="adult">1</field>
+            <field name="child">3</field>
+            <field name="inf">0</field>
+            <field name="parent_id" ref="product_price_computation_carthage_group.accomodation_sgl_plus_2_of_3" />
+            <field name="visible_in_prices">True</field>
+            <field name="is_base">False</field>
+            <field name="sequence">8</field>
+        </record>
+    </data>
+</odoo>

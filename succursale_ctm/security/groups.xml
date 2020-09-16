@@ -1,0 +1,15 @@
+<odoo>
+    <data>
+
+
+        <record id="succursale_ctm.group_succursale_ctm_admin" model="res.groups">
+            <field name="name">Succursale Admin</field>
+
+        </record>
+        <record id="succursale_ctm.group_succursale_ctm_user" model="res.groups">
+            <field name="name">Succursale User</field>
+
+        </record>
+
+    </data>
+</odoo>

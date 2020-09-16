@@ -1,0 +1,1327 @@
+<odoo>
+    <data>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.liquidation_tapis_tree">
+            <field name="name">Etat de Vente des Excursion Tapis</field>
+            <field name="model">liquidation.tapis</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="date"/>
+                    <field name="guide_excursion"/>
+                    <field name="chauffeur_excursion"/>
+                    <field name="tour_operateur"/>
+                    <field name="chiffre_affaire"/>
+                    <field name="commission_guide" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+                    <field name="commission_chauffeur" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+                    <field name="commission_to" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.pourcentageadulte_tree">
+            <field name="name">pourcentade adulte</field>
+            <field name="model">liquidation.pourcentageadulte</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="date_debut"/>
+                    <field name="date_fin"/>
+                    <field name="excursion"/>
+                    <field name="representant"/>
+                    <field name="pourcentage"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+
+        <!--        <record model="ir.ui.view" id="ctm_liquidation.liquidation_quatre_fois_quatre_tree">-->
+        <!--            <field name="name">Etat de Vente des Excursion 4*4</field>-->
+        <!--            <field name="model">liquidation.quatre.fois.quatre</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <tree>-->
+        <!--                    <field name="dat"/>-->
+        <!--                    &lt;!&ndash;<field name="excursion_id"/>&ndash;&gt;-->
+        <!--                    <field name="adulte"/>-->
+        <!--                    <field name="enfant"/>-->
+        <!--                    <field name="inf"/>-->
+        <!--                    <field name="tour_operateur"/>-->
+        <!--                    <field name="booking_number"/>-->
+        <!--                    <field name="ticket_number"/>-->
+        <!--                    <field name="vendeur_id"/>-->
+        <!--                    <field name="selling_price"/>-->
+        <!--                    <field name="seller_commission" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>-->
+        <!--                    <field name="paid_sum"/>-->
+        <!--                    <field name="hotel_id"/>-->
+        <!--                    <field name="room_nbr"/>-->
+        <!--                    <field name="liquidation"/>-->
+        <!--                    <field name="doc_nbr"/>-->
+
+
+        <!--                </tree>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+
+        <!--        <record model="ir.ui.view" id="ctm_liquidation.liquidation_camel_tree">-->
+        <!--            <field name="name">Etat de Vente des Excursion Camel</field>-->
+        <!--            <field name="model">liquidation.camel</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <tree>-->
+
+        <!--                    <field name="dat"/>-->
+        <!--                    &lt;!&ndash;<field name="excursion_id"/>&ndash;&gt;-->
+        <!--                    <field name="adulte"/>-->
+        <!--                    <field name="enfant"/>-->
+        <!--                    <field name="inf"/>-->
+        <!--                    <field name="tour_operateur"/>-->
+        <!--                    <field name="booking_number"/>-->
+        <!--                    <field name="ticket_number"/>-->
+        <!--                    <field name="vendeur_id"/>-->
+        <!--                    <field name="selling_price"/>-->
+        <!--                    <field name="seller_commission" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>-->
+        <!--                    <field name="paid_sum"/>-->
+        <!--                    <field name="hotel_id"/>-->
+        <!--                    <field name="room_nbr"/>-->
+        <!--                    <field name="liquidation"/>-->
+        <!--                    <field name="doc_nbr"/>-->
+
+
+        <!--                </tree>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.liquidation_aljazira_tree">
+            <field name="name">Etat de Vente des Excursion AlJazira</field>
+            <field name="model">liquidation.aljazira</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="date"/>
+                    <field name="tour_operateur"/>
+                    <field name="guide_excursion"/>
+                    <field name="chiffre_affaire_condition"/>
+                    <field name="quantite_huile"/>
+
+                    <field name="chiffre_affaire_vrac"/>
+                    <field name="commission_guide" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+                    <field name="commisson_to" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+                    <field name="chiffre_affaire_total"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.etat_liquidation_form">
+            <field name="name">Etat Liquidation</field>
+            <field name="model">etat.liquidation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="nbr_etat"/>
+                            <field name="reps" domain="[('etat', '=', 'representant')]"/>
+                            <field name="date_liquidation" readonly="1"/>
+                            <field name="type_liquidation"/>
+                            <field name="chiffre_affaire"/>
+                            <field name="commission"/>
+                            <field name="retenue"/>
+                            <field name="net"/>
+                            <field name="date_paiment_commission"/>
+                            <field name="payed"/>
+
+                        </group>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.etat_liquidation_tree">
+            <field name="name">Etat Liquidation</field>
+            <field name="model">etat.liquidation</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="nbr_etat"/>
+                    <field name="reps"/>
+                    <field name="date_liquidation"/>
+                    <field name="type_liquidation"/>
+                    <field name="chiffre_affaire"/>
+                    <field name="commission"/>
+                    <field name="retenue"/>
+                    <field name="net"/>
+                    <field name="date_paiment_commission"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.mouvement_guide_form">
+            <field name="name">Mouvements des Guides</field>
+            <field name="model">mouvement.guide</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="date"/>
+                        <field name="guide_principale" domain="[('etat', '=', 'principale')]"/>
+                        <field name="guide_doubleur" domain="[('etat', '=', 'doubleur')]"/>
+                        <field name="chauffeur_id"/>
+                        <field name="transporteur_id"/>
+                        <field name="excursion_id"/>
+                        <field name="nbr_adulte"/>
+                        <field name="nbr_enfant"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.mouvement_guide_tree">
+            <field name="name">Mouvements des Guides</field>
+            <field name="model">mouvement.guide</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date"/>
+                    <field name="guide_principale"/>
+                    <field name="guide_doubleur"/>
+                    <field name="chauffeur_id"/>
+                    <field name="transporteur_id"/>
+                    <field name="excursion_id"/>
+                    <field name="nbr_adulte"/>
+                    <field name="nbr_enfant"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.vente_excursion_form">
+            <field name="name">Vente Excursion</field>
+            <field name="model">vente.excursion</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="arrivee"/>
+                        <field name="hotel_id"/>
+                        <field name="zone_id"/>
+                        <field name="tour_operateur"/>
+                        <field name="representant_id" domain="[('etat', '=', 'representant')]"/>
+                        <field name="excursion_id"/>
+                        <field name="nbr_adulte"/>
+                        <field name="nbr_enfant"/>
+                        <field name="nbr_bebe"/>
+                        <field name="produit"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.vente_excursion_tree">
+            <field name="name">Vente Excursion</field>
+            <field name="model">vente.excursion</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="arrivee"/>
+                    <field name="hotel_id"/>
+                    <field name="zone_id"/>
+                    <field name="tour_operateur"/>
+                    <field name="representant_id"/>
+                    <field name="excursion_id"/>
+                    <field name="nbr_adulte"/>
+                    <field name="nbr_enfant"/>
+                    <field name="nbr_bebe"/>
+                    <field name="produit"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.chauffeur_form">
+            <field name="name">Chauffeur</field>
+            <field name="inherit_id" ref="ctm_fleet.conductors_form"/>
+            <field name="model">ctm.conductor</field>
+            <field name="arch" type="xml">
+                <xpath position="after" expr="//field[@name='adresse']">
+                    <field name="agence_transporteur"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.chauffeur_tree">
+            <field name="name">Chauffeur</field>
+            <field name="inherit_id" ref="ctm_fleet.conductors_tree"/>
+            <field name="model">ctm.conductor</field>
+            <field name="arch" type="xml">
+                <xpath position="after" expr="//field[@name='adresse']">
+                    <field name="agence_transporteur"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.liquidation_agence_transport_form">
+            <field name="name">Agence Transporteur</field>
+            <field name="model">liquidation.agence.transport</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.liquidation_agence_transport_tree">
+            <field name="name">Etat des Agence Transporteur</field>
+            <field name="model">liquidation.agence.transport</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="name"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.etat_guide_target_commision_form">
+            <field name="name">Etat Guide Commision</field>
+            <field name="model">etat.guide.target.commision</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button name="ctm_liquidation.wizard_target_reports_action" type="action"
+                                class="btn btn-default" string="Calculer Commission excursion guide hotel"/>
+                        <button name="ctm_liquidation.wizard_target_reports_action1" type="action"
+                                class="btn btn-default" string="Calculer Commission Thalasso guide hotel"/>
+                        <button name="ctm_liquidation.wizard_target_reports_action2" type="action"
+                                class="btn btn-default" string="Calculer Commission Divers guide hotel"/>
+                    </header>
+
+                    <sheet>
+                        <group string="Guide">
+
+                            <field name="guide"/>
+                            <field name="show_name" invisible="1"/>
+                        </group>
+                        <notebook>
+                            <page string="Commission excursion">
+                                <group>
+                                    <field nolabel="1" name="target_detail">
+                                        <tree create="0" edit="false" editable="top">
+                                            <field name="date_from"/>
+                                            <field name="date_to"/>
+                                            <!--<field name="hotel_id"/>-->
+                                            <field name="paxe"/>
+                                            <field name="paxe_sale"/>
+                                            <field name="sale_amount"/>
+                                            <field name="currency_id"/>
+                                            <field name="target"/>
+                                            <field name="target_rate"/>
+
+                                            <field name="commission"/>
+
+                                        </tree>
+                                    </field>
+
+                                </group>
+                            </page>
+                            <page string="Commission Thalasso">
+                                <group>
+                                    <field nolabel="1" name="commission_thalasso">
+                                        <tree create="0" edit="false" editable="top">
+                                            <field name="date_from"/>
+                                            <field name="date_to"/>
+                                            <!--<field name="hotel_id"/>-->
+                                            <field name="sale_number"/>
+                                            <field name="currency_id" invisible="1"/>
+                                            <field name="commission_brut"/>
+                                            <field name="commission_TO"/>
+
+                                        </tree>
+                                    </field>
+
+                                </group>
+                            </page>
+                            <page string="Commission Lagune">
+                                <group>
+                                    <field nolabel="1" name="commision_lagune">
+                                        <tree create="0" edit="false" editable="top">
+                                            <field name="date_from"/>
+                                            <field name="date_to"/>
+                                            <!--<field name="hotel_id"/>-->
+                                            <field name="sale_number"/>
+                                            <field name="currency_id" invisible="1"/>
+                                            <field name="commission"/>
+
+
+                                        </tree>
+                                    </field>
+
+                                </group>
+                            </page>
+                            <page string="Commission bella marina">
+                                <group>
+                                    <field nolabel="1" name="commision_bella_marina">
+                                        <tree>
+                                            <field name="date_from"/>
+                                            <field name="date_to"/>
+                                            <field name="sale_number"/>
+                                            <field name="currency_id" invisible="1"/>
+                                            <field name="commission"/>
+                                            <field name="commission_to"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Commission Le voilier">
+                                <group>
+                                    <field nolabel="1" name="commision_levoilier">
+                                        <tree>
+                                            <field name="date_from"/>
+                                            <field name="date_to"/>
+                                            <field name="sale_number"/>
+                                            <field name="currency_id" invisible="1"/>
+                                            <field name="commission"/>
+                                            <field name="commission_to"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Commission lether shop ">
+                                <group>
+                                    <field nolabel="1" name="commision_lether_shop">
+                                        <tree>
+                                            <field name="date_from"/>
+                                            <field name="date_to"/>
+                                            <field name="sale_number"/>
+                                            <field name="currency_id" invisible="1"/>
+                                            <field name="commission"/>
+                                            <field name="commission_to"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+                            <page string="Commission photograph">
+                                <group>
+                                    <field nolabel="1" name="commision_photograph">
+                                        <tree>
+                                            <field name="date_from"/>
+                                            <field name="date_to"/>
+                                            <field name="sale_number"/>
+                                            <field name="currency_id" invisible="1"/>
+                                            <field name="commission"/>
+                                            <field name="commission_to"/>
+                                        </tree>
+                                    </field>
+                                </group>
+                            </page>
+
+                        </notebook>
+
+
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.etat_guide_target_commision_tree">
+            <field name="name">Etat des guides-Target</field>
+            <field name="model">etat.guide.target.commision</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="guide"/>
+                    <field name="show_name" invisible="1"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.bareme_tree">
+            <field name="name">Bareme tree</field>
+            <field name="model">ctm.liquidation.bareme</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date_debut_saison"/>
+                    <field name="date_fin_saison"/>
+
+                    <field name="borne_inferieur"/>
+                    <field name="borne_supperieur"/>
+                    <field name="pourcentage_commission"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="liquidation_configchameau_tree">
+            <field name="name">chameau tree</field>
+            <field name="model">liquidation.configchameau</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date_debut_saison"/>
+                    <field name="date_fin_saison"/>
+                    <field name="prix_achat"/>
+                    <field name="prix_vente"/>
+                    <field name="commission_vendeur"/>
+                    <field name="commission_chauffeur"/>
+                    <field name="commission_guide"/>
+                    <field name="commission_agence"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="liquidation_configleathershop_tree">
+            <field name="name">leather shop tree</field>
+            <field name="model">ctm.sale.configleathershop</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date_debut_saison"/>
+                    <field name="date_fin_saison"/>
+                    <field name="typ"/>
+                    <field name="commission_representant" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+                    <field name="commission_agence" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="liquidation_quatrefois_tree">
+            <field name="name">4*4 tree</field>
+            <field name="model">liquidation.quatrefois</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date_debut_saison"/>
+                    <field name="date_fin_saison"/>
+                    <field name="prix_vente"/>
+                    <field name="commission_representant"/>
+                    <field name="prix_location"/>
+                    <field name="frais_chauffeur"/>
+                    <field name="commission_max"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+
+        <!--        <record model="ir.ui.view" id="liquidation_configsahara_form">-->
+        <!--            <field name="name">configuration sahara form</field>-->
+        <!--            <field name="model">excursion.configsahara</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <form>-->
+        <!--                    <group>-->
+        <!--                        <field name="date_debut_saison"/>-->
+        <!--                        <field name="date_fin_saison"/>-->
+        <!--                        <field name="commission_chauffeur"/>-->
+        <!--                        <field name="liste_excursion_sahara"/>-->
+        <!--                    </group>-->
+        <!--                </form>-->
+        <!--            </field>-->
+        <!---->
+        <!--        </record>-->
+
+        <record model="ir.ui.view" id="liquidation_configtapis_tree">
+            <field name="name">configuration tapis</field>
+            <field name="model">liquidation.configtapis</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="date_debut_saison"/>
+                    <field name="date_fin_saison"/>
+                    <field name="commission_total"/>
+                    <field name="commission_chauffeur"/>
+                    <field name="commission_guide"/>
+                    <field name="commission_agence"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="liquidation_configrestaurant_tree">
+            <field name="name">configuration des restaurants</field>
+            <field name="model">liquidation.configrestaurant</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="date_debut_saison"/>
+                    <field name="date_fin_saison"/>
+                    <field name="nom_restaurant"/>
+                    <field name="commission_representant"/>
+                    <field name="commission_agence"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="liquidation_Configjazira_tree">
+            <field name="name">configuration aljazira</field>
+            <field name="model">liquidation.configjazira</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="date_debut_saison"/>
+                    <field name="date_fin_saison"/>
+                    <field name="prix_litre"/>
+                    <field name="commission_guide_condition"/>
+                    <field name="commission_agence_condition"/>
+                    <field name="commission_guide"/>
+                    <field name="commission_agence"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="liquidation_configphoto_tree">
+            <field name="name">photo tree</field>
+            <field name="model">liquidation.configphoto</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="date_debut_saison"/>
+                    <field name="date_fin_saison"/>
+                    <field name="prix_photo"/>
+                    <field name="commission_to"/>
+                    <field name="commission_rep"/>
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.lagune_tree">
+            <field name="name">Etat Vente lagune</field>
+            <field name="model">ctm.sale.lagune</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date"/>
+                    <field name="produit"/>
+                    <field name="prix"/>
+                    <field name="representant"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.photograph_tree">
+            <field name="name">Etat Vente photograph</field>
+            <field name="model">ctm.sale.photograph</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date"/>
+                    <field name="representant"/>
+                    <field name="nbre_photo"/>
+                    <field name="montant"/>
+                    <field name="commission_to" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+                    <field name="commission_representant" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.leather_shop_tree">
+            <field name="name">Etat Vente leather_shop</field>
+            <field name="model">ctm.sale.leather_shop</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date_passage"/>
+                    <field name="representant"/>
+                    <field name="montant"/>
+
+                    <field name="typ"/>
+
+                    <field name="commission_agence" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+                    <field name="commission_representant" groups="ctm_liquidation.ctm_liquidation_agent_controle"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.bella_marina_tree">
+            <field name="name">Etat Vente Bella Marina</field>
+            <field name="model">ctm.sale.bella_marina</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="date"/>
+                    <field name="prestation"/>
+                    <field name="hotel_id"/>
+                    <field name="pax"/>
+                    <field name="room_number"/>
+                    <field name="representant"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.levoilier_tree">
+            <field name="name">Etat Vente Le voilier</field>
+            <field name="model">ctm.sale.levoilier</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+
+                    <field name="date"/>
+                    <field name="prestation"/>
+                    <field name="hotel_id"/>
+                    <field name="pax"/>
+                    <field name="room_number"/>
+                    <field name="representant"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.numreservation_tree">
+            <field name="name">numéro résevation</field>
+            <field name="model">liquidation.numreservation</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date"/>
+                    <field name="number_reservation"/>
+                    <field name="hotel"/>
+                    <field name="pax"/>
+                    <field name="adulte"/>
+                    <field name="enfant"/>
+                    <field name="bebe"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.comm_chauff_extra_tree">
+            <field name="name">Commission chauffeur extra</field>
+            <field name="model">commission.chauffeur.extra</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date"/>
+                    <field name="chauffeur"/>
+                    <field name="amount"/>
+                    <field name="guide"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.historiquerep_tree">
+            <field name="name">Historique des affectations représentants</field>
+            <field name="model">liquidation.historiquerep</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="date_debut" readonly="1"/>
+                    <field name="date_fin"/>
+                    <field name="hotel_id" widget="many2many_tags" readonly="1"/>
+                    <field name="pax_adulte" readonly="1"/>
+                    <field name="pax_enfant" readonly="1"/>
+                    <field name="pax" readonly="1"/>
+                    <field name="representant" />
+                    <field name="to" widget="many2many_tags"/>
+                    <field name="target_rep"/>
+                    <button type="object" string="calculer target" name="target"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.comm_chauff_tree">
+            <field name="name">Commission chauffeur</field>
+            <field name="model">commission.chauffeur</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="chauffeur"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="commisssion"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.comm_exc_guid_tree">
+            <field name="name">Commission Guide excursion</field>
+            <field name="model">commission.excursion.guide</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="guide_id"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                    <field name="commission"/>
+
+
+                </tree>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.comm_exc_guid_form">
+            <field name="name">Commission Guide excursion</field>
+            <field name="model">commission.excursion.guide</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button type="action" name="ctm_liquidation.wizard_commissionguide_reports_action"
+                                class="btn btn-info"
+                                string="Calculer commission"/>
+                    </header>
+                    <sheet>
+                        <group>
+
+                            <field name="guide_id"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="commission"/>
+                            <field name="commission_detail">
+                                <tree>
+                                    <field name="sale_camel"/>
+                                    <field name="sale_tapis"/>
+                                    <field name="sale_quad"/>
+                                    <field name="cost_quad"/>
+                                    <field name="double_guide_bonus"/>
+                                    <field name="oil_oil"/>
+                                    <field name="sale_oil"/>
+                                    <field name="commission_camel"/>
+                                    <field name="commission_quatre"/>
+                                    <field name="commission_tapis"/>
+                                    <field name="commission_aljazira"/>
+                                    <field name="commission_double_guide"/>
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.comm_chauff_form">
+            <field name="name">Commission chauffeur</field>
+            <field name="model">commission.chauffeur</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+                        <button type="action" name="ctm_liquidation.wizard_commissionchauffeur_reports_action"
+                                class="btn btn-info"
+                                string="Calculer commission"/>
+                    </header>
+                    <sheet>
+                        <group>
+
+                            <field name="chauffeur"/>
+                            <field name="date_from"/>
+                            <field name="date_to"/>
+                            <field name="commisssion"/>
+                            <field name="detail_commission">
+                                <tree>
+                                    <field name="pax_sahara"/>
+
+                                    <field name="sale_camel"/>
+                                    <field name="sale_tapis"/>
+                                    <field name="commission_camel"/>
+                                    <field name="commission_tapis"/>
+
+                                </tree>
+                            </field>
+                        </group>
+                    </sheet>
+
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                    </div>
+
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="ctm_liquidation.representant_guide_form">
+            <field name="name">representant guide</field>
+            <field name="inherit_id" ref="excursion.guide_form"/>
+            <field name="model">excursion.guide</field>
+            <field name="arch" type="xml">
+                <xpath position="before" expr="//group[1]">
+                    <div class="oe_button_box" name="button_box">
+
+                        <button name="get_reservations" type="object" class="oe_stat_button text-center">
+                            <!--                                context="{'xml_id':'fleet_vehicle_log_services_action'}"-->
+                            <!--                                help="show the services logs for this vehicle">-->
+                            <b>Historique des
+                                <br/>
+                                affectations
+                            </b>
+
+                        </button>
+
+                    </div>
+                </xpath>
+                <xpath position="before" expr="//field[@name='name']">
+                    <field name="code"/>
+                </xpath>
+                <xpath position="after" expr="//field[@name='name']">
+                    <field name="partner_id"/>
+                    <field name="tel"/>
+                </xpath>
+
+                <xpath position="inside" expr="//sheet">
+                    <group attrs="{'invisible':[('etat', '!=', 'representant')]}" string="Statistique des reservations">
+                        <field attrs="{'invisible':[('etat', '!=', 'representant')]}" widget="many2many_tags"
+                               name="hotel_id"/>
+                        <field attrs="{'invisible':[('etat', '!=', 'representant')]}" name="details_id">
+                            <tree editable="top">
+                                <field name="date"/>
+                                <field name="hotel_id"/>
+                                <field name="pax" sum="Somme pax"/>
+                                <field name="adults" sum="Somme pax"/>
+                                <field name="enfants" sum="Somme pax"/>
+                                <field name="bebes" sum="Somme pax"/>
+
+                            </tree>
+                            <form>
+                                <group>
+                                    <field name="date"/>
+                                    <field name="hotel_id"/>
+                                    <field name="pax" sum="Somme pax"/>
+                                    <field name="adults" sum="Somme pax"/>
+                                    <field name="enfants" sum="Somme pax"/>
+                                    <field name="bebes" sum="Somme pax"/>
+                                </group>
+                            </form>
+                        </field>
+                    </group>
+
+
+                </xpath>
+                <xpath expr="//header" position="inside">
+                    <button name="ctm_liquidation.wizard_reports_action" type="action"
+                            string="Recuperer Liste d'arrivée"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="ctm_liquidation.representant_guide_tree">
+            <field name="name">representant guide</field>
+            <field name="inherit_id" ref="excursion.guide_tree"/>
+            <field name="model">excursion.guide</field>
+            <field name="arch" type="xml">
+                <xpath position="before" expr="//field[@name='name']">
+                    <field name="code"/>
+                </xpath>
+                <xpath position="after" expr="//field[@name='name']">
+
+                    <field name="tel"/>
+                </xpath>
+
+            </field>
+        </record>
+        <!-- explicit list view definition -->
+        <!--
+        <record model="ir.ui.view" id="ctm_liquidation.list">
+          <field name="name">ctm_liquidation list</field>
+          <field name="model">ctm_liquidation.ctm_liquidation</field>
+          <field name="arch" type="xml">
+            <tree>
+              <field name="name"/>
+              <field name="value"/>
+              <field name="value2"/>
+            </tree>
+          </field>
+        </record>
+        -->
+
+        <!-- actions opening views on models -->
+        <!--
+        <record model="ir.actions.act_window" id="ctm_liquidation.action_window">
+          <field name="name">ctm_liquidation window</field>
+          <field name="res_model">ctm_liquidation.ctm_liquidation</field>
+          <field name="view_mode">tree,form</field>
+        </record>
+        -->
+
+        <!-- server action to the one above -->
+
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.pourcentageadulte_actw">
+            <field name="name">pourcentage adulte</field>
+            <field name="res_model">liquidation.pourcentageadulte</field>
+            <field name="view_id" ref="ctm_liquidation.pourcentageadulte_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.liquidation_agence_transport_actw">
+            <field name="name">liste des Agences Transporteurs</field>
+            <field name="res_model">liquidation.agence.transport</field>
+            <field name="view_id" ref="ctm_liquidation.liquidation_agence_transport_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.guide_actw">
+            <field name="name">Représentant</field>
+            <field name="res_model">excursion.guide</field>
+            <field name="domain">[('etat','=','representant')]</field>
+            <field name="view_id" ref="ctm_liquidation.representant_guide_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.historiquerep_actw">
+            <field name="name">Historiques des affectations représentants</field>
+            <field name="res_model">liquidation.historiquerep</field>
+
+            <field name="view_id" ref="ctm_liquidation.historiquerep_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.etat_guide_target_commision_actw">
+            <field name="name">Commission Guide hotel</field>
+            <field name="res_model">etat.guide.target.commision</field>
+            <field name="view_id" ref="ctm_liquidation.etat_guide_target_commision_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.vente_excursion_actw">
+            <field name="name">Excursion Extra</field>
+            <field name="res_model">vente.excursion</field>
+            <field name="view_id" ref="ctm_liquidation.vente_excursion_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.mouvement_guide_actw">
+            <field name="name">Etat des Mouvement des representants</field>
+            <field name="res_model">mouvement.guide</field>
+            <field name="view_id" ref="ctm_liquidation.mouvement_guide_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.etat_liquidation_actw">
+            <field name="name">Etat Liquidation</field>
+            <field name="res_model">etat.liquidation</field>
+            <field name="view_id" ref="ctm_liquidation.etat_liquidation_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.movementday_actw">
+            <field name="name">Movement Day</field>
+            <field name="res_model">excursion.movementday</field>
+            <field name="view_id" ref="excursion.movementday_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.bareme_actw">
+            <field name="name">Configuration des baremes</field>
+            <field name="res_model">ctm.liquidation.bareme</field>
+            <field name="view_id" ref="ctm_liquidation.bareme_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.configchameau_actw">
+            <field name="name">Configuration des prix chameau</field>
+            <field name="res_model">liquidation.configchameau</field>
+            <field name="view_id" ref="liquidation_configchameau_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.configleathershop_actw">
+            <field name="name">Configuration des commissions leather shop</field>
+            <field name="res_model">ctm.sale.configleathershop</field>
+            <field name="view_id" ref="liquidation_configleathershop_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.quatrefois_actw">
+            <field name="name">Configuration des prix 4*4</field>
+            <field name="res_model">liquidation.quatrefois</field>
+            <field name="view_id" ref="liquidation_quatrefois_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation_Configjazira_actw">
+            <field name="name">Configuration des commissions tapis</field>
+            <field name="res_model">liquidation.configjazira</field>
+            <field name="view_id" ref="liquidation_Configjazira_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation_configtapis_actw">
+            <field name="name">Configuration des commissions tapis</field>
+            <field name="res_model">liquidation.configtapis</field>
+            <field name="view_id" ref="liquidation_configtapis_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation_configrestaurant_actw">
+            <field name="name">Configuration des commissions des restaurants</field>
+            <field name="res_model">liquidation.configrestaurant</field>
+            <field name="view_id" ref="liquidation_configrestaurant_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="liquidation_configphoto_actw">
+            <field name="name">Configuration photograph</field>
+            <field name="res_model">liquidation.configphoto</field>
+            <field name="view_id" ref="liquidation_configphoto_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.excursion_lagune_actw">
+            <field name="name">Etat Vente lagune</field>
+            <field name="res_model">ctm.sale.lagune</field>
+            <field name="view_id" ref="ctm_liquidation.lagune_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.excursion_photograph_actw">
+            <field name="name">Etat Vente photograph</field>
+            <field name="res_model">ctm.sale.photograph</field>
+            <field name="view_id" ref="ctm_liquidation.photograph_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.excursion_leather_shop_actw">
+            <field name="name">Etat Vente leather_shop</field>
+            <field name="res_model">ctm.sale.leather_shop</field>
+            <field name="view_id" ref="ctm_liquidation.leather_shop_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.excursion_bella_marina_actw">
+            <field name="name">Etat Vente bella_marina</field>
+            <field name="res_model">ctm.sale.bella_marina</field>
+            <field name="view_id" ref="ctm_liquidation.bella_marina_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.excursion_levoilier_actw">
+            <field name="name">Etat Vente Le voilier</field>
+            <field name="res_model">ctm.sale.levoilier</field>
+            <field name="view_id" ref="ctm_liquidation.levoilier_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.numreservation_actw">
+            <field name="name">numéro réservation</field>
+            <field name="res_model">liquidation.numreservation</field>
+            <field name="view_id" ref="ctm_liquidation.numreservation_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.etat_guide_chauff_commision_actw">
+            <field name="name">Commission chauffeur</field>
+            <field name="res_model">commission.chauffeur</field>
+            <field name="view_id" ref="ctm_liquidation.comm_chauff_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.etat_guide_chauff_extra_commision_actw">
+            <field name="name">Commission chauffeur extra</field>
+            <field name="res_model">commission.chauffeur.extra</field>
+            <field name="view_id" ref="ctm_liquidation.comm_chauff_extra_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.etat_guide_exc_commision_actw">
+            <field name="name">Commission Guide excursion</field>
+            <field name="res_model">commission.excursion.guide</field>
+            <field name="view_id" ref="ctm_liquidation.comm_exc_guid_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="ctm_liquidation.liquidation_aljazira_actw">
+            <field name="name">Etat de Vente des Excursion AlJazira</field>
+            <field name="res_model">liquidation.aljazira</field>
+            <field name="view_id" ref="ctm_liquidation.liquidation_aljazira_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.liquidation_tapis_actw">
+            <field name="name">Etat de Vente des Excursion Tapis</field>
+            <field name="res_model">liquidation.tapis</field>
+            <field name="view_id" ref="ctm_liquidation.liquidation_tapis_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!--        <record model="ir.actions.act_window" id="ctm_liquidation.liquidation_quatre_fois_quatre_actw">-->
+        <!--            <field name="name">Etat de Vente des Excursion 4*4</field>-->
+        <!--            <field name="res_model">liquidation.quatre.fois.quatre</field>-->
+        <!--            <field name="view_id" ref="ctm_liquidation.liquidation_quatre_fois_quatre_tree"/>-->
+        <!--            <field name="view_mode">tree,form</field>-->
+        <!--        </record>-->
+
+
+        <!--        <record model="ir.actions.act_window" id="ctm_liquidation.liquidation_camel_actw">-->
+        <!--            <field name="name">Etat de Vente des Excursion Camel</field>-->
+        <!--            <field name="res_model">liquidation.camel</field>-->
+        <!--            <field name="view_id" ref="ctm_liquidation.liquidation_camel_tree"/>-->
+        <!--            <field name="view_mode">tree,form</field>-->
+        <!--        </record>-->
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="Liquidation" id="ctm_liquidation.menu_root"/>
+
+        <!--        menu de statistique -->
+        <menuitem name="statistique" sequence="3" id="ctm_liquidation.menu_sub_root_statistique"
+                  parent="ctm_liquidation.menu_root"/>
+        <menuitem name="liste pourcentage d'adulte" sequence="1" id="ctm_liquidation.menu_pourcentage_adulte"
+                  action="ctm_liquidation.pourcentageadulte_actw" parent="ctm_liquidation.menu_sub_root_statistique"/>
+        <menuitem name="calculer pourcentage adulte" sequence="2" id="ctm_liquidation.menu_calculer_adulte"
+                  action="ctm_liquidation.wizard_calculadulte_action"
+                  parent="ctm_liquidation.menu_sub_root_statistique"/>
+
+
+        <menuitem name="Représentant" sequence="2" id="ctm_liquidation.menu_sub_root"
+                  parent="ctm_liquidation.menu_root" groups="ctm_liquidation_agent_controle"/>
+        <menuitem name="liste representants" id="ctm_liquidation.menu_7_11" parent="ctm_liquidation.menu_sub_root"
+                  action="ctm_liquidation.guide_actw" sequence="1"/>
+        <menuitem name="Historique affectation" sequence="2" id="ctm_liquidation.menu_sub_root52544"
+                  action="ctm_liquidation.historiquerep_actw"
+                  parent="ctm_liquidation.menu_sub_root"/>
+        <!--<menuitem name="Etat Liquidation excursions" id="ctm_liquidation.menu_sub_sub_1" parent="ctm_liquidation.menu_sub_root"-->
+        <!--action="ctm_liquidation.etat_liquidation_actw" sequence="1"/>-->
+
+<!--        <menuitem name="Calculer Commission" id="ctm_liquidation.menu_commission_calculer"-->
+<!--                  parent="ctm_liquidation.menu_root" sequence="1" groups="ctm_liquidation_agent_controle"/>-->
+<!--        <menuitem name="Commission guide hotel" id="ctm_liquidation.menu_sub_root_sub_2"-->
+<!--                  parent="ctm_liquidation.menu_commission_calculer"-->
+<!--                  action="ctm_liquidation.etat_guide_target_commision_actw" sequence="2"/>-->
+<!--        <menuitem name="Commission guide excursion" id="ctm_liquidation.menu_sub_root_sub_2_exc"-->
+<!--                  parent="ctm_liquidation.menu_commission_calculer"-->
+<!--                  action="ctm_liquidation.etat_guide_exc_commision_actw" sequence="3"/>-->
+<!--        <menuitem name="Commission Chauffeur" id="ctm_liquidation.menu_sub_root_sub_2_chauff"-->
+<!--                  parent="ctm_liquidation.menu_commission_calculer"-->
+<!--                  action="ctm_liquidation.etat_guide_chauff_commision_actw" sequence="4"/>-->
+<!--        <menuitem name="Commission Chauffeur extra" id="ctm_liquidation.menu_sub_root_sub_2_chauff_ext"-->
+<!--                  parent="ctm_liquidation.menu_commission_calculer"-->
+<!--                  action="ctm_liquidation.etat_guide_chauff_extra_commision_actw" sequence="5"/>-->
+        <!--        <menuitem name="Assistant importation liste Transfert" id="ctm_liquidation.menu_assistant"-->
+        <!--                  parent="ctm_liquidation.menu_root" groups="base.group_no_one"-->
+        <!--                  action="action_wizard_rooming_open_2" sequence="7"/>-->
+
+
+        <!--<menuitem name="Commission guide excursion" id="ctm_liquidation.menu_sub_root_sub_excursions" parent="ctm_liquidation.menu_root"-->
+        <!--action="ctm_liquidation.etat_guide_excurs_commision_actw" sequence="3"/>-->
+
+
+        <menuitem name="Controle de mouvement " sequence="6" id="ctm_liquidation.menu_sub_root_1"
+                  parent="ctm_liquidation.menu_root"/>
+        <menuitem name="Controle de mouvement Excursion" sequence="1" id="ctm_liquidation.menu_sub_root_1_1"
+                  parent="ctm_liquidation.menu_sub_root_1"/>
+        <menuitem name="Controle de mouvement lagune" sequence="3" id="ctm_liquidation.menu_sub_root_1_2"
+                  parent="ctm_liquidation.menu_sub_root_1"/>
+        <menuitem name="Controle de mouvement photographe" sequence="4" id="ctm_liquidation.menu_sub_root_1_3"
+                  parent="ctm_liquidation.menu_sub_root_1"/>
+        <menuitem name="Controle de mouvement leather shop" sequence="5" id="ctm_liquidation.menu_sub_root_1_5"
+                  parent="ctm_liquidation.menu_sub_root_1"/>
+        <menuitem name="Controle de mouvement des restaurants" sequence="6" id="ctm_liquidation.menu_sub_root_1_6"
+                  parent="ctm_liquidation.menu_sub_root_1"/>
+        <!--        <menuitem name="Transfer list" sequence="7" id="ctm_liquidation.menu_sub_root_1_7"-->
+        <!--                  parent="ctm_liquidation.menu_sub_root_1"/>-->
+        <menuitem name="Controle de Vente des AlJazira" sequence="8" id="ctm_liquidation.menu_sub_root_1_8"
+                  parent="ctm_liquidation.menu_sub_root_1"/>
+        <!--        <menuitem name="Controle de Vente des Ecursion Camel" sequence="9" id="ctm_liquidation.menu_sub_root_1_9"-->
+        <!--                  parent="ctm_liquidation.menu_sub_root_1" groups="ctm_liquidation_group"/>-->
+        <!--        <menuitem name="Controle de Vente des Ecursion 4*4" sequence="10" id="ctm_liquidation.menu_sub_root_1_10"-->
+        <!--                  parent="ctm_liquidation.menu_sub_root_1" groups="ctm_liquidation_group"/>-->
+        <menuitem name="Controle de Vente des Ecursion Tapis" sequence="11" id="ctm_liquidation.menu_sub_root_1_11"
+                  parent="ctm_liquidation.menu_sub_root_1"/>
+
+
+        <menuitem name="Etat des Ventes Excursion Aljazira" id="ctm_liquidation.menu_sub_root_sub_5_6"
+                  parent="ctm_liquidation.menu_sub_root_1_8"
+                  action="ctm_liquidation.liquidation_aljazira_actw" sequence="1"/>
+        <!--        <menuitem name="Etat des Ventes Excursion Camel" id="ctm_liquidation.menu_sub_root_sub_5_7"-->
+        <!--                  parent="ctm_liquidation.menu_sub_root_1_9"-->
+        <!--                  action="ctm_liquidation.liquidation_camel_actw" sequence="1"/>-->
+
+        <!--        <menuitem name="Etat des Ventes Excursion 4*4" id="ctm_liquidation.menu_sub_root_sub_5_8"-->
+        <!--                  parent="ctm_liquidation.menu_sub_root_1_10"-->
+        <!--                  action="ctm_liquidation.liquidation_quatre_fois_quatre_actw" sequence="1"/>-->
+        <menuitem name="Etat des Ventes Excursion Tapis" id="ctm_liquidation.menu_sub_root_sub_5_9"
+                  parent="ctm_liquidation.menu_sub_root_1_11"
+                  action="ctm_liquidation.liquidation_tapis_actw" sequence="1"/>
+        <!--<menuitem name="Etat journaliére des mouvements" id="ctm_liquidation.menu_sub_root_sub_1" parent="ctm_liquidation.menu_sub_root_1"-->
+        <!--action="ctm_liquidation.movementday_actw" />-->
+
+
+        <!--<menuitem name="Excursion Extra" id="ctm_liquidation.menu_sub_root_sub_3" sequence="3" parent="ctm_liquidation.menu_sub_root_1"-->
+        <!--action="ctm_liquidation.vente_excursion_actw" />-->
+
+        <!--<menuitem name="Etat des Mouvements des representants" id="ctm_liquidation.menu_sub_root_sub_4" parent="ctm_liquidation.menu_sub_root_1"-->
+        <!--action="ctm_liquidation.mouvement_guide_actw" sequence="3"/>-->
+
+
+        <menuitem name="Etat Vente lagune" id="ctm_liquidation.menu_sub_root_sub_5_1"
+                  parent="ctm_liquidation.menu_sub_root_1_2"
+                  action="ctm_liquidation.excursion_lagune_actw" sequence="1"/>
+        <menuitem name="Etat Vente photograph" id="ctm_liquidation.menu_sub_root_sub_5_2"
+                  parent="ctm_liquidation.menu_sub_root_1_3"
+                  action="ctm_liquidation.excursion_photograph_actw" sequence="1"/>
+        <menuitem name="Etat Vente leather shop" id="ctm_liquidation.menu_sub_root_sub_5_3"
+                  parent="ctm_liquidation.menu_sub_root_1_5"
+                  action="ctm_liquidation.excursion_leather_shop_actw" sequence="1"/>
+        <menuitem name="Etat reservations Bella marina" id="ctm_liquidation.menu_sub_root_sub_5_4"
+                  parent="ctm_liquidation.menu_sub_root_1_6"
+                  action="ctm_liquidation.excursion_bella_marina_actw" sequence="1"/>
+        <menuitem name="Etat reservations Le voilier" id="ctm_liquidation.menu_sub_root_sub_5_6_1"
+                  parent="ctm_liquidation.menu_sub_root_1_6"
+                  action="ctm_liquidation.excursion_levoilier_actw" sequence="2"/>
+
+        <!--        <menuitem name="Transfer list" id="ctm_liquidation.menu_sub_root_sub_5_5"-->
+        <!--                  parent="ctm_liquidation.menu_sub_root_1_7"-->
+        <!--                  action="ctm_liquidation.numreservation_actw" sequence="1"/>-->
+
+        <menuitem name="Configuration" sequence="8" id="ctm_liquidation.menu_7" parent="ctm_liquidation.menu_root"
+                  groups="ctm_liquidation_group"/>
+
+        <!--        <menuitem name="representants" id="ctm_liquidation.menu_7_1" parent="ctm_liquidation.menu_7"-->
+        <!--                  action="ctm_liquidation.guide_actw" sequence="1"/>-->
+        <menuitem name="Configuration target" id="ctm_liquidation.menu_7_99" parent="ctm_liquidation.menu_7"
+                  action="ctm_liquidation.bareme_actw" sequence="99"/>
+        <menuitem name="Configuration chameau" id="ctm_liquidation.menu_7_97" parent="ctm_liquidation.menu_7"
+                  action="ctm_liquidation.configchameau_actw" sequence="99"/>
+        <menuitem name="Configuration leather shop" id="ctm_liquidation.menu_7_92" parent="ctm_liquidation.menu_7"
+                  action="ctm_liquidation.configleathershop_actw" sequence="99"/>
+        <menuitem name="Configuration 4*4" id="ctm_liquidation.menu_7_96" parent="ctm_liquidation.menu_7"
+                  action="ctm_liquidation.quatrefois_actw" sequence="99"/>
+        <menuitem name="Configuration tapis" id="ctm_liquidation.menu_7_95" parent="ctm_liquidation.menu_7"
+                  action="ctm_liquidation_configtapis_actw" sequence="99"/>
+        <menuitem name="Configuration restaurant" id="ctm_liquidation.menu_7_94" parent="ctm_liquidation.menu_7"
+                  action="ctm_liquidation_configrestaurant_actw" sequence="99"/>
+        <menuitem name="Configuration Aljazira" id="ctm_liquidation.menu_7_93" parent="ctm_liquidation.menu_7"
+                  action="ctm_liquidation_Configjazira_actw" sequence="99"/>
+        <menuitem name="Configuration photograph" id="ctm_liquidation.menu_7_98" parent="ctm_liquidation.menu_7"
+                  action="liquidation_configphoto_actw" sequence="99"/>
+
+        <menuitem name="Agence Transporteur" id="ctm_liquidation.menu_7_2" parent="ctm_liquidation.menu_7"
+                  action="ctm_liquidation.liquidation_agence_transport_actw" sequence="2"/>
+        <menuitem name="Chauffeur" id="ctm_liquidation.menu_7_3" parent="ctm_liquidation.menu_7"
+                  action="ctm_fleet.conductors_action" sequence="3"/>
+
+
+        <!--
+         <menuitem name="Menu 2" id="ctm_liquidation.menu_2" parent="ctm_liquidation.menu_root"/>
+         -->
+        <!-- actions -->
+        <!--
+        <menuitem name="List" id="ctm_liquidation.menu_1_list" parent="ctm_liquidation.menu_1"
+                  action="ctm_liquidation.action_window"/>
+        <menuitem name="Server to list" id="ctm_liquidation" parent="ctm_liquidation.menu_2"
+                  action="ctm_liquidation.action_server"/>
+        -->
+    </data>
+</odoo>

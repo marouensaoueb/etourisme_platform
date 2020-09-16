@@ -1,0 +1,11 @@
+<odoo>
+    <data>
+
+        <record model="res.groups" id="ctm_fid_group">
+            <field name="name">Subscription Team</field>
+
+        </record>
+
+
+    </data>
+</odoo>

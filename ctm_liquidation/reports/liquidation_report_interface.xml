@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="ctm_liquidation.liquidation_report_form">
+            <field name="name">Rapports liquidations form</field>
+            <field name="model">liquidation.report</field>
+            <field name="arch" type="xml">
+                <form >
+                    <header>
+                        <button type="object" string="Print liquidation report"
+                                name="print_report_liquidation" />
+                    </header>
+                    <sheet>
+                        <div class="header">
+                            <label for="sequence_number" class="oe_editonly"/>
+                            <field name="sequence_number"/>
+                        </div>
+
+
+                      <group col="2">
+                          <group>
+                              <field name="liquidation_date"/>
+                          </group><group>
+                          <field name="guide_id"/>
+                      </group>
+                      </group>
+
+                        <group>
+                            <field name="total_devise">
+                              <tree create="false" edit="false" delete="false">
+                                  <field name="currency_id" />
+                                  <field name="amount" sum="total amount"/>
+                              </tree>
+                            </field>
+                        </group>
+                        <notebook string="Report Detail">
+                            <page string="Tickets Detail">
+                                <field name="ticket_detail" nolabel="1">
+                                    <tree create="false" edit="false" delete="false">
+                                        <field name="dat" />
+                                        <field name="excursion_id" />
+                                        <field name="hotel_id" />
+                                        <field name="ticket_number" />
+                                        <field name="vendeur_id" />
+                                        <field name="selling_price" sum="selling_price"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Avoir Detail">
+                                <field name="avoir_detail" nolabel="1">
+                                    <tree create="false" edit="false" delete="false">
+                                        <field name="avoir_date" />
+                                        <field name="avoir_amount" sum="total amount avoir"/>
+                                        <field name="ticket_id" />
+                                        <field name="currency_id" />
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="creation detail">
+                                <group groups="excursion.group_excursion_ctm_admin">
+                                    <field name="creation_user" />
+                                    <field name="creation_dat" />
+                                </group>
+
+                            </page>
+                        </notebook>
+
+
+                    </sheet>
+
+
+
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.liquidation_resrvation_exc_inherit">
+            <field name="name">Reserrv inh</field>
+            <field name="model">excursion.reservations</field>
+            <field name="inherit_id" ref="excursion.excursion_reservations_tree" />
+            <field name="arch" type="xml">
+                <xpath position="after" expr="//field[@name='avoir_date']">
+                    <field name="liquidation_report_id" groups="excursion.group_excursion_ctm_admin"/>
+
+                </xpath>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="ctm_liquidation.liquidation_report_tree">
+            <field name="name">Rapports liquidations tree</field>
+            <field name="model">liquidation.report</field>
+            <field name="arch" type="xml">
+                <tree >
+                    <field name="sequence_number"/>
+                    <field name="liquidation_date"/>
+                    <field name="guide_id"/>
+                    <field name="creation_user"/>
+                    <field name="creation_dat"/>
+
+
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="ctm_liquidation.liquidation_report_actw">
+            <field name="name">Rapports liquidations</field>
+            <field name="res_model">liquidation.report</field>
+            <field name="view_id" ref="ctm_liquidation.liquidation_report_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Rapports liquidations" id="ctm_liquidation.liquidation_report_menu"
+                  parent="excursion.affectation_menu" sequence="99" action="ctm_liquidation.liquidation_report_actw"/>
+    </data>
+</odoo>

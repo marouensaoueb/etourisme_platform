@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+        <record id="ctm_fleet.paperformatanew" model="report.paperformat">
+        <field name="name">A4(customized)</field>
+
+        <field name="orientation">Landscape</field>
+
+        <field name="header_line" eval="True"/>
+        <field name="header_spacing">35</field>
+        <field name="dpi">100</field>
+    </record>
+
+        <record model="ir.ui.menu" id="fleet.menu_root">
+            <field name="groups_id" eval="[(4,ref('ctm_fleet.group_fleet_ctm_admin'))]" />
+        </record>
+        <record model="ir.ui.view" id="ctm_fleet.vehicle_inherit">
+        <field name="name">Vehicule inherit</field>
+        <field name="inherit_id" ref="fleet.fleet_vehicle_view_form" />
+        <field name="model">fleet.vehicle</field>
+        <field name="arch" type="xml">
+            <xpath position="after" expr="//field[@name='model_year']">
+                <field name="nbr_siege" />
+            </xpath>
+
+                 <xpath position="after" expr="//field[@name='nbr_siege']">
+                <field name="taxe_vignette" />
+                </xpath>
+                 <xpath position="after" expr="//field[@name='taxe_vignette']">
+                <field name="lo" />
+                 </xpath>
+                        <xpath position="after" expr="//field[@name='lo']">
+                <field name="personnel" />
+            </xpath>
+             <xpath position="after" expr="//field[@name='first_contract_date']">
+                <field name="debut_exp" />
+            </xpath>
+             <xpath position="after" expr="//field[@name='debut_exp']">
+                <field name="fin_exp" />
+            </xpath>
+                 <xpath position="after" expr="//field[@name='fin_exp']">
+                <field name="date_visite" />
+            </xpath>
+
+                 <xpath position="after" expr="//field[@name='date_visite']">
+                <field name="date_assurence" />
+            </xpath>
+        </field>
+        </record>
+        <record model="ir.actions.server" id="do_something">
+            <field name="name">Rafraishir donnée</field>
+            <field name="model_id" ref="model_ctm_vehicle_state"/>
+            <field name="state" >code</field>
+            <field name="code">
+                records.refresh_d_mult()
+            </field>
+        </record>
+            </data>
+</odoo>
+

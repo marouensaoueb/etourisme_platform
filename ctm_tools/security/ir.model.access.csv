@@ -1,0 +1,13 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_ctm_vehicle_types,ctm_tools.model_vehicle_types,model_vehicle_types,ctm_tools.ctm_tools_group_fleet,1,1,1,1
+access_ctm_fleet_transfer_timing,ctm_tools.model_fleet_transfer_timing,model_fleet_transfer_timing,ctm_tools.ctm_tools_group_fleet,1,1,1,1
+access_ctm_res_country_state_city,ctm_tools.model_res_country_state_city,model_res_country_state_city,ctm_tools.ctm_tools_group_fleet,1,1,1,1
+access_ctm_localisation_aireport,ctm_tools.model_localisation_aireport,model_localisation_aireport,ctm_tools.ctm_tools_group_fleet,1,1,1,1
+access_ctm_transport_request,ctm_tools.model_transport_request,model_transport_request,ctm_tools.ctm_tools_group_fleet,1,1,1,1
+access_ctm_transfer_types,ctm_tools.model_transfer_types,model_transfer_types,ctm_tools.ctm_tools_group_fleet,1,1,1,1
+access_ctm_point_type,ctm_tools.model_point_type,model_point_type,ctm_tools.ctm_tools_group_fleet,1,1,1,1
+access_ctm_point_list,ctm_tools.model_point_list,model_point_list,ctm_tools.ctm_tools_group_fleet,1,1,1,1
+access_ctm_paperwork_indivt,ctm_tools.model_paperwork_indiv,model_paperwork_indiv,ctm_tools.ctm_paperwork_group,1,1,1,1
+access_ctm_excurs_circuit,ctm_tools.model_excurs_circuit,model_excurs_circuit,ctm_tools.ctm_paperwork_group,1,1,1,1
+
+

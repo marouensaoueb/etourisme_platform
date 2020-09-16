@@ -1,0 +1,1005 @@
+<odoo>
+    <data>
+        <!-- explicit list view definition -->
+
+        <!--<record model="ir.ui.view" id="excursion.list.etat.prestation">-->
+        <!--<field name="name">Excursion list</field>-->
+        <!--<field name="model">excursion.etat.prestataire</field>-->
+        <!--<field name="arch" type="xml">-->
+        <!--<tree>-->
+        <!--<field name="date"/>-->
+        <!--<field name="observation"/>-->
+        <!--<field name="delais_paiment"/>-->
+        <!--</tree>-->
+        <!--</field>-->
+        <!--</record>-->
+
+
+        <!--        <record model="ir.ui.view" id="excursion.generale_data_from">-->
+        <!--            <field name="name">Generale Data</field>-->
+        <!--            <field name="model">excursion.generale.data</field>-->
+        <!--            <field name="arch" type="xml">-->
+        <!--                <form>-->
+        <!--                    <group>-->
+        <!--                        <field name="excursion_id"/>-->
+        <!--                        <field name="guide_principale" domain="[('etat', '=', 'principale')]"/>-->
+        <!--                        <field name="numero_guide_principale"/>-->
+        <!--                        <field name="guide_doubleur" domain="[('etat', '=', 'doubleur')]"/>-->
+        <!--                        <field name="numero_guide_doubleur"/>-->
+        <!--                        <field name="nbr_adulte"/>-->
+        <!--                        <field name="nbr_enfant"/>-->
+        <!--                        <field name="nbr_bebe"/>-->
+        <!--                    </group>-->
+        <!--                </form>-->
+        <!--            </field>-->
+        <!--        </record>-->
+
+
+        <!--<record model="ir.ui.view" id="excursion.jour_programme_form">-->
+        <!--<field name="name">Jour Programme</field>-->
+        <!--<field name="model">excursion.jour.programme</field>-->
+        <!--<field name="arch" type="xml">-->
+        <!--<form>-->
+        <!--<sheet>-->
+        <!--<group string="Information génèrales">-->
+
+        <!--<field name="jour_num"/>-->
+        <!--<field name="liste_pro">-->
+        <!--<tree editable="top">-->
+        <!--<field name="fournisseur"/>-->
+        <!--<field name="prestation"/>-->
+        <!--<field name="bv"/>-->
+        <!--</tree>-->
+        <!--</field>-->
+        <!--</group>-->
+        <!--</sheet>-->
+
+        <!--</form>-->
+        <!--</field>-->
+        <!--</record>-->
+
+
+        <record model="ir.ui.view" id="excursion.hotel_depart_config_tree">
+            <field name="name">Configuration hotel heure depart</field>
+            <field name="model">hotel.depart.config</field>
+            <field name="arch" type="xml">
+                <tree editable="top">
+                    <field name="hotel"/>
+
+                    <field name="heure" widget="float_time"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.hotel_depart_config_form">
+            <field name="name">Configuration hotel heure depart</field>
+            <field name="model">hotel.depart.config</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="hotel"/>
+
+                        <field name="heure" widget="float_time"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+        <record model="ir.ui.view" id="excursion.excursion_tarif_history_tree">
+            <field name="name">excursion prices history tree</field>
+            <field name="model">exc.prices.history</field>
+            <field name="arch" type="xml">
+                <tree create="false" edit="false" >
+
+                        <field name="date_from"/>
+                        <field name="date_to"/>
+                        <field name="region"/>
+                        <field name="p_adulte_n"/>
+                        <field name="p_bebe_n"/>
+                        <field name="p_bb_n"/>
+                        <field name="p_adulte_p"/>
+                        <field name="p_bebe_p"/>
+                        <field name="p_bb_p"/>
+                        <field name="currency_id"/>
+                        <field name="excursion_id"/>
+
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.res_country_inherit">
+            <field name="name">Inherit res Country</field>
+            <field name="inherit_id" ref="base.view_country_state_form"/>
+            <field name="model">res.country.state</field>
+            <field name="arch" type="xml">
+                <xpath position="inside" expr="//form">
+                    <field name="region"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.prestation_form">
+            <field name="name">Prestation</field>
+            <field name="model">excursion.prestation</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group string="Information génèrales">
+
+                            <field name="name"/>
+
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.prestation_tree">
+            <field name="name">Prestation</field>
+            <field name="model">excursion.prestation</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+
+        <!--<record model="ir.ui.view" id="excursion.tourite_data_from">-->
+        <!--<field name="name">Tourists Data</field>-->
+        <!--<field name="model">excursion.client</field>-->
+        <!--<field name="arch" type="xml">-->
+        <!--<form>-->
+        <!--<group>-->
+        <!--<field name="ticket_nbr"/>-->
+        <!--<field name="room_nbr"/>-->
+        <!--<field name="hotel_id"/>-->
+        <!--<field name="nbr_adulte"/>-->
+        <!--<field name="nbr_enfant"/>-->
+        <!--<field name="nbr_bebe"/>-->
+        <!--</group>-->
+        <!--</form>-->
+        <!--</field>-->
+        <!--</record>-->
+
+
+        <record model="ir.ui.view" id="excursion.guide_form">
+            <field name="name">Guide</field>
+            <field name="model">excursion.guide</field>
+            <field name="arch" type="xml">
+                <form>
+                    <header>
+
+                    </header>
+                    <sheet>
+                        <group string="Information génèrales">
+
+                            <field name="name"/>
+                            <field name="etat"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.guide_tree">
+            <field name="name">Liste des Guide</field>
+            <field name="model">excursion.guide</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="etat"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="excursion.movementday_form">
+            <field name="name">Movement Day</field>
+            <field name="model">excursion.movementday</field>
+            <field name="arch" type="xml">
+                <form create="false">
+                    <sheet>
+                        <div class="header text-center">
+                            <h1>Journal des mouvements -
+                                <field nolabel="1" name="date_m"/>
+                            </h1>
+                        </div>
+                        <div class="oe_button_box" name="button_box">
+
+
+                            <button name="config_order_hotel" type="object" class="btn oe_stat_button" icon="fa-gears"
+                                    string=" Configurer heure depart">
+                            </button>
+
+                            <button name="print_order" type="object" class="btn oe_stat_button" icon="fa-print"
+                                    string=" Imprimer Ordre mission">
+                            </button>
+                            <button name="excursion.wizards_ajouter_camel_action" type="action" class="btn oe_stat_button" icon="fa-plus"
+                                    string="ajout camel"></button>
+                        </div>
+                        <group col="2">
+                            <group>
+                                <field name="excursion_id"/>
+                                <field name="guide_principale"/>
+                                <field name="numero_guide_principale"/>
+                                <field name="guide_doubleur"/>
+                                <field name="numero_guide_doubleur"/>
+                                <field name="chauffeur"/>
+                            </group>
+                            <group>
+
+                                <field name="vehicule"/>
+                                <field name="num_order"/>
+                                <field name="nbr_adulte"/>
+                                <field name="nbr_enfant"/>
+                                <field name="nbr_bebe"/>
+                                <field name="pax"/>
+
+                            </group>
+
+
+                        </group>
+                        <notebook>
+                            <page string="Tourists  Data">
+
+                                <field nolabel="1" name="touriste_info">
+                                    <!--domain="[('date','=',date_m),('excursion_id','=',excursion_id),('movementday_id','=',False)]"-->
+                                    <tree editable="top">
+                                        <field name="ticket_number"/>
+                                        <field name="room_nbr"/>
+                                        <field name="hotel_id"/>
+                                        <field name="vendeur_id"/>
+                                        <field name="adulte" readonly="1"/>
+                                        <field name="enfant" readonly="1"/>
+                                        <field name="inf" readonly="1"/>
+                                        <field name="radulte"/>
+                                        <field name="renfant"/>
+                                        <field name="rinf"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Extra Camel">
+
+                                <field nolabel="1" name="Camel_info">
+
+                                    <tree editable="top">
+                                        <field name="ticket_number"/>
+                                        <field name="room_nbr"/>
+                                        <field name="hotel_id"/>
+                                        <field name="vendeur_id"/>
+                                        <field name="adulte" readonly="1"/>
+                                        <field name="enfant" readonly="1"/>
+                                        <field name="inf" readonly="1"/>
+                                        <field name="radulte"/>
+                                        <field name="renfant"/>
+                                        <field name="rinf"/>
+                                    </tree>
+                                </field>
+                            </page>
+
+                            <page string="nombre 4*4">
+                                <group>
+                                    <field name="nbr_q_q"/>
+                                </group>
+                            </page>
+                            <page string="Representatives info">
+                                <field name="representatives_info">
+                                    <tree>
+                                        <field name="representative_id"/>
+                                        <field name="nbr_pax"/>
+                                    </tree>
+                                </field>
+
+                            </page>
+                        </notebook>
+                    </sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.movementday_tree">
+            <field name="name">Liste des Movement Day</field>
+            <field name="model">excursion.movementday</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="date_m"/>
+                    <field name="excursion_id"/>
+                    <field name="guide_principale"/>
+                    <field name="numero_guide_principale"/>
+                    <field name="guide_doubleur"/>
+                    <field name="numero_guide_doubleur"/>
+                    <field name="chauffeur"/>
+                    <field name="vehicule"/>
+                    <field name="num_order"/>
+                    <field name="nbr_adulte"/>
+                    <field name="nbr_enfant"/>
+                    <field name="nbr_bebe"/>
+                    <field name="pax"/>
+                    <field name="touriste_info"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="excursion.excursionplan_from">
+            <field name="name">Excursion Plan</field>
+            <field name="model">excursion.excursionplan</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="excursion"/>
+                            <field name="packsnbr"/>
+                            <field name="first_hotel"/>
+                            <field name="last_hotel"/>
+
+                            <field name="guide"/>
+                            <field name="numero_guide"/>
+                            <field name="chauffeur"/>
+                            <field name="numero_chauffeur"/>
+                        </group>
+                    </sheet>
+
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion_hotel_depart_form">
+            <field name="name">Ajouter Hotel Depart</field>
+            <field name="model">excursion.hotel.depart</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <!--<field name="code"/>-->
+                        <field name="hotel_id"/>
+                        <field name="depart"/>
+
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.tarif_region_form">
+            <field name="name">Ajouter tarifs region</field>
+            <field name="model">excursion.tarif.region</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <!--<field name="code"/>-->
+                        <field name="region"/>
+                        <field name="p_adulte_n"/>
+                        <field name="p_bebe_n"/>
+                        <field name="p_bb_n"/>
+                        <field name="p_adulte_p"/>
+                        <field name="p_bebe_p"/>
+                        <field name="p_bb_p"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.excursionplan_tree">
+            <field name="name">Liste des Excursion Plans</field>
+            <field name="model">excursion.excursionplan</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="excursion"/>
+                    <field name="packsnbr"/>
+                    <field name="first_hotel"/>
+                    <field name="last_hotel"/>
+                    <field name="guide"/>
+                    <field name="numero_guide"/>
+                    <field name="chauffeur"/>
+                    <field name="numero_chauffeur"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.etat_prestataire_tree">
+            <field name="name">Liste des Etat Prestataires</field>
+            <field name="model">excursion.etat.prestataire</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="excursion_id"/>
+                    <!--<field name="prestation_id"/>-->
+                    <field name="date"/>
+                    <field name="detail_prix"/>
+                    <field name="pourcentage"/>
+                    <field name="observation"/>
+                    <field name="delais_paiment"/>
+                </tree>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.excursion_from">
+            <field name="name">Excursion</field>
+            <field name="model">excursion.excursion</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <h2 class="text-info text-center">Excursion Formulaire</h2>
+                        <div class="oe_button_box" name="button_box">
+
+
+
+                            <button name="return_the_action" type="object" class="btn oe_stat_button" icon="fa-list" string="Historique prix"/>
+                        </div>
+                        <group col="2">
+                            <group>
+                                <!--<field name="code"/>-->
+                                <field name="name"/>
+
+                                <field name="nbr_jours"/>
+
+                                <!--<h2 class="text-info">Tarif Normal</h2>-->
+                                <!--<br></br>-->
+                                <!--<field name="p_a_t_n"/>-->
+                                <!--<field name="p_e_t_n"/>-->
+                                <!--<h2 class="text-info">Tarif Package</h2>-->
+                                <!--<br></br>-->
+                                <!--<field name="p_a_t_p"/>-->
+                                <!--<field name="p_e_t_p"/>-->
+                                <br></br>
+
+                                <field name="type_excursion_q_f_q"/>
+                                <field name="type_excursion_camel"/>
+                                <field name="type_excursion_sahara"/>
+                                <field name="ppp"/>
+                                <field name="bebemaxage"/>
+                                <field name="enfmaxage"/>
+                                <!--<field name="type_excursion_rent"/>-->
+                            </group>
+                            <group>
+
+                                <!--<field name="commission"/>-->
+                                <!--<field name="chauf"/>-->
+                                <!--<field name="guide"/>-->
+                                <field name="act"/>
+                                <field name="observation"/>
+                                <br></br>
+                                <field name="jours" widget="many2many_tags"/>
+                                <field name="h_depart" widget="float_time"/>
+                                <field name="h_retour" widget="float_time"/>
+                                <!--<h2 class="text-info">Hotel Départ</h2>-->
+                                <!--<field name="hotel_id"/>-->
+                                <!--<field name="h_depart_hotel" widget="float_time"/>-->
+                                <!--<h2 class="text-info">Ito Prices</h2>-->
+                                <!--<field name="currency_id" invisible="1"/>-->
+                                <!--<field name="prixbase"  widget='monetary' />-->
+                                <!--<field name="prixextra"  widget='monetary' />-->
+                                <field name="ito_curency"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Programme">
+                                <field name="liste_jours_pro">
+                                    <tree>
+                                        <field name="jour_num"/>
+                                    </tree>
+                                    <form>
+                                        <field name="jour_num"/>
+                                        <field name="liste_pro">
+                                            <tree editable="top">
+                                                <field name="fournisseur"/>
+                                                <field name="prestation"
+                                                       domain="[('fornisseur_id', '=', fournisseur)]"/>
+                                                <!--<field name="bv"/>-->
+                                            </tree>
+                                        </field>
+                                    </form>
+                                </field>
+
+                            </page>
+                            <page string="Depart Hotels">
+                                <field name="liste_hotel_depart">
+                                    <tree editable="top">
+                                        <!--<field name="code"/>-->
+                                        <field name="hotel_id"/>
+                                        <field name="depart" widget="float_time"/>
+                                    </tree>
+                                </field>
+                            </page>
+                            <page string="Tarif/region">
+                                <field name="liste_region_tarif">
+                                    <tree editable="top">
+                                        <!--<field name="code"/>-->
+                                        <field name="region"/>
+                                        <field name="p_adulte_n"/>
+                                        <field name="p_bebe_n"/>
+                                        <field name="p_bb_n"/>
+                                        <field name="p_adulte_p"/>
+                                        <field name="p_bebe_p"/>
+                                        <field name="p_bb_p"/>
+										 <field name="currency_id"/>
+										 <field name="date_from"/>
+										 <field name="date_to"/>
+                                    </tree>
+
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids" widget="mail_followers"/>
+                        <field name="activity_ids" widget="mail_activity"/>
+                        <field name="message_ids" widget="mail_thread" options="{&quot;thread_level&quot;: 1}"/>
+                    </div>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.excursion_tree">
+            <field name="name">Liste Excursions</field>
+            <field name="model">excursion.excursion</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <!--<field name="code"/>-->
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="excursion.depart_from">
+            <field name="name">Depart</field>
+            <field name="model">excursion.depart</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.depart_tree">
+            <field name="name">Lieu de depart</field>
+            <field name="model">excursion.depart</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="name"/>
+                    <field name="date_creation"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="excursion.emplacement_from">
+            <field name="name">Region</field>
+            <field name="model">excursion.emplacement</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.emplacement_tree">
+            <field name="name">Region</field>
+            <field name="model">excursion.emplacement</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="name"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="excursion.circuit_tree">
+            <field name="name">Circuit</field>
+            <field name="model">excursion.circuit</field>
+            <field name="arch" type="xml">
+                <tree>
+
+                    <field name="text"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="excursion.circuit_from">
+            <field name="name">Circuit</field>
+            <field name="model">excursion.circuit</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="emplacements"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.pointdepart_tree">
+            <field name="name">Point de departs</field>
+            <field name="model">excursion.pointdepart</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="region"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.pointdepart_form">
+            <field name="name">Point de departs</field>
+            <field name="model">excursion.pointdepart</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="name"/>
+                        <field name="region"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="excursion.horairedej_tree">
+            <field name="name">Horaire de Déjeuner</field>
+            <field name="model">excursion.horairedej</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="sortie"/>
+                    <field name="rentrer"/>
+
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion.horairedej_form">
+            <field name="name">Horaire de Déjeuner</field>
+            <field name="model">excursion.horairedej</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+
+
+                        <field name="sortie"/>
+                        <field name="rentrer"/>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="excursion.detail_prix_tree">
+            <field name="name">Detail de prix</field>
+            <field name="model">excursion.detail.prix</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="prix_adult"/>
+                    <field name="prix_enfant"/>
+                    <field name="gratuite"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="excursion.tarif_tree">
+            <field name="name">Liste de Tarifs</field>
+            <field name="model">excursion.tarif</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="itinerary"/>
+                    <field name="duration"/>
+                    <field name="points_departs"/>
+
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="excursion_configsahara_form">
+            <field name="name">configuration sahara form</field>
+            <field name="model">excursion.configsahara</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+                        <field name="date_debut_saison"/>
+                        <field name="date_fin_saison"/>
+                        <field name="commission_chauffeur"/>
+                        <!--<field name="liste_excursion_sahara"/>-->
+                    </group>
+                </form>
+            </field>
+
+        </record>
+        <record model="ir.ui.view" id="excursion.excursion_vendeur_form">
+            <field name="name">Fournissuer</field>
+            <field name="model">excursion.vendeur</field>
+            <field name="arch" type="xml">
+                <form>
+                    <group>
+
+                        <field name="nom"/>
+                        <field name="num_tel"/>
+                        <field name="liste_prestation">
+                            <tree>
+                                <field name="name"/>
+                            </tree>
+                        </field>
+                    </group>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="excursion.excursion_vendeur_tree">
+            <field name="name">Fournisseur</field>
+            <field name="model">excursion.vendeur</field>
+            <field name="arch" type="xml">
+                <tree>
+
+
+                    <field name="nom"/>
+                    <field name="num_tel"/>
+
+                </tree>
+            </field>
+        </record>
+
+
+        <!--<record model="ir.ui.view" id="excursion.excursion_programme_form">-->
+        <!--<field name="name">excursion programme</field>-->
+        <!--<field name="model">excursion.programme</field>-->
+        <!--<field name="arch" type="xml">-->
+        <!--<form>-->
+        <!--<group>-->
+
+        <!--<field name="fournisseur"/>-->
+        <!--<field name="prestation" />-->
+        <!--<field name="bv"/>-->
+        <!--</group>-->
+        <!--</form>-->
+        <!--</field>-->
+        <!--</record>-->
+
+
+        <!--<record model="ir.ui.view" id="excursion.excursion_programme_tree">-->
+        <!--<field name="name">excursion programme</field>-->
+        <!--<field name="model">excursion.programme</field>-->
+        <!--<field name="arch" type="xml">-->
+        <!--<tree>-->
+
+        <!--<field name="fournisseur"/>-->
+        <!--<field name="prestation"/>-->
+        <!--<field name="bv"/>-->
+
+        <!--</tree>-->
+        <!--</field>-->
+        <!--</record>-->
+
+        <!-- actions opening views on models -->
+        <!--<record model="ir.actions.act_window" id="excursion.excursion_programme_actw">-->
+        <!--<field name="name">Programme excursion</field>-->
+        <!--<field name="res_model">excursion.programme</field>-->
+        <!--<field name="view_mode">tree,form</field>-->
+        <!--<field name="view_id" ref="excursion.excursion_programme_tree"/>-->
+        <!--</record>-->
+
+        <record model="ir.actions.act_window" id="excursion.etat_prestataire_actw">
+            <field name="name">Prestataire de Service</field>
+            <field name="res_model">excursion.etat.prestataire</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excursion.etat_prestataire_tree"/>
+        </record>
+        <record model="ir.actions.act_window" id="excursion.etat_tarif_actw">
+            <field name="name">liste des tarif</field>
+            <field name="res_model">excursion.tarif</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excursion.tarif_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.detail_prix_actw">
+            <field name="name">Detail de prix</field>
+            <field name="view_id" ref="excursion.detail_prix_tree"/>
+            <field name="res_model">excursion.detail.prix</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+        <record model="ir.actions.act_window" id="excursion.excursion_actw">
+            <field name="name">liste des Excursion</field>
+            <field name="res_model">excursion.excursion</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excursion.excursion_tree"/>
+        </record>
+        <record model="ir.actions.act_window" id="excursion.emplacement_actw">
+            <field name="name">liste des Regions</field>
+            <field name="res_model">excursion.emplacement</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excursion.emplacement_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.depart_actw">
+            <field name="name">liste des lieu de depart</field>
+            <field name="res_model">excursion.depart</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excursion.depart_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.prestation_actw">
+            <field name="name">liste des Prestataire des Services</field>
+            <field name="res_model">excursion.prestation</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excursion.prestation_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.circuit_actw">
+            <field name="name">liste des Circuit</field>
+            <field name="res_model">excursion.circuit</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excursion.circuit_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.pointdepart_actw">
+            <field name="name">liste des Point de depart</field>
+            <field name="res_model">excursion.pointdepart</field>
+            <field name="view_id" ref="excursion.pointdepart_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.agence_actw">
+            <field name="name">liste des Agence</field>
+            <field name="res_model">excursion.agence</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.vendeur_actw">
+            <field name="name">liste des Fournisseurs</field>
+            <field name="res_model">excursion.vendeur</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excursion.excursion_vendeur_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.guide_actw">
+            <field name="name">liste des Guides</field>
+            <field name="res_model">excursion.guide</field>
+            <field name="view_id" ref="excursion.guide_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.horairedej_actw">
+            <field name="name">Horaire de déjeuner</field>
+            <field name="res_model">excursion.horairedej</field>
+            <field name="view_id" ref="excursion.horairedej_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.excursionplan_actw">
+            <field name="name">liste des Excursion Plan</field>
+            <field name="res_model">excursion.excursionplan</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excursion.excursionplan_tree"/>
+        </record>
+
+
+        <record model="ir.actions.act_window" id="excursion.movementday_actw">
+            <field name="name">liste des Movement Day</field>
+            <field name="res_model">excursion.movementday</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="excursion.movementday_tree"/>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.configsahara_actw">
+            <field name="name">Configuration des commissions chauffeurs Sahara</field>
+            <field name="res_model">excursion.configsahara</field>
+            <field name="view_id" ref="excursion_configsahara_form"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.hotel_depart_config_actw">
+            <field name="name">Configuration des hotels departs</field>
+            <field name="res_model">hotel.depart.config</field>
+            <field name="view_id" ref="excursion.hotel_depart_config_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.actions.act_window" id="excursion.excursion_tarif_history_actw">
+            <field name="name">Historique des tarifs </field>
+            <field name="res_model">exc.prices.history</field>
+            <field name="view_id" ref="excursion.excursion_tarif_history_tree"/>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <!-- server action to the one above -->
+
+        <!--<record model="ir.actions.server" id="excursion.action_server">-->
+        <!--<field name="name">Excursion server</field>-->
+        <!--<field name="model_id" ref="model_excursion_excursion"/>-->
+        <!--<field name="state">code</field>-->
+        <!--<field name="code">-->
+        <!--action = {-->
+        <!--"type": "ir.actions.act_window",-->
+        <!--"view_mode": "tree,form",-->
+        <!--"res_model": self._name,-->
+        <!--}-->
+        <!--</field>-->
+        <!--</record>-->
+
+
+        <!-- Top menu item -->
+
+        <menuitem name="CTM Excursion" id="excursion.menu_root"/>
+
+        <!-- menu categories -->
+
+        <!--<menuitem name="Liste" sequence="1" id="excursion.menu_1" parent="excursion.menu_root"/>-->
+        <!--<menuitem name="Liste des Etat Prestataires" id="excursion.menu_1_1" parent="excursion.menu_1"-->
+        <!--action="excursion.etat_prestataire_actw" sequence="1"/>-->
+        <!--<menuitem name="Liste des Tarif" id="excursion.menu_1_2" parent="excursion.menu_1"-->
+        <!--action="excursion.etat_tarif_actw" sequence="2"/>-->
+
+        <menuitem name="Excursion" sequence="2" id="excursion.menu_1" parent="excursion.menu_root"
+                  action="excursion.excursion_actw"/>
+        <menuitem name="Movement Day" sequence="1" id="excursion.menu_2" parent="excursion.menu_root"
+                  action="excursion.movementday_actw"/>
+        <menuitem name="Configuration" id="excursion.menu_4" parent="excursion.menu_root"
+                  action="excursion.detail_prix_actw"/>
+        <!--<menuitem name="Prestataire de Service" id="excursion.menu_3" parent="excursion.menu_4"-->
+        <!--action="excursion.prestation_actw"/>-->
+
+
+        <!--<menuitem name="detail prix" id="excursion.menu_4_1" parent="excursion.menu_4"-->
+        <!--action="excursion.detail_prix_actw" sequence="1"/>-->
+
+        <menuitem name="Region" id="excursion.menu_4_2" parent="excursion.menu_4"
+                  action="excursion.emplacement_actw" sequence="2"/>
+
+        <!--<menuitem name="Circuit" id="excursion.menu_4_3" parent="excursion.menu_4"-->
+        <!--action="excursion.circuit_actw" sequence="3"/>-->
+        <!--<menuitem name="Point de deaprt" id="excursion.menu_4_4" parent="excursion.menu_4"-->
+        <!--action="excursion.pointdepart_actw" sequence="4"/>-->
+        <menuitem name="Agence" id="excursion.menu_4_5" parent="excursion.menu_4"
+                  action="excursion.agence_actw" sequence="5"/>
+        <menuitem name="Fournisseur" id="excursion.menu_4_6" parent="excursion.menu_4"
+                  action="excursion.vendeur_actw" sequence="6"/>
+        <menuitem name="Guide" id="excursion.menu_4_7" parent="excursion.menu_4"
+                  action="excursion.guide_actw" sequence="7"/>
+
+        <!--<menuitem name="Horaire de Déjeuner" id="excursion.menu_4_8" parent="excursion.menu_4"-->
+        <!--action="excursion.horairedej_actw" sequence="8"/>-->
+
+        <!--<menuitem name="Lieu de depart" id="excursion.menu_4_9" parent="excursion.menu_4"-->
+        <!--action="excursion.depart_actw" sequence="9"/>-->
+
+        <menuitem name="Excursion Plan" id="excursion.menu_4_10" groups="base.group_no_one" parent="excursion.menu_4"
+                  action="excursion.excursionplan_actw" sequence="10"/>
+        <menuitem name="Configuration Sahara" id="excursion.menu_sahara" parent="excursion.menu_4"
+                  action="excursion.configsahara_actw" sequence="50"/>
+        <menuitem name="Traitement Excursion" parent="excursion.menu_root" id="excursion.affectation_menu"
+                  sequence="3"
+                  groups="excursion.group_excursion_affectation_reservation"
+        />
+
+        <!--<menuitem name="excursion programme" id="excursion.menu_programme_excursion" parent="excursion.menu_4"-->
+        <!--action="excursion.excursion_programme_actw" sequence="11"/>-->
+
+        <!-- actions -->
+
+    </data>
+</odoo>
